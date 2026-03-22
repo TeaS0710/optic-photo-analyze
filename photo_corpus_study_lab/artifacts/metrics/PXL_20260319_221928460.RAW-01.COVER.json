@@ -1,0 +1,145 @@
+{
+  "file_name": "PXL_20260319_221928460.RAW-01.COVER.jpg",
+  "image_path": "../data/input/PXL_20260319_221928460.RAW-01.COVER.jpg",
+  "family": "midtone-muted-structured-human-text",
+  "metrics": {
+    "width_px": 6144,
+    "height_px": 8160,
+    "study_width_px": 1205,
+    "study_height_px": 1600,
+    "aspect_ratio": 0.7529,
+    "orientation": "portrait",
+    "luminance_mean": 128.4731,
+    "luminance_std": 37.2849,
+    "dynamic_range": 124.702,
+    "saturation_mean": 0.1188,
+    "saturation_std": 0.0336,
+    "warm_balance": 0.0606,
+    "colorfulness": 3.1767,
+    "shadow_clip_ratio": 0.003058,
+    "highlight_clip_ratio": 3e-06,
+    "entropy": 7.1988,
+    "edge_density": 0.149996,
+    "sharpness": 463.1677,
+    "visual_center_x": 0.5528,
+    "visual_center_y": 0.5487,
+    "thirds_distance": 0.164,
+    "line_balance": 0.001,
+    "diagonal_energy": 6.8572,
+    "symmetry_score": 0.8965,
+    "vignette_score": 0.1604,
+    "negative_space_ratio": 0.2992,
+    "dominant_colors": [
+      "#78706a",
+      "#908780",
+      "#5b544f",
+      "#aaa097",
+      "#c4bab1"
+    ],
+    "brightness_family": "midtone",
+    "saturation_family": "muted",
+    "texture_family": "structured",
+    "chroma_family": "warm"
+  },
+  "semantic": {
+    "analysis_status": "ok",
+    "subject_count": 3,
+    "object_count": 2,
+    "text_present": true,
+    "keywords": [
+      "mur en briques",
+      "Mur en briques. Surface texturée.",
+      "Le texte manuscrit sur le mur.",
+      "La surface en briques du mur.",
+      "français"
+    ],
+    "support_kind": "mur en briques",
+    "salient_objects": [
+      "Le texte manuscrit sur le mur.",
+      "La surface en briques du mur."
+    ],
+    "subject_roles": [
+      "texte",
+      "mur",
+      "stylo"
+    ],
+    "dominant_axes": [
+      "Le texte est situé sur la surface du mur.",
+      "Le mur est un objet distinct du texte."
+    ],
+    "scene_summary": "Un mur en briques recouvert d'un texte écrit au stylo.",
+    "core_reading": "La scène représente un support textuel, une inscription manuscrite sur un mur en briques. L'absence de contenu lisible et l'absence de l'outil d'écriture (stylo) suggèrent une suspension, une interruption d'un acte de communication ou d'expression.",
+    "short_title": "Mur en briques : PXL_20260319_221928460.RAW-01.COVER",
+    "faithfulness_score": 72,
+    "overreach_risk_score": 46
+  },
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "model": "gemma3:latest",
+    "llm_postprocess": false,
+    "temporary_context": "photos de la guerre en Ukraine",
+    "sync_timeout": 300,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 700,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 1100,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 1200,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 1300,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.24,
+        "maxTokens": 1300,
+        "topPSampling": 0.92,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.36,
+        "maxTokens": 1200,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "d111303b0c3078638308785776d0be30c9549cbaf155da9eaa4b41afa2f299e8",
+      "READ_SYSTEM": "3785d06d6d925b25e9210a2015b00827c08fdf87d86738596aff198b36a900c8",
+      "ANCHOR_SYSTEM": "adfb93f0e1adaee4c34796ff0a71782240742f11e1cd51998f6c98c827ee3774",
+      "INTERPRET_SYSTEM": "3f65c94b6a75f476af41a319f1bb9cb0f26fe23797aa704f09eabadbf0151364",
+      "CRITIQUE_SYSTEM": "b4e97ba9fdd5f80e10e7849ab53e2f7007a527150781b5845a29ee8f178677ec",
+      "WRITE_SYSTEM": "1d7cedd5e344afced67845de4ca92ea93e635d91fdd4136333f4cd8651545d94",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "7b5a270c3f3edb2cd3f06df7ccb7d77f6da0e5cd3d7732c0fa83cf9e6e26cbd2",
+      "READ_USER": "d11a93c47eccd80372733ed6347dd6c037b489a1f3bad992f10aa70b0ce87b62",
+      "ANCHOR_USER": "5c7a618556cd5596bb5e370b8ff42ad0e9f29e55c0b4d170a6cacaa5b8ea988b",
+      "INTERPRET_USER": "c67dc4e88d51152500e3686506ebf73d7033fe5e275d11419386a97e2ae41df0",
+      "CRITIQUE_USER": "b2189df0de615da9b29f86f90d393cbed3dbd631c493be89847066e3629048c5",
+      "WRITE_USER": "b509d21c11b25245fa6f8c62027e608e317f3f97fda962dde7229f664921c0b9"
+    }
+  }
+}

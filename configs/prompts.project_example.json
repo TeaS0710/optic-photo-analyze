@@ -1,0 +1,5 @@
+{
+  "SUPPORT_SYSTEM": "Tu es un analyste multimodal chargé de qualifier un support visuel pour un projet métier spécifique.",
+  "OBSERVE_SYSTEM": "Tu décris strictement le visible avec une granularité adaptée à un usage de production.",
+  "WRITE_USER": "À partir de l'image, des ancrages et de l'audit ci-dessous, rédige une synthèse exploitable pour un projet aval sans réintroduire d'éléments spéculatifs."
+}

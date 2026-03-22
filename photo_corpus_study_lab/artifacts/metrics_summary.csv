@@ -1,0 +1,13 @@
+aspect_ratio,colorfulness,dynamic_range,edge_density,entropy,family,file_name,luminance_mean,negative_space_ratio,object_count,orientation,saturation_mean,sharpness,subject_count,symmetry_score,text_present,warm_balance
+0.7529,21.5444,203.2436,0.15,7.7718,midtone-balanced-structured-human-text,PXL_20260319_221606770.RAW-01.COVER.jpg,105.4973,0.3,3,portrait,0.2736,111.9973,2,0.8305,True,0.1061
+0.7529,21.3959,209.9066,0.15,7.8536,midtone-balanced-structured-human-no-text,PXL_20260319_221615854.RAW-01.COVER.jpg,130.3564,0.3,4,portrait,0.2389,182.0965,2,0.7951,False,0.0987
+0.7529,10.9089,185.8476,0.15,7.3007,midtone-muted-structured-human-text,PXL_20260319_221626535.RAW-01.COVER.jpg,152.6001,0.3,3,portrait,0.1686,198.089,4,0.9059,True,0.0846
+0.7529,9.3916,119.7702,0.149536,6.5856,midtone-muted-structured-human-no-text,PXL_20260319_221643500.RAW-01.COVER.jpg,162.0717,0.2987,3,portrait,0.142,325.5823,1,0.9055,False,0.0873
+0.7529,7.8018,140.4264,0.149913,6.8879,midtone-muted-structured-human-text,PXL_20260319_221656925.RAW-01.COVER.jpg,153.7637,0.2989,2,portrait,0.1507,151.5471,1,0.9422,True,0.0823
+0.7529,13.3473,172.039,0.15,7.3015,midtone-muted-structured-human-no-text,PXL_20260319_221728309.RAW-01.COVER.jpg,123.6195,0.3,3,portrait,0.1434,416.7682,3,0.8917,False,0.0752
+0.7529,15.1298,158.4722,0.15,6.8913,midtone-muted-structured-human-no-text,PXL_20260319_221746325.RAW-01.COVER.jpg,138.2856,0.2975,3,portrait,0.135,426.3405,2,0.894,False,0.0792
+0.7529,14.1181,193.047,0.149881,7.641,midtone-muted-structured-human-text,PXL_20260319_221801472.RAW-01.COVER.jpg,113.3788,0.299,5,portrait,0.1633,282.9459,1,0.8884,True,0.0741
+0.7529,4.3276,71.059,0.149674,6.4931,midtone-balanced-structured-human-no-text,PXL_20260319_221820951.RAW-01.COVER.jpg,146.2639,0.2991,2,portrait,0.277,271.8479,2,0.8722,False,0.1756
+0.7529,3.1767,124.702,0.149996,7.1988,midtone-muted-structured-human-text,PXL_20260319_221928460.RAW-01.COVER.jpg,128.4731,0.2992,2,portrait,0.1188,463.1677,3,0.8965,True,0.0606
+0.7529,17.5216,200.6258,0.15,6.5919,midtone-muted-structured-object-no-text,PXL_20260319_222150706.RAW-01.COVER.jpg,165.4741,0.298,0,portrait,0.1544,355.2015,0,0.8804,False,0.0933
+0.7529,10.5437,183.9668,0.149954,6.7675,midtone-muted-structured-human-text,PXL_20260319_222209556.RAW-01.COVER.jpg,159.2612,0.2986,3,portrait,0.1578,249.8563,1,0.8772,True,0.1007

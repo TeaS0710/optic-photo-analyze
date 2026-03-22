@@ -1,0 +1,388 @@
+{
+  "file_name": "PXL_20260319_221626535.RAW-01.COVER.jpg",
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "model": "gemma3:latest",
+    "llm_postprocess": false,
+    "temporary_context": "photos de la guerre en Ukraine",
+    "sync_timeout": 300,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 700,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 1100,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 1200,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 1300,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.24,
+        "maxTokens": 1300,
+        "topPSampling": 0.92,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.36,
+        "maxTokens": 1200,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "d111303b0c3078638308785776d0be30c9549cbaf155da9eaa4b41afa2f299e8",
+      "READ_SYSTEM": "3785d06d6d925b25e9210a2015b00827c08fdf87d86738596aff198b36a900c8",
+      "ANCHOR_SYSTEM": "adfb93f0e1adaee4c34796ff0a71782240742f11e1cd51998f6c98c827ee3774",
+      "INTERPRET_SYSTEM": "3f65c94b6a75f476af41a319f1bb9cb0f26fe23797aa704f09eabadbf0151364",
+      "CRITIQUE_SYSTEM": "b4e97ba9fdd5f80e10e7849ab53e2f7007a527150781b5845a29ee8f178677ec",
+      "WRITE_SYSTEM": "1d7cedd5e344afced67845de4ca92ea93e635d91fdd4136333f4cd8651545d94",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "7b5a270c3f3edb2cd3f06df7ccb7d77f6da0e5cd3d7732c0fa83cf9e6e26cbd2",
+      "READ_USER": "d11a93c47eccd80372733ed6347dd6c037b489a1f3bad992f10aa70b0ce87b62",
+      "ANCHOR_USER": "5c7a618556cd5596bb5e370b8ff42ad0e9f29e55c0b4d170a6cacaa5b8ea988b",
+      "INTERPRET_USER": "c67dc4e88d51152500e3686506ebf73d7033fe5e275d11419386a97e2ae41df0",
+      "CRITIQUE_USER": "b2189df0de615da9b29f86f90d393cbed3dbd631c493be89847066e3629048c5",
+      "WRITE_USER": "b509d21c11b25245fa6f8c62027e608e317f3f97fda962dde7229f664921c0b9"
+    }
+  },
+  "support": {
+    "support_kind": "image encadrée",
+    "primary_focus": "quatre personnes assises à des bancs",
+    "depicts_direct_scene": "oui",
+    "support_boundary": "Il est important de noter que l'image est présentée dans un cadre, ce qui introduit une couche supplémentaire de construction visuelle. La nature de l'espace environnant les bancs n'est pas directement visible, mais suggérée par la composition.",
+    "reasoning_guardrails": [
+      "Il n'y a pas d'informations permettant d'identifier l'âge, le sexe ou l'origine des individus.",
+      "L'interprétation de l'activité des personnes (lecture, méditation, etc.) est spéculative et non basée sur des données visuelles directes.",
+      "La qualité de l'image et l'éclairage suggèrent une scène photographique, mais ne permettent pas de déterminer le contexte ou l'intention du photographe."
+    ]
+  },
+  "observe": {
+    "scene_summary": "Une image encadrée montrant quatre personnes assises sur des bancs.",
+    "setting": "L'image est présentée dans un cadre. Les bancs sont situés dans un espace intérieur. L'arrière-plan est flou et de couleur chaude.",
+    "subjects": [
+      {
+        "role": "assise",
+        "description": "Une personne est assise sur un banc, le dos à la caméra. Elle porte un manteau bleu foncé et un chapeau. La posture est droite.",
+        "posture_or_state": "assise",
+        "salience": "haut"
+      },
+      {
+        "role": "assise",
+        "description": "Une personne est assise sur un banc, le dos à la caméra. Elle porte un manteau noir et un chapeau. La posture est droite.",
+        "posture_or_state": "assise",
+        "salience": "milieu"
+      },
+      {
+        "role": "assise",
+        "description": "Une personne est assise sur un banc, le dos à la caméra. Elle porte un manteau gris et un chapeau. La posture est droite.",
+        "posture_or_state": "assise",
+        "salience": "bas"
+      },
+      {
+        "role": "assise",
+        "description": "Une personne est assise sur un banc, le dos à la caméra. Elle porte un manteau bleu et un chapeau. La posture est droite.",
+        "posture_or_state": "assise",
+        "salience": "milieu"
+      }
+    ],
+    "salient_objects": [
+      "quatre bancs",
+      "quatre manteaux (bleu foncé, noir, gris, bleu)",
+      "quatre chapeaux"
+    ],
+    "visible_actions": [
+      "quatre personnes sont assises"
+    ],
+    "spatial_relations": [
+      "Les quatre personnes sont assises sur des bancs.",
+      "Les bancs sont alignés."
+    ],
+    "composition": "La composition est symétrique. Les quatre personnes sont disposées de manière égale sur les quatre bancs.",
+    "lighting_and_color": "L'éclairage est doux et diffus. La scène est dominée par des tons chauds (rouges, oranges, bruns).",
+    "uncertainties": [
+      "L'âge, le sexe et l'origine des individus ne peuvent pas être déterminés.",
+      "L'activité des personnes est inconnue.",
+      "La nature de l'espace environnant les bancs est inconnue."
+    ]
+  },
+  "text": {
+    "has_text": "oui",
+    "text_regions": [
+      {
+        "region_label": "Zone 1",
+        "transcription": "support_kind",
+        "confidence": "élevé",
+        "notes": "Terme technique, probablement lié à la description de l'œuvre d'art."
+      },
+      {
+        "region_label": "Zone 2",
+        "transcription": "quatre personnes assises à des bancs",
+        "confidence": "élevé",
+        "notes": "Extrait de la description du support."
+      },
+      {
+        "region_label": "Zone 3",
+        "transcription": "Il montre quatre individus assis sur des bancs.",
+        "confidence": "élevé",
+        "notes": "Extrait de la description du support."
+      },
+      {
+        "region_label": "Zone 4",
+        "transcription": "L'image est présentée dans un cadre.",
+        "confidence": "élevé",
+        "notes": "Description de la présentation de l'image."
+      },
+      {
+        "region_label": "Zone 5",
+        "transcription": "Il est important de noter que l'image est présentée dans un cadre, ce qui introduit une couche supplémentaire de construction visuelle.",
+        "confidence": "moyen",
+        "notes": "Note descriptive sur la présentation de l'image."
+      },
+      {
+        "region_label": "Zone 6",
+        "transcription": "La nature de l'espace environnant les bancs n'est pas directement visible, mais suggérée par la composition.",
+        "confidence": "moyen",
+        "notes": "Note descriptive sur la présentation de l'image."
+      }
+    ],
+    "combined_text": "support_kind, quatre personnes assises à des bancs, Il montre quatre individus assis sur des bancs., L'image est présentée dans un cadre., Il est important de noter que l'image est présentée dans un cadre, ce qui introduit une couche supplémentaire de construction visuelle., La nature de l'espace environnant les bancs n'est pas directement visible, mais suggérée par la composition.",
+    "language_guesses": [
+      "français"
+    ],
+    "text_role": "description du support et de l'image",
+    "reading_limits": [
+      "Le texte est fragmenté et extrait de différentes sources (profil de support, observation, objectif).",
+      "La lisibilité est parfois limitée par la disposition du texte et la qualité de l'image."
+    ]
+  },
+  "anchors": {
+    "dominant_axes": [
+      "Présence de quatre individus assis sur des bancs.",
+      "Présentation de l'image dans un cadre.",
+      "Utilisation de couleurs chaudes dans la scène."
+    ],
+    "anchors": [
+      {
+        "anchor_id": "1",
+        "observation": "Une personne est assise sur un banc, le dos à la caméra, portant un manteau bleu foncé et un chapeau.",
+        "supports": [
+          "observation"
+        ],
+        "certainty": "forte",
+        "anti_overreach": "Il ne peut pas être déduit que la personne est en train de lire ou de méditer. La posture est simplement assise."
+      },
+      {
+        "anchor_id": "2",
+        "observation": "Il y a quatre bancs alignés.",
+        "supports": [
+          "observation"
+        ],
+        "certainty": "forte",
+        "anti_overreach": "La disposition des bancs ne permet pas de déduire le type d'établissement (église, salle de réception, etc.)."
+      },
+      {
+        "anchor_id": "3",
+        "observation": "L'image est encadrée.",
+        "supports": [
+          "profil de support",
+          "lecture du texte"
+        ],
+        "certainty": "forte",
+        "anti_overreach": "La présentation dans un cadre ne fournit aucune information sur le sujet de l'image ou son contexte."
+      },
+      {
+        "anchor_id": "4",
+        "observation": "Les individus portent des manteaux de différentes couleurs (bleu foncé, noir, gris, bleu) et des chapeaux.",
+        "supports": [
+          "observation"
+        ],
+        "certainty": "moyenne",
+        "anti_overreach": "La couleur et le type de vêtement ne permettent pas de déduire l'âge, le sexe ou l'origine des individus."
+      }
+    ],
+    "safe_inferences": [
+      "Il y a au moins quatre personnes présentes dans l'image.",
+      "Les personnes sont assises sur des bancs.",
+      "L'image a été photographiée et encadrée."
+    ],
+    "open_questions": [
+      "L'activité des personnes est inconnue.",
+      "L'environnement immédiat des bancs est inconnu.",
+      "L'intention du photographe est inconnue."
+    ],
+    "do_not_claim": [
+      "L'âge, le sexe ou l'origine des individus peuvent être déterminés.",
+      "Les individus sont en train de lire, de méditer ou d'effectuer une autre activité spécifique.",
+      "L'image représente un événement ou une scène particulière."
+    ]
+  },
+  "interpretation": {
+    "core_reading": "L'image présente une scène de contemplation, d'attente, ou de simple présence. La composition symétrique, l'éclairage doux et les couleurs chaudes suggèrent un moment de calme, potentiellement une pause dans un espace public. La présence de quatre individus, chacun dans son propre espace, évoque un sentiment de solitude partagée, ou d'attente mutuelle. L'encadrement de l'image renforce l'idée d'une scène sélectionnée, presque comme un instantané capturé et présenté.",
+    "social_dynamics": "Il est impossible d'établir des relations sociales précises entre les individus à partir de cette image. Ils pourraient être des amis, des connaissances, des inconnus se trouvant dans le même espace. L'absence de contact visuel direct ou d'interaction suggère une distance, une réserve, ou simplement une absence d'interaction. La posture droite de chacun pourrait indiquer une certaine formalité, une attente, ou une observation attentive de l'environnement.",
+    "emotional_hypotheses": [
+      {
+        "emotion": "Contemplation",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "moyenne",
+        "reason": "La posture assise et l'environnement calme suggèrent une réflexion intérieure. L'absence d'activité visible renforce cette hypothèse."
+      },
+      {
+        "emotion": "Attente",
+        "anchor_refs": [
+          "2"
+        ],
+        "confidence": "moyenne",
+        "reason": "La disposition des bancs et la posture des individus peuvent suggérer une attente d'une personne ou d'un événement. Ce contexte de guerre en Ukraine pourrait amplifier cette hypothèse."
+      },
+      {
+        "emotion": "Solitude",
+        "anchor_refs": [
+          "1",
+          "4"
+        ],
+        "confidence": "basse",
+        "reason": "La distance entre les individus et l'absence d'interaction peuvent évoquer un sentiment de solitude, même en présence d'autres personnes."
+      }
+    ],
+    "text_scene_interaction": "La description du support et de l'image est fragmentée et ne permet pas de reconstituer une scène cohérente. Les informations sont principalement descriptives et ne fournissent pas de contexte narratif.",
+    "alternative_readings": [
+      "Les individus pourraient être en train de se recueillir en silence, honorant un souvenir ou une personne disparue.",
+      "Ils pourraient être des observateurs, attentifs à un événement qui se déroule hors du cadre de l'image.",
+      "L'image pourrait représenter une scène de transition, un moment de pause avant un événement important."
+    ],
+    "prohibited_conclusions": [
+      "Il est impossible de déterminer si les individus sont des soldats, des civils, ou des victimes de la guerre en Ukraine à partir de cette image seule.",
+      "Il est impossible de déduire la date ou le lieu précis de la scène.",
+      "Il est impossible de déterminer l'objectif ou l'intention du photographe.",
+      "Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact."
+    ],
+    "residual_uncertainty": "La nature exacte de la scène reste ouverte à l'interprétation, compte tenu de l'absence de détails contextuels et de l'ambiguïté inhérente à la composition de l'image."
+  },
+  "critique": {
+    "faithfulness_score": 72,
+    "overreach_risk_score": 46,
+    "evidence_coverage_score": 68,
+    "writing_readiness": "à réviser",
+    "global_assessment": "Audit de secours généré localement après échec de la passe critique Ollama. Le contenu reste exploitable mais demande une relecture humaine.",
+    "issues": [
+      {
+        "issue_type": "fallback_technique",
+        "severity": "moyenne",
+        "location": "critique",
+        "explanation": "La passe critique structurée Ollama a échoué. Cette version de secours conserve une révision prudente mais moins fine qu'un audit complet.",
+        "suggested_fix": "Relancer ultérieurement la passe critique avec un modèle plus stable si une version éditoriale de haute qualité est nécessaire."
+      },
+      {
+        "issue_type": "contexte_temporaire",
+        "severity": "moyenne",
+        "location": "interpretation",
+        "explanation": "Un contexte externe temporaire peut enrichir la lecture humaine, mais il ne doit jamais devenir une preuve sur la scène, le lieu, le camp ou l'événement exact.",
+        "suggested_fix": "Garder des formulations hypothétiques et revenir explicitement aux ancrages visibles pour toute affirmation concrète."
+      }
+    ],
+    "keep_as_is": [
+      "core_reading",
+      "text_scene_interaction",
+      "prohibited_conclusions"
+    ],
+    "revision_priorities": [
+      "resserrer les formulations spéculatives",
+      "conserver uniquement les ancrages explicitement visibles",
+      "signaler les zones d'incertitude restantes"
+    ],
+    "revised_core_reading": "L'image présente une scène de contemplation, d'attente, ou de simple présence. La composition symétrique, l'éclairage doux et les couleurs chaudes suggèrent un moment de calme, potentiellement une pause dans un espace public. La présence de quatre individus, chacun dans son propre espace, évoque un sentiment de solitude partagée, ou d'attente mutuelle. L'encadrement de l'image renforce l'idée d'une scène sélectionnée, presque comme un instantané capturé et présenté.",
+    "revised_social_dynamics": "Il est impossible d'établir des relations sociales précises entre les individus à partir de cette image. Ils pourraient être des amis, des connaissances, des inconnus se trouvant dans le même espace. L'absence de contact visuel direct ou d'interaction suggère une distance, une réserve, ou simplement une absence d'interaction. La posture droite de chacun pourrait indiquer une certaine formalité, une attente, ou une observation attentive de l'environnement.",
+    "revised_emotional_hypotheses": [
+      {
+        "emotion": "Contemplation",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "moyenne",
+        "reason": "La posture assise et l'environnement calme suggèrent une réflexion intérieure. L'absence d'activité visible renforce cette hypothèse."
+      },
+      {
+        "emotion": "Attente",
+        "anchor_refs": [
+          "2"
+        ],
+        "confidence": "moyenne",
+        "reason": "La disposition des bancs et la posture des individus peuvent suggérer une attente d'une personne ou d'un événement. Ce contexte de guerre en Ukraine pourrait amplifier cette hypothèse."
+      }
+    ],
+    "revised_text_scene_interaction": "La description du support et de l'image est fragmentée et ne permet pas de reconstituer une scène cohérente. Les informations sont principalement descriptives et ne fournissent pas de contexte narratif.",
+    "revised_alternative_readings": [
+      "Les individus pourraient être en train de se recueillir en silence, honorant un souvenir ou une personne disparue.",
+      "Ils pourraient être des observateurs, attentifs à un événement qui se déroule hors du cadre de l'image."
+    ],
+    "revised_prohibited_conclusions": [
+      "Il est impossible de déterminer si les individus sont des soldats, des civils, ou des victimes de la guerre en Ukraine à partir de cette image seule.",
+      "Il est impossible de déduire la date ou le lieu précis de la scène.",
+      "Il est impossible de déterminer l'objectif ou l'intention du photographe."
+    ],
+    "revised_residual_uncertainty": "L'activité des personnes est inconnue.; L'environnement immédiat des bancs est inconnu.; L'intention du photographe est inconnue."
+  },
+  "writing": {
+    "short_title": "Image encadrée : PXL_20260319_221626535.RAW-01.COVER",
+    "analytic_brief": "Une image encadrée montrant quatre personnes assises sur des bancs. Le cadre visible correspond à L'image est présentée dans un cadre. Les bancs sont situés dans un espace intérieur. L'arrière-plan est flou et de couleur chaude.. Le texte visible relevé est: support_kind, quatre personnes assises à des bancs, Il montre quatre individus assis sur des bancs., L'image est présentée dans un cadre., Il est important de noter que l'image est présentée dans un cadre, ce qui introduit une couche supplémentaire de construction visuelle., La nature de l'espace environnant les bancs n'est pas directement visible, mais suggérée par la composition.. La lecture retenue reste la suivante: L'image présente une scène de contemplation, d'attente, ou de simple présence. La composition symétrique, l'éclairage doux et les couleurs chaudes suggèrent un moment de calme, potentiellement une pause dans un espace public. La présence de quatre individus, chacun dans son propre espace, évoque un sentiment de solitude partagée, ou d'attente mutuelle. L'encadrement de l'image renforce l'idée d'une scène sélectionnée, presque comme un instantané capturé et présenté.. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Les limites à conserver explicitement demeurent: L'activité des personnes est inconnue.; L'environnement immédiat des bancs est inconnu.; L'intention du photographe est inconnue.",
+    "human_commentary": "Une image encadrée montrant quatre personnes assises sur des bancs. Ce qui retient ici n'est pas seulement le fait montré, mais la manière dont il demeure en suspens: quatre bancs, quatre manteaux (bleu foncé, noir, gris, bleu), quatre chapeaux et le texte visible 'support_kind, quatre personnes assises à des bancs, Il montre quatre individus assis sur des bancs., L'image est présentée dans un cadre., Il est important de noter que l'image est présentée dans un cadre, ce qui introduit une couche supplémentaire de construction visuelle., La nature de l'espace environnant les bancs n'est pas directement visible, mais suggérée par la composition.' composent une scène qui résiste à l'explication rapide. Il est impossible d'établir des relations sociales précises entre les individus à partir de cette image. Ils pourraient être des amis, des connaissances, des inconnus se trouvant dans le même espace. L'absence de contact visuel direct ou d'interaction suggère une distance, une réserve, ou simplement une absence d'interaction. La posture droite de chacun pourrait indiquer une certaine formalité, une attente, ou une observation attentive de l'environnement. Une tonalité de contemplation peut être ressentie, mais seulement comme une hypothèse appuyée sur 1, 2. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Le texte assume une lecture plus humaine et plus sensible, mais il se refuse à faire passer une impression pour une preuve.",
+    "photographic_commentary": "La lecture photographique s'appuie sur la composition visible, le cadrage et les rapports entre sujets et objets. Le regard est conduit par quatre bancs, quatre manteaux (bleu foncé, noir, gris, bleu), quatre chapeaux et le texte visible 'support_kind, quatre personnes assises à des bancs, Il montre quatre individus assis sur des bancs., L'image est présentée dans un cadre., Il est important de noter que l'image est présentée dans un cadre, ce qui introduit une couche supplémentaire de construction visuelle., La nature de l'espace environnant les bancs n'est pas directement visible, mais suggérée par la composition.', tandis que l'image est présentée dans un cadre. les bancs sont situés dans un espace intérieur. l'arrière-plan est flou et de couleur chaude. installe un espace de retrait plus que d'action. La scène reste restituée sans extrapolation hors champ, avec une attention particulière au support image encadrée et à sa matérialité.",
+    "literary_commentary": "Le texte retient une voix plus proche du témoignage que du commentaire neutre. Il décrit une image encadrée montrant quatre personnes assises sur des bancs. sans fabriquer d'arrière-scène, et laisse ce qui affleure au bord du dicible plutôt que de le transformer en certitude. Le rôle du texte visible reste description du support et de l'image. L'ambiguïté qui demeure ne doit pas être comblée: L'activité des personnes est inconnue.; L'environnement immédiat des bancs est inconnu.; L'intention du photographe est inconnue.",
+    "keywords": [
+      "image encadrée",
+      "L'image est présentée dans un cadre. Les bancs sont situés dans un espace intérieur. L'arrière-plan est flou et de couleur chaude.",
+      "quatre bancs",
+      "quatre manteaux (bleu foncé, noir, gris, bleu)",
+      "quatre chapeaux",
+      "français"
+    ]
+  },
+  "quality": {
+    "reviewed": false,
+    "review_notes": "",
+    "usable_for_training": false,
+    "auto_quality": {
+      "faithfulness_score": 72,
+      "overreach_risk_score": 46,
+      "evidence_coverage_score": 68,
+      "writing_readiness": "à réviser",
+      "severe_issue_count": 0,
+      "hallucination_risk": "moyen",
+      "recommended_usable_for_training": false
+    }
+  },
+  "pipeline_warnings": {
+    "critique_fallback_used": true,
+    "critique_fallback_reason": "disabled_by_default_for_resilience",
+    "write_fallback_used": true,
+    "write_fallback_reason": "disabled_by_default_for_resilience"
+  }
+}

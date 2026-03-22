@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460">
+<rect width="100%" height="100%" fill="white"/>
+<text x="70" y="28" font-size="22" font-family="Helvetica">Sharpness vs Dynamic Range</text>
+<line x1="70" y1="400" x2="860" y2="400" stroke="black"/>
+<line x1="70" y1="50" x2="70" y2="400" stroke="black"/>
+<circle cx="70.0" cy="66.8" r="5" fill="#a63b6e"/><text x="77.0" y="59.8" font-size="10">PXL_20260319_22160</text><circle cx="227.7" cy="50.0" r="5" fill="#a63b6e"/><text x="234.7" y="43.0" font-size="10">PXL_20260319_22161</text><circle cx="263.7" cy="110.6" r="5" fill="#a63b6e"/><text x="270.7" y="103.6" font-size="10">PXL_20260319_22162</text><circle cx="550.5" cy="277.2" r="5" fill="#a63b6e"/><text x="557.5" y="270.2" font-size="10">PXL_20260319_22164</text><circle cx="159.0" cy="225.1" r="5" fill="#a63b6e"/><text x="166.0" y="218.1" font-size="10">PXL_20260319_22165</text><circle cx="755.6" cy="145.5" r="5" fill="#a63b6e"/><text x="762.6" y="138.5" font-size="10">PXL_20260319_22172</text><circle cx="777.2" cy="179.7" r="5" fill="#a63b6e"/><text x="784.2" y="172.7" font-size="10">PXL_20260319_22174</text><circle cx="454.6" cy="92.5" r="5" fill="#a63b6e"/><text x="461.6" y="85.5" font-size="10">PXL_20260319_22180</text><circle cx="429.6" cy="400.0" r="5" fill="#a63b6e"/><text x="436.6" y="393.0" font-size="10">PXL_20260319_22182</text><circle cx="860.0" cy="264.8" r="5" fill="#a63b6e"/><text x="867.0" y="257.8" font-size="10">PXL_20260319_22192</text><circle cx="617.1" cy="73.4" r="5" fill="#a63b6e"/><text x="624.1" y="66.4" font-size="10">PXL_20260319_22215</text><circle cx="380.1" cy="115.4" r="5" fill="#a63b6e"/><text x="387.1" y="108.4" font-size="10">PXL_20260319_22220</text>
+<text x="370.0" y="452" font-size="12">sharpness</text>
+<text x="8" y="230.0" font-size="12" transform="rotate(-90 8,230.0)">dynamic_range</text>
+</svg>

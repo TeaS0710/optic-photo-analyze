@@ -1,0 +1,340 @@
+{
+  "file_name": "PXL_20260319_221728309.RAW-01.COVER.jpg",
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "model": "gemma3:latest",
+    "llm_postprocess": false,
+    "temporary_context": "photos de la guerre en Ukraine",
+    "sync_timeout": 300,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 700,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 1100,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 1200,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 1300,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.24,
+        "maxTokens": 1300,
+        "topPSampling": 0.92,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.36,
+        "maxTokens": 1200,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "d111303b0c3078638308785776d0be30c9549cbaf155da9eaa4b41afa2f299e8",
+      "READ_SYSTEM": "3785d06d6d925b25e9210a2015b00827c08fdf87d86738596aff198b36a900c8",
+      "ANCHOR_SYSTEM": "adfb93f0e1adaee4c34796ff0a71782240742f11e1cd51998f6c98c827ee3774",
+      "INTERPRET_SYSTEM": "3f65c94b6a75f476af41a319f1bb9cb0f26fe23797aa704f09eabadbf0151364",
+      "CRITIQUE_SYSTEM": "b4e97ba9fdd5f80e10e7849ab53e2f7007a527150781b5845a29ee8f178677ec",
+      "WRITE_SYSTEM": "1d7cedd5e344afced67845de4ca92ea93e635d91fdd4136333f4cd8651545d94",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "7b5a270c3f3edb2cd3f06df7ccb7d77f6da0e5cd3d7732c0fa83cf9e6e26cbd2",
+      "READ_USER": "d11a93c47eccd80372733ed6347dd6c037b489a1f3bad992f10aa70b0ce87b62",
+      "ANCHOR_USER": "5c7a618556cd5596bb5e370b8ff42ad0e9f29e55c0b4d170a6cacaa5b8ea988b",
+      "INTERPRET_USER": "c67dc4e88d51152500e3686506ebf73d7033fe5e275d11419386a97e2ae41df0",
+      "CRITIQUE_USER": "b2189df0de615da9b29f86f90d393cbed3dbd631c493be89847066e3629048c5",
+      "WRITE_USER": "b509d21c11b25245fa6f8c62027e608e317f3f97fda962dde7229f664921c0b9"
+    }
+  },
+  "support": {
+    "support_kind": "ensemble de feuilles de papier",
+    "primary_focus": "les photographies",
+    "depicts_direct_scene": "oui",
+    "support_boundary": "Il est important de distinguer les photographies elles-mêmes de la scène qu'elles représentent. Les images sont des reproductions d'éléments, et non les éléments eux-mêmes.",
+    "reasoning_guardrails": [
+      "Il n'y a pas d'informations permettant d'identifier les personnes ou les lieux représentés avec certitude.",
+      "L'interprétation est limitée à la description des éléments visuels présents sur les photographies."
+    ]
+  },
+  "observe": {
+    "scene_summary": "Un ensemble de feuilles de papier est fixé à une surface sombre. Les feuilles de papier contiennent des photographies.",
+    "setting": "Surface sombre. Feuilles de papier fixées.",
+    "subjects": [
+      {
+        "role": "sujet principal",
+        "description": "Une photographie représentant une personne debout, face à l'avant. La personne est vêtue d'un pull à manches longues. La tête est tournée vers la droite.",
+        "posture_or_state": "Debout, tête tournée vers la droite",
+        "salience": "La photographie est au centre de la composition."
+      },
+      {
+        "role": "sujet secondaire",
+        "description": "Une photographie représentant un groupe de personnes. Les personnes sont debout et semblent se tenir dans un espace extérieur. Il est difficile de déterminer le nombre exact de personnes.",
+        "posture_or_state": "Debout, groupe",
+        "salience": "La photographie est située à gauche."
+      },
+      {
+        "role": "sujet secondaire",
+        "description": "Une photographie représentant un paysage. Il est difficile de déterminer le type de paysage.",
+        "posture_or_state": "Paysage",
+        "salience": "La photographie est située à droite."
+      }
+    ],
+    "salient_objects": [
+      "Photographies (plusieurs)",
+      "Feuilles de papier (plusieurs)",
+      "Surface sombre"
+    ],
+    "visible_actions": [
+      "Les photographies sont fixées aux feuilles de papier.",
+      "Les feuilles de papier sont fixées à la surface sombre."
+    ],
+    "spatial_relations": [
+      "Les photographies sont disposées sur les feuilles de papier.",
+      "Les feuilles de papier sont fixées à la surface sombre.",
+      "Les photographies sont disposées de manière relativement ordonnée."
+    ],
+    "composition": "Les photographies sont disposées sur les feuilles de papier. La composition est ordonnée.",
+    "lighting_and_color": "Lumière uniforme et diffuse. La surface sombre est le fond.",
+    "uncertainties": [
+      "Le nombre exact de personnes dans la photographie du groupe est incertain.",
+      "Le type de paysage dans la photographie est incertain.",
+      "L'identité des personnes dans les photographies est incertaine."
+    ]
+  },
+  "text": {
+    "has_text": "non",
+    "text_regions": [],
+    "combined_text": "",
+    "language_guesses": [],
+    "text_role": "aucun texte lisible",
+    "reading_limits": [
+      "La passe de lecture du texte a échoué et a été remplacée par un fallback local."
+    ]
+  },
+  "anchors": {
+    "dominant_axes": [
+      "Disposition des photographies sur les feuilles de papier.",
+      "Fixation des feuilles de papier à une surface sombre.",
+      "Présence de différents types de photographies (personnes, paysage)."
+    ],
+    "anchors": [
+      {
+        "anchor_id": "1",
+        "observation": "Photographie de la personne debout face à l'avant (pull à manches longues, tête tournée vers la droite).",
+        "supports": [
+          "feuille de papier"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "Il ne faut pas supposer que cette personne est le sujet principal de l'ensemble, ni qu'elle a une activité spécifique. Il ne faut pas inférer son identité ou son rôle sans preuve supplémentaire. La posture est une observation descriptive, pas une indication de son état d'esprit ou de ses intentions."
+      },
+      {
+        "anchor_id": "2",
+        "observation": "Photographie du groupe de personnes debout dans un espace extérieur.",
+        "supports": [
+          "feuille de papier"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "Il ne faut pas déterminer le nombre exact de personnes. Il ne faut pas supposer qu'elles interagissent ou qu'elles sont liées d'une manière spécifique. La composition du groupe est une observation descriptive."
+      },
+      {
+        "anchor_id": "3",
+        "observation": "Photographie du paysage.",
+        "supports": [
+          "feuille de papier"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "Il ne faut pas déterminer le type de paysage. Il ne faut pas supposer qu'il est significatif ou qu'il est lié aux autres photographies. La photographie est une observation descriptive."
+      },
+      {
+        "anchor_id": "4",
+        "observation": "Surface sombre fixant les feuilles de papier et les photographies.",
+        "supports": [
+          "surface sombre"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "Il ne faut pas supposer que la surface sombre a une fonction particulière. Il ne faut pas supposer qu'elle est un élément d'interaction ou qu'elle est liée aux photographies. C'est le support de l'ensemble."
+      }
+    ],
+    "safe_inferences": [
+      "Les photographies sont fixées sur des feuilles de papier.",
+      "Les feuilles de papier sont fixées à une surface sombre.",
+      "L'ensemble est présenté dans un environnement contrôlé (surface sombre)."
+    ],
+    "open_questions": [
+      "Quel est le but de cette présentation de photographies ?",
+      "Qui a pris ces photographies ?",
+      "Quel est le contexte de ces photographies ?"
+    ],
+    "do_not_claim": [
+      "L'identité des personnes représentées.",
+      "Le type de paysage représenté.",
+      "Le contexte ou l'objectif de la présentation des photographies.",
+      "Des relations entre les personnes ou les lieux représentés."
+    ]
+  },
+  "interpretation": {
+    "core_reading": "L'image présente un assemblage de photographies fixées sur des feuilles de papier, supportées par une surface sombre. La composition suggère une tentative de documentation, potentiellement de souvenirs ou d'événements, sans indication claire de leur nature ou de leur contexte. La présence de différents types de photographies (personnes, paysage) indique une variété d'expériences ou d'observations capturées.",
+    "social_dynamics": "Il est impossible d'établir des dynamiques sociales spécifiques à partir de cette image seule. La présence d'un individu seul et d'un groupe de personnes suggère des interactions possibles, mais leur nature et leur signification restent inconnues. L'absence de contexte temporel ou de relations apparentes empêche toute interprétation des relations entre les sujets.",
+    "emotional_hypotheses": [
+      {
+        "emotion": "Nostalgie",
+        "anchor_refs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "confidence": "basse",
+        "reason": "La présentation des photographies pourrait évoquer un sentiment de nostalgie pour des moments passés, des lieux visités ou des personnes rencontrées. Cependant, cette hypothèse est basée uniquement sur l'observation de la collection de photographies et ne peut être confirmée sans informations supplémentaires."
+      },
+      {
+        "emotion": "Curiosité",
+        "anchor_refs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "confidence": "basse",
+        "reason": "La simple observation de ces photographies pourrait susciter un sentiment de curiosité quant à leur origine, à leur signification et aux événements qu'elles représentent. Cette hypothèse est spéculative et ne repose sur aucun ancrage direct."
+      }
+    ],
+    "text_scene_interaction": "L'image ne permet pas d'interagir avec le texte, ni de le décoder.",
+    "alternative_readings": [
+      "L'ensemble pourrait être une installation artistique, utilisant les photographies comme éléments de composition pour explorer des thèmes liés à la mémoire, à l'identité ou à la perception.",
+      "Il pourrait s'agir d'un ensemble de souvenirs personnels, rassemblés et présentés de manière ordonnée pour un usage privé."
+    ],
+    "prohibited_conclusions": [
+      "Il est impossible de déterminer si ces photographies sont liées à des événements spécifiques, tels que la guerre en Ukraine, sans preuve supplémentaire. Toute inférence basée uniquement sur le contexte fourni est spéculative et doit être explicitement qualifiée de conditionnelle.",
+      "Il est interdit d'attribuer des intentions ou des motivations spécifiques aux personnes représentées dans les photographies.",
+      "Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact."
+    ],
+    "residual_uncertainty": "L'objectif principal de cette présentation de photographies reste inconnu. La nature des photographies, leur contexte et leur signification restent des questions ouvertes."
+  },
+  "critique": {
+    "faithfulness_score": 72,
+    "overreach_risk_score": 46,
+    "evidence_coverage_score": 68,
+    "writing_readiness": "à réviser",
+    "global_assessment": "Audit de secours généré localement après échec de la passe critique Ollama. Le contenu reste exploitable mais demande une relecture humaine.",
+    "issues": [
+      {
+        "issue_type": "fallback_technique",
+        "severity": "moyenne",
+        "location": "critique",
+        "explanation": "La passe critique structurée Ollama a échoué. Cette version de secours conserve une révision prudente mais moins fine qu'un audit complet.",
+        "suggested_fix": "Relancer ultérieurement la passe critique avec un modèle plus stable si une version éditoriale de haute qualité est nécessaire."
+      },
+      {
+        "issue_type": "contexte_temporaire",
+        "severity": "moyenne",
+        "location": "interpretation",
+        "explanation": "Un contexte externe temporaire peut enrichir la lecture humaine, mais il ne doit jamais devenir une preuve sur la scène, le lieu, le camp ou l'événement exact.",
+        "suggested_fix": "Garder des formulations hypothétiques et revenir explicitement aux ancrages visibles pour toute affirmation concrète."
+      }
+    ],
+    "keep_as_is": [
+      "core_reading",
+      "text_scene_interaction",
+      "prohibited_conclusions"
+    ],
+    "revision_priorities": [
+      "resserrer les formulations spéculatives",
+      "conserver uniquement les ancrages explicitement visibles",
+      "signaler les zones d'incertitude restantes"
+    ],
+    "revised_core_reading": "L'image présente un assemblage de photographies fixées sur des feuilles de papier, supportées par une surface sombre. La composition suggère une tentative de documentation, potentiellement de souvenirs ou d'événements, sans indication claire de leur nature ou de leur contexte. La présence de différents types de photographies (personnes, paysage) indique une variété d'expériences ou d'observations capturées.",
+    "revised_social_dynamics": "Il est impossible d'établir des dynamiques sociales spécifiques à partir de cette image seule. La présence d'un individu seul et d'un groupe de personnes suggère des interactions possibles, mais leur nature et leur signification restent inconnues. L'absence de contexte temporel ou de relations apparentes empêche toute interprétation des relations entre les sujets.",
+    "revised_emotional_hypotheses": [
+      {
+        "emotion": "Nostalgie",
+        "anchor_refs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "confidence": "basse",
+        "reason": "La présentation des photographies pourrait évoquer un sentiment de nostalgie pour des moments passés, des lieux visités ou des personnes rencontrées. Cependant, cette hypothèse est basée uniquement sur l'observation de la collection de photographies et ne peut être confirmée sans informations supplémentaires."
+      },
+      {
+        "emotion": "Curiosité",
+        "anchor_refs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "confidence": "basse",
+        "reason": "La simple observation de ces photographies pourrait susciter un sentiment de curiosité quant à leur origine, à leur signification et aux événements qu'elles représentent. Cette hypothèse est spéculative et ne repose sur aucun ancrage direct."
+      }
+    ],
+    "revised_text_scene_interaction": "L'image ne permet pas d'interagir avec le texte, ni de le décoder.",
+    "revised_alternative_readings": [
+      "L'ensemble pourrait être une installation artistique, utilisant les photographies comme éléments de composition pour explorer des thèmes liés à la mémoire, à l'identité ou à la perception.",
+      "Il pourrait s'agir d'un ensemble de souvenirs personnels, rassemblés et présentés de manière ordonnée pour un usage privé."
+    ],
+    "revised_prohibited_conclusions": [
+      "Il est impossible de déterminer si ces photographies sont liées à des événements spécifiques, tels que la guerre en Ukraine, sans preuve supplémentaire. Toute inférence basée uniquement sur le contexte fourni est spéculative et doit être explicitement qualifiée de conditionnelle.",
+      "Il est interdit d'attribuer des intentions ou des motivations spécifiques aux personnes représentées dans les photographies.",
+      "Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact."
+    ],
+    "revised_residual_uncertainty": "Quel est le but de cette présentation de photographies ?; Qui a pris ces photographies ?; Quel est le contexte de ces photographies ?"
+  },
+  "writing": {
+    "short_title": "Ensemble de feuilles de papier : PXL_20260319_221728309.RAW-01.COVER",
+    "analytic_brief": "Un ensemble de feuilles de papier est fixé à une surface sombre. Les feuilles de papier contiennent des photographies. Le cadre visible correspond à Surface sombre. Feuilles de papier fixées.. La lecture retenue reste la suivante: L'image présente un assemblage de photographies fixées sur des feuilles de papier, supportées par une surface sombre. La composition suggère une tentative de documentation, potentiellement de souvenirs ou d'événements, sans indication claire de leur nature ou de leur contexte. La présence de différents types de photographies (personnes, paysage) indique une variété d'expériences ou d'observations capturées.. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Les limites à conserver explicitement demeurent: Quel est le but de cette présentation de photographies ?; Qui a pris ces photographies ?; Quel est le contexte de ces photographies ?",
+    "human_commentary": "Un ensemble de feuilles de papier est fixé à une surface sombre. Les feuilles de papier contiennent des photographies. Ce qui retient ici n'est pas seulement le fait montré, mais la manière dont il demeure en suspens: Photographies (plusieurs), Feuilles de papier (plusieurs) et Surface sombre composent une scène qui résiste à l'explication rapide. Il est impossible d'établir des dynamiques sociales spécifiques à partir de cette image seule. La présence d'un individu seul et d'un groupe de personnes suggère des interactions possibles, mais leur nature et leur signification restent inconnues. L'absence de contexte temporel ou de relations apparentes empêche toute interprétation des relations entre les sujets. Une tonalité de nostalgie peut être ressentie, mais seulement comme une hypothèse appuyée sur 1, 2, 3. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Le texte assume une lecture plus humaine et plus sensible, mais il se refuse à faire passer une impression pour une preuve.",
+    "photographic_commentary": "La lecture photographique s'appuie sur la composition visible, le cadrage et les rapports entre sujets et objets. Le regard est conduit par Photographies (plusieurs), Feuilles de papier (plusieurs) et Surface sombre, tandis que surface sombre. feuilles de papier fixées. installe un espace de retrait plus que d'action. La scène reste restituée sans extrapolation hors champ, avec une attention particulière au support ensemble de feuilles de papier et à sa matérialité.",
+    "literary_commentary": "Le texte retient une voix plus proche du témoignage que du commentaire neutre. Il décrit un ensemble de feuilles de papier est fixé à une surface sombre. les feuilles de papier contiennent des photographies. sans fabriquer d'arrière-scène, et laisse ce qui affleure au bord du dicible plutôt que de le transformer en certitude. Le rôle du texte visible reste aucun texte lisible. L'ambiguïté qui demeure ne doit pas être comblée: Quel est le but de cette présentation de photographies ?; Qui a pris ces photographies ?; Quel est le contexte de ces photographies ?",
+    "keywords": [
+      "ensemble de feuilles de papier",
+      "Surface sombre. Feuilles de papier fixées.",
+      "Photographies (plusieurs)",
+      "Feuilles de papier (plusieurs)",
+      "Surface sombre"
+    ]
+  },
+  "quality": {
+    "reviewed": false,
+    "review_notes": "",
+    "usable_for_training": false,
+    "auto_quality": {
+      "faithfulness_score": 72,
+      "overreach_risk_score": 46,
+      "evidence_coverage_score": 68,
+      "writing_readiness": "à réviser",
+      "severe_issue_count": 0,
+      "hallucination_risk": "moyen",
+      "recommended_usable_for_training": false
+    }
+  },
+  "pipeline_warnings": {
+    "critique_fallback_used": true,
+    "critique_fallback_reason": "disabled_by_default_for_resilience",
+    "write_fallback_used": true,
+    "write_fallback_reason": "disabled_by_default_for_resilience",
+    "stage_fallbacks": {
+      "read": "Échec de la passe 'read' pour PXL_20260319_221728309.RAW-01.COVER.jpg: Expecting ',' delimiter: line 87 column 6 (char 4303)"
+    }
+  }
+}

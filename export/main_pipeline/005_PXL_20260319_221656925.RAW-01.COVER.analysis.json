@@ -1,0 +1,335 @@
+{
+  "file_name": "PXL_20260319_221656925.RAW-01.COVER.jpg",
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "model": "gemma3:latest",
+    "llm_postprocess": false,
+    "temporary_context": "photos de la guerre en Ukraine",
+    "sync_timeout": 300,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 700,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 1100,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 1200,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 1300,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.24,
+        "maxTokens": 1300,
+        "topPSampling": 0.92,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.36,
+        "maxTokens": 1200,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "d111303b0c3078638308785776d0be30c9549cbaf155da9eaa4b41afa2f299e8",
+      "READ_SYSTEM": "3785d06d6d925b25e9210a2015b00827c08fdf87d86738596aff198b36a900c8",
+      "ANCHOR_SYSTEM": "adfb93f0e1adaee4c34796ff0a71782240742f11e1cd51998f6c98c827ee3774",
+      "INTERPRET_SYSTEM": "3f65c94b6a75f476af41a319f1bb9cb0f26fe23797aa704f09eabadbf0151364",
+      "CRITIQUE_SYSTEM": "b4e97ba9fdd5f80e10e7849ab53e2f7007a527150781b5845a29ee8f178677ec",
+      "WRITE_SYSTEM": "1d7cedd5e344afced67845de4ca92ea93e635d91fdd4136333f4cd8651545d94",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "7b5a270c3f3edb2cd3f06df7ccb7d77f6da0e5cd3d7732c0fa83cf9e6e26cbd2",
+      "READ_USER": "d11a93c47eccd80372733ed6347dd6c037b489a1f3bad992f10aa70b0ce87b62",
+      "ANCHOR_USER": "5c7a618556cd5596bb5e370b8ff42ad0e9f29e55c0b4d170a6cacaa5b8ea988b",
+      "INTERPRET_USER": "c67dc4e88d51152500e3686506ebf73d7033fe5e275d11419386a97e2ae41df0",
+      "CRITIQUE_USER": "b2189df0de615da9b29f86f90d393cbed3dbd631c493be89847066e3629048c5",
+      "WRITE_USER": "b509d21c11b25245fa6f8c62027e608e317f3f97fda962dde7229f664921c0b9"
+    }
+  },
+  "support": {
+    "support_kind": "support composite",
+    "primary_focus": "les photographies incluses",
+    "depicts_direct_scene": "Non",
+    "support_boundary": "La composition est constituée d'une plaque de bois avec trois photographies encadrées et un bloc de texte manuscrit.",
+    "reasoning_guardrails": [
+      "Il est important de distinguer la photographie elle-même de la scène qu'elle représente. Les photographies montrent deux femmes, probablement Lesya et Miya, dans un environnement intérieur.",
+      "Le texte manuscrit ajoute des informations supplémentaires, mais ne constitue pas une observation directe de la scène. Il indique que Lesya est atteinte d'une maladie et qu'elle est enceinte.",
+      "Il n'y a pas de preuves directes pour identifier les individus ou leur relation. L'interprétation est limitée à ce que les photographies laissent voir."
+    ]
+  },
+  "observe": {
+    "scene_summary": "La composition est constituée d'une plaque de bois avec trois photographies encadrées et un bloc de texte manuscrit.",
+    "setting": "La plaque est posée sur une surface plane. L'arrière-plan est blanc.",
+    "subjects": [
+      {
+        "role": "subject",
+        "description": "Deux femmes, Lesya et Miya, sont photographiées. Lesya est en position debout. Miya est en position debout.",
+        "posture_or_state": "Lesya est debout. Miya est debout.",
+        "salience": "Lesya et Miya sont en position debout."
+      }
+    ],
+    "salient_objects": [
+      "Trois photographies encadrées sont fixées à la plaque de bois.",
+      "Un bloc de texte manuscrit est positionné à côté des photographies."
+    ],
+    "visible_actions": [
+      "Les femmes sont debout."
+    ],
+    "spatial_relations": [
+      "Les photographies sont disposées côte à côte sur la plaque de bois.",
+      "Le texte manuscrit est positionné à côté des photographies."
+    ],
+    "composition": "La composition est symétrique, avec les trois photographies disposées de manière égale sur la plaque de bois. Le texte manuscrit est positionné à côté des photographies.",
+    "lighting_and_color": "La lumière est uniforme et diffuse. Les couleurs sont neutres.",
+    "uncertainties": [
+      "L'identité exacte des femmes n'est pas connue.",
+      "La relation entre Lesya et Miya n'est pas connue.",
+      "L'environnement intérieur où se trouvent les femmes n'est pas connu."
+    ]
+  },
+  "text": {
+    "has_text": "oui",
+    "text_regions": [
+      {
+        "region_label": "Zone 1",
+        "transcription": "les photographies incluses",
+        "confidence": "élevé",
+        "notes": "Texte manuscrit, langue française"
+      },
+      {
+        "region_label": "Zone 2",
+        "transcription": "Day",
+        "confidence": "élevé",
+        "notes": "Texte manuscrit, langue française"
+      },
+      {
+        "region_label": "Zone 3",
+        "transcription": "It is now",
+        "confidence": "élevé",
+        "notes": "Texte manuscrit, langue française"
+      },
+      {
+        "region_label": "Zone 4",
+        "transcription": "Lesya is pregnant",
+        "confidence": "élevé",
+        "notes": "Texte manuscrit, langue française"
+      }
+    ],
+    "combined_text": "les photographies incluses, Day, It is now, Lesya is pregnant",
+    "language_guesses": [
+      "français"
+    ],
+    "text_role": "informations additionnelles",
+    "reading_limits": [
+      "Les zones de texte sont illisibles en raison de la qualité de l'image et de la distance de lecture."
+    ]
+  },
+  "anchors": {
+    "dominant_axes": [
+      "Présence de deux femmes (Lesya et Miya)",
+      "Présence d'un support photographique",
+      "Présence d'informations textuelles additionnelles"
+    ],
+    "anchors": [
+      {
+        "anchor_id": "1",
+        "observation": "Deux femmes, Lesya et Miya, sont photographiées en position debout.",
+        "supports": [
+          "Photograph 1"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "Il ne peut pas être affirmé que Lesya et Miya sont liées ou que leur relation est particulière. L'observation se limite à leur posture et à leur présence dans l'image. Il ne faut pas supposer qu'elles sont en conversation ou qu'elles partagent une relation significative. L'absence de contexte empêche toute inférence sur leur relation ou leur activité."
+      },
+      {
+        "anchor_id": "2",
+        "observation": "Un bloc de texte manuscrit indique que Lesya est enceinte.",
+        "supports": [
+          "Text 4"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "L'information textuelle est une déclaration, pas une observation directe. Il ne peut pas être affirmé que cette information est vérifiée ou qu'elle est la seule vérité. Il ne faut pas supposer que l'état de grossesse de Lesya est le seul fait pertinent de l'image. L'information est susceptible d'être erronée ou incomplète."
+      },
+      {
+        "anchor_id": "3",
+        "observation": "La composition générale est celle d'une plaque de bois avec des photographies encadrées.",
+        "supports": [
+          "Entire Composition"
+        ],
+        "certainty": "faible",
+        "anti_overreach": "Il ne peut pas être affirmé que la plaque de bois a une signification particulière. Il ne faut pas supposer que la plaque de bois est un artefact important ou qu'elle a une fonction spécifique. L'observation se limite à la présentation physique des éléments."
+      }
+    ],
+    "safe_inferences": [
+      "L'image contient au moins deux personnes.",
+      "L'image est composée d'éléments photographiques et textuels.",
+      "L'image a été créée ou présentée sur un support composite."
+    ],
+    "open_questions": [
+      "Quelle est la relation entre Lesya et Miya?",
+      "Quel est le contexte de l'image?",
+      "Quelle est la signification de l'information textuelle concernant la grossesse de Lesya?"
+    ],
+    "do_not_claim": [
+      "Lesya et Miya sont des individus spécifiques avec des identités connues.",
+      "L'image représente une scène de vie réelle avec des implications significatives.",
+      "L'information textuelle est une preuve vérifiable de la grossesse de Lesya."
+    ]
+  },
+  "interpretation": {
+    "core_reading": "L'image présente une composition de documentation, potentiellement liée à un récit de situation. La présence de deux femmes, décrites comme étant enceintes, suggère un contexte de vulnérabilité et d'incertitude. La nature de la documentation, avec son texte additionnel, laisse entrevoir une tentative de fixation d'un événement, sans pour autant en révéler la nature ou l'ampleur.",
+    "social_dynamics": "La scène suggère une interaction, même silencieuse, entre Lesya et Miya. La posture debout des deux femmes, combinée à l'information textuelle sur la grossesse de Lesya, pourrait indiquer un moment de soutien, de préoccupation ou de partage d'une situation difficile. Il est impossible d'établir une dynamique relationnelle précise, mais l'image évoque une forme de proximité.",
+    "emotional_hypotheses": [
+      {
+        "emotion": "Anxiété",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "La grossesse de Lesya, combinée à l'absence de contexte, peut être interprétée comme un signe d'anxiété face à l'avenir. L'information textuelle, même si elle n'est pas vérifiée, renforce cette hypothèse."
+      },
+      {
+        "emotion": "Espoir",
+        "anchor_refs": [
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "La grossesse peut également être interprétée comme un signe d'espoir, malgré l'incertitude. Cependant, cette hypothèse est moins directement ancrée dans l'image."
+      }
+    ],
+    "text_scene_interaction": "Le texte manuscrit, bien que fragmentaire, semble être une tentative de contextualisation de la situation. Les phrases « Day », « It is now » et « Lesya is pregnant » suggèrent un moment précis et l'annonce d'une information importante. L'incertitude quant à la qualité de l'écriture et à la lisibilité des zones de texte limite la valeur de ces informations.",
+    "alternative_readings": [
+      "La composition pourrait être une représentation d'un document administratif, sans lien direct avec une situation personnelle. L'image pourrait être une simple illustration d'un formulaire ou d'un rapport.",
+      "Les photographies pourraient représenter des portraits, sans lien avec la grossesse de Lesya. L'information textuelle pourrait être une annotation ou une note additionnelle."
+    ],
+    "prohibited_conclusions": [
+      "L'image représente une scène de combat ou de violence en Ukraine, basée uniquement sur le contexte temporaire fourni.",
+      "Les femmes sont des victimes de guerre ou des soldats en Ukraine.",
+      "L'image est une représentation symbolique de la souffrance humaine en Ukraine.",
+      "Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact."
+    ],
+    "residual_uncertainty": "L'absence de contexte plus large et la nature fragmentaire de l'information textuelle maintiennent un niveau élevé d'incertitude quant à la signification de l'image. Il est impossible de déterminer avec certitude la situation réelle ou les intentions des personnes représentées."
+  },
+  "critique": {
+    "faithfulness_score": 72,
+    "overreach_risk_score": 46,
+    "evidence_coverage_score": 68,
+    "writing_readiness": "à réviser",
+    "global_assessment": "Audit de secours généré localement après échec de la passe critique Ollama. Le contenu reste exploitable mais demande une relecture humaine.",
+    "issues": [
+      {
+        "issue_type": "fallback_technique",
+        "severity": "moyenne",
+        "location": "critique",
+        "explanation": "La passe critique structurée Ollama a échoué. Cette version de secours conserve une révision prudente mais moins fine qu'un audit complet.",
+        "suggested_fix": "Relancer ultérieurement la passe critique avec un modèle plus stable si une version éditoriale de haute qualité est nécessaire."
+      },
+      {
+        "issue_type": "contexte_temporaire",
+        "severity": "moyenne",
+        "location": "interpretation",
+        "explanation": "Un contexte externe temporaire peut enrichir la lecture humaine, mais il ne doit jamais devenir une preuve sur la scène, le lieu, le camp ou l'événement exact.",
+        "suggested_fix": "Garder des formulations hypothétiques et revenir explicitement aux ancrages visibles pour toute affirmation concrète."
+      }
+    ],
+    "keep_as_is": [
+      "core_reading",
+      "text_scene_interaction",
+      "prohibited_conclusions"
+    ],
+    "revision_priorities": [
+      "resserrer les formulations spéculatives",
+      "conserver uniquement les ancrages explicitement visibles",
+      "signaler les zones d'incertitude restantes"
+    ],
+    "revised_core_reading": "L'image présente une composition de documentation, potentiellement liée à un récit de situation. La présence de deux femmes, décrites comme étant enceintes, suggère un contexte de vulnérabilité et d'incertitude. La nature de la documentation, avec son texte additionnel, laisse entrevoir une tentative de fixation d'un événement, sans pour autant en révéler la nature ou l'ampleur.",
+    "revised_social_dynamics": "La scène suggère une interaction, même silencieuse, entre Lesya et Miya. La posture debout des deux femmes, combinée à l'information textuelle sur la grossesse de Lesya, pourrait indiquer un moment de soutien, de préoccupation ou de partage d'une situation difficile. Il est impossible d'établir une dynamique relationnelle précise, mais l'image évoque une forme de proximité.",
+    "revised_emotional_hypotheses": [
+      {
+        "emotion": "Anxiété",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "La grossesse de Lesya, combinée à l'absence de contexte, peut être interprétée comme un signe d'anxiété face à l'avenir. L'information textuelle, même si elle n'est pas vérifiée, renforce cette hypothèse."
+      },
+      {
+        "emotion": "Espoir",
+        "anchor_refs": [
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "La grossesse peut également être interprétée comme un signe d'espoir, malgré l'incertitude. Cependant, cette hypothèse est moins directement ancrée dans l'image."
+      }
+    ],
+    "revised_text_scene_interaction": "Le texte manuscrit, bien que fragmentaire, semble être une tentative de contextualisation de la situation. Les phrases « Day », « It is now » et « Lesya is pregnant » suggèrent un moment précis et l'annonce d'une information importante. L'incertitude quant à la qualité de l'écriture et à la lisibilité des zones de texte limite la valeur de ces informations.",
+    "revised_alternative_readings": [
+      "La composition pourrait être une représentation d'un document administratif, sans lien direct avec une situation personnelle. L'image pourrait être une simple illustration d'un formulaire ou d'un rapport.",
+      "Les photographies pourraient représenter des portraits, sans lien avec la grossesse de Lesya. L'information textuelle pourrait être une annotation ou une note additionnelle."
+    ],
+    "revised_prohibited_conclusions": [
+      "L'image représente une scène de combat ou de violence en Ukraine, basée uniquement sur le contexte temporaire fourni.",
+      "Les femmes sont des victimes de guerre ou des soldats en Ukraine.",
+      "L'image est une représentation symbolique de la souffrance humaine en Ukraine."
+    ],
+    "revised_residual_uncertainty": "Quelle est la relation entre Lesya et Miya?; Quel est le contexte de l'image?; Quelle est la signification de l'information textuelle concernant la grossesse de Lesya?"
+  },
+  "writing": {
+    "short_title": "Support composite : PXL_20260319_221656925.RAW-01.COVER",
+    "analytic_brief": "La composition est constituée d'une plaque de bois avec trois photographies encadrées et un bloc de texte manuscrit. Le cadre visible correspond à La plaque est posée sur une surface plane. L'arrière-plan est blanc.. Le texte visible relevé est: les photographies incluses, Day, It is now, Lesya is pregnant. La lecture retenue reste la suivante: L'image présente une composition de documentation, potentiellement liée à un récit de situation. La présence de deux femmes, décrites comme étant enceintes, suggère un contexte de vulnérabilité et d'incertitude. La nature de la documentation, avec son texte additionnel, laisse entrevoir une tentative de fixation d'un événement, sans pour autant en révéler la nature ou l'ampleur.. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Les limites à conserver explicitement demeurent: Quelle est la relation entre Lesya et Miya?; Quel est le contexte de l'image?; Quelle est la signification de l'information textuelle concernant la grossesse de Lesya?",
+    "human_commentary": "La composition est constituée d'une plaque de bois avec trois photographies encadrées et un bloc de texte manuscrit. Ce qui retient ici n'est pas seulement le fait montré, mais la manière dont il demeure en suspens: Trois photographies encadrées sont fixées à la plaque de bois., Un bloc de texte manuscrit est positionné à côté des photographies. et le texte visible 'les photographies incluses, Day, It is now, Lesya is pregnant' composent une scène qui résiste à l'explication rapide. La scène suggère une interaction, même silencieuse, entre Lesya et Miya. La posture debout des deux femmes, combinée à l'information textuelle sur la grossesse de Lesya, pourrait indiquer un moment de soutien, de préoccupation ou de partage d'une situation difficile. Il est impossible d'établir une dynamique relationnelle précise, mais l'image évoque une forme de proximité. Une tonalité de anxiété peut être ressentie, mais seulement comme une hypothèse appuyée sur 1, 2. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Le texte assume une lecture plus humaine et plus sensible, mais il se refuse à faire passer une impression pour une preuve.",
+    "photographic_commentary": "La lecture photographique s'appuie sur la composition visible, le cadrage et les rapports entre sujets et objets. Le regard est conduit par Trois photographies encadrées sont fixées à la plaque de bois., Un bloc de texte manuscrit est positionné à côté des photographies. et le texte visible 'les photographies incluses, Day, It is now, Lesya is pregnant', tandis que la plaque est posée sur une surface plane. l'arrière-plan est blanc. installe un espace de retrait plus que d'action. La scène reste restituée sans extrapolation hors champ, avec une attention particulière au support support composite et à sa matérialité.",
+    "literary_commentary": "Le texte retient une voix plus proche du témoignage que du commentaire neutre. Il décrit la composition est constituée d'une plaque de bois avec trois photographies encadrées et un bloc de texte manuscrit. sans fabriquer d'arrière-scène, et laisse ce qui affleure au bord du dicible plutôt que de le transformer en certitude. Le rôle du texte visible reste informations additionnelles. L'ambiguïté qui demeure ne doit pas être comblée: Quelle est la relation entre Lesya et Miya?; Quel est le contexte de l'image?; Quelle est la signification de l'information textuelle concernant la grossesse de Lesya?",
+    "keywords": [
+      "support composite",
+      "La plaque est posée sur une surface plane. L'arrière-plan est blanc.",
+      "Trois photographies encadrées sont fixées à la plaque de bois.",
+      "Un bloc de texte manuscrit est positionné à côté des photographies.",
+      "français"
+    ]
+  },
+  "quality": {
+    "reviewed": false,
+    "review_notes": "",
+    "usable_for_training": false,
+    "auto_quality": {
+      "faithfulness_score": 72,
+      "overreach_risk_score": 46,
+      "evidence_coverage_score": 68,
+      "writing_readiness": "à réviser",
+      "severe_issue_count": 0,
+      "hallucination_risk": "moyen",
+      "recommended_usable_for_training": false
+    }
+  },
+  "pipeline_warnings": {
+    "critique_fallback_used": true,
+    "critique_fallback_reason": "disabled_by_default_for_resilience",
+    "write_fallback_used": true,
+    "write_fallback_reason": "disabled_by_default_for_resilience"
+  }
+}

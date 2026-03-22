@@ -1,0 +1,324 @@
+{
+  "file_name": "PXL_20260319_221746325.RAW-01.COVER.jpg",
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "model": "gemma3:latest",
+    "llm_postprocess": false,
+    "temporary_context": "photos de la guerre en Ukraine",
+    "sync_timeout": 300,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 700,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 1100,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 1200,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 1300,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.24,
+        "maxTokens": 1300,
+        "topPSampling": 0.92,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.36,
+        "maxTokens": 1200,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "d111303b0c3078638308785776d0be30c9549cbaf155da9eaa4b41afa2f299e8",
+      "READ_SYSTEM": "3785d06d6d925b25e9210a2015b00827c08fdf87d86738596aff198b36a900c8",
+      "ANCHOR_SYSTEM": "adfb93f0e1adaee4c34796ff0a71782240742f11e1cd51998f6c98c827ee3774",
+      "INTERPRET_SYSTEM": "3f65c94b6a75f476af41a319f1bb9cb0f26fe23797aa704f09eabadbf0151364",
+      "CRITIQUE_SYSTEM": "b4e97ba9fdd5f80e10e7849ab53e2f7007a527150781b5845a29ee8f178677ec",
+      "WRITE_SYSTEM": "1d7cedd5e344afced67845de4ca92ea93e635d91fdd4136333f4cd8651545d94",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "7b5a270c3f3edb2cd3f06df7ccb7d77f6da0e5cd3d7732c0fa83cf9e6e26cbd2",
+      "READ_USER": "d11a93c47eccd80372733ed6347dd6c037b489a1f3bad992f10aa70b0ce87b62",
+      "ANCHOR_USER": "5c7a618556cd5596bb5e370b8ff42ad0e9f29e55c0b4d170a6cacaa5b8ea988b",
+      "INTERPRET_USER": "c67dc4e88d51152500e3686506ebf73d7033fe5e275d11419386a97e2ae41df0",
+      "CRITIQUE_USER": "b2189df0de615da9b29f86f90d393cbed3dbd631c493be89847066e3629048c5",
+      "WRITE_USER": "b509d21c11b25245fa6f8c62027e608e317f3f97fda962dde7229f664921c0b9"
+    }
+  },
+  "support": {
+    "support_kind": "photographie",
+    "primary_focus": "une femme assise sur un banc",
+    "depicts_direct_scene": "Aucune scène directe n'est représentée. L'image montre une personne assise sur un banc.",
+    "support_boundary": "La photographie représente une scène, mais elle est capturée par un appareil photo, ce qui la distingue d'une scène réelle. Il est important de ne pas interpréter la posture ou l'expression de la femme comme une représentation de ses émotions ou de son expérience.",
+    "reasoning_guardrails": [
+      "Il est impossible de déterminer les circonstances entourant la personne assise sur le banc.",
+      "L'image ne fournit aucune information sur le contexte ou l'impact de la situation.",
+      "Il est prudent de ne pas tirer de conclusions sur l'état émotionnel ou les besoins de la personne représentée."
+    ]
+  },
+  "observe": {
+    "scene_summary": "Une photographie est fixée à un support en verre noir. La photographie représente une femme assise sur un banc.",
+    "setting": "Un support en verre noir est fixé à une surface. La photographie est fixée au support.",
+    "subjects": [
+      {
+        "role": "femme",
+        "description": "Une femme est assise sur un banc. Elle est orientée vers la droite. Sa posture est assise.",
+        "posture_or_state": "assise",
+        "salience": "la femme est le sujet principal"
+      },
+      {
+        "role": "banc",
+        "description": "Un banc est situé sous la femme.",
+        "posture_or_state": "situé",
+        "salience": "le banc est le support de la femme"
+      }
+    ],
+    "salient_objects": [
+      "photographie",
+      "support en verre noir",
+      "banc"
+    ],
+    "visible_actions": [
+      "La photographie est fixée au support.",
+      "La femme est assise."
+    ],
+    "spatial_relations": [
+      "La photographie est fixée au support.",
+      "La femme est assise sur le banc.",
+      "Le banc est situé devant la photographie."
+    ],
+    "composition": "La photographie est fixée au support. La femme est le sujet principal.",
+    "lighting_and_color": "La photographie est d'un ton neutre. La surface est sombre.",
+    "uncertainties": [
+      "L'état émotionnel de la femme est inconnu.",
+      "Les circonstances entourant la femme sont inconnues.",
+      "La nature du support est inconnue."
+    ]
+  },
+  "text": {
+    "has_text": "non",
+    "text_regions": [],
+    "combined_text": "",
+    "language_guesses": [],
+    "text_role": "aucun texte lisible",
+    "reading_limits": [
+      "La passe de lecture du texte a échoué et a été remplacée par un fallback local."
+    ]
+  },
+  "anchors": {
+    "dominant_axes": [
+      "La présence d'une photographie fixée à un support.",
+      "La position d'une femme assise sur un banc.",
+      "La relation spatiale entre ces deux éléments."
+    ],
+    "anchors": [
+      {
+        "anchor_id": "1",
+        "observation": "La photographie est fixée à un support en verre noir.",
+        "supports": [
+          "photographie",
+          "support en verre noir"
+        ],
+        "certainty": "forte",
+        "anti_overreach": "La fixation est une action réalisée par un humain, et ne doit pas être interprétée comme une indication de l'intention ou du but de la photographie. Il ne faut pas supposer que la photographie a été prise pour documenter la femme assise sur le banc, ou vice versa."
+      },
+      {
+        "anchor_id": "2",
+        "observation": "Une femme est assise sur un banc.",
+        "supports": [
+          "femme",
+          "banc"
+        ],
+        "certainty": "moyenne",
+        "anti_overreach": "Il ne faut pas supposer que la femme est en détresse, ou qu'elle a besoin d'aide. La posture 'assise' est une observation factuelle, et ne doit pas être interprétée comme une expression d'émotion ou de besoin."
+      },
+      {
+        "anchor_id": "3",
+        "observation": "Le banc est situé sous la femme.",
+        "supports": [
+          "banc",
+          "femme"
+        ],
+        "certainty": "forte",
+        "anti_overreach": "La relation spatiale 'sous' ne doit pas être interprétée comme une relation de cause à effet. Il ne faut pas supposer que le banc est destiné à soutenir la femme, ou que la femme est en détresse et s'est assise sur le banc."
+      }
+    ],
+    "safe_inferences": [
+      "Il y a une photographie et un support.",
+      "Une femme est assise.",
+      "La photographie est fixée au support."
+    ],
+    "open_questions": [
+      "Pourquoi la photographie a-t-elle été prise ?",
+      "Quel est le contexte de la photographie ?",
+      "L'état émotionnel de la femme est-il connu ?"
+    ],
+    "do_not_claim": [
+      "La femme est en détresse.",
+      "La femme a besoin d'aide.",
+      "La photographie a été prise pour documenter la situation de la femme.",
+      "La photographie représente une scène réelle."
+    ]
+  },
+  "interpretation": {
+    "core_reading": "L'image présente une scène de suspension, une présence observée. Une photographie, fixée à un support, est le point focal, et une femme est assise sur un banc, directement en face de cette photographie. La composition suggère une distance, une observation passive. L'absence de texte et l'éclairage neutre renforcent cette impression de contemplation et d'absence d'action immédiate.",
+    "social_dynamics": "Il est impossible d'établir des dynamiques sociales ou interpersonnelles à partir de cette image seule. La posture de la femme, assise, peut être interprétée comme une position d'attente ou de réflexion, mais sans contexte supplémentaire, il est impossible de déterminer si elle est seule, attend quelqu'un, ou est simplement en train de se reposer. La présence de la photographie introduit une dimension de représentation et d'observation, sans nécessairement impliquer une relation entre la femme et l'image.",
+    "emotional_hypotheses": [
+      {
+        "emotion": "Contemplation",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "La posture assise et la présence de la photographie suggèrent une activité de réflexion ou d'observation, mais sans plus d'informations, il s'agit d'une hypothèse spéculative."
+      },
+      {
+        "emotion": "Neutralité",
+        "anchor_refs": [
+          "2"
+        ],
+        "confidence": "moyenne",
+        "reason": "La posture assise pourrait simplement indiquer un état de repos ou d'attente, sans expression émotionnelle particulière. Cependant, cette interprétation est limitée par l'absence d'informations contextuelles."
+      }
+    ],
+    "text_scene_interaction": "La photographie est un objet, un support. Elle n'interagit pas avec la femme, ni elle n'est interagit avec elle. L'image est un simple reflet de la présence de la femme et du banc.",
+    "alternative_readings": [
+      "La photographie pourrait être un objet d'étude, posé devant la femme pour une observation scientifique ou artistique.",
+      "La photographie pourrait être un souvenir, un objet de contemplation personnelle, sans lien direct avec la femme."
+    ],
+    "prohibited_conclusions": [
+      "La femme est en détresse.",
+      "La femme est en train de prendre une décision importante.",
+      "La photographie est un symbole de la guerre en Ukraine (en raison du contexte fourni).",
+      "Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact."
+    ],
+    "residual_uncertainty": "L'intention derrière la photographie et la signification de la posture de la femme restent inconnues. L'image est un fragment isolé, dépourvu de contexte narratif."
+  },
+  "critique": {
+    "faithfulness_score": 72,
+    "overreach_risk_score": 46,
+    "evidence_coverage_score": 68,
+    "writing_readiness": "à réviser",
+    "global_assessment": "Audit de secours généré localement après échec de la passe critique Ollama. Le contenu reste exploitable mais demande une relecture humaine.",
+    "issues": [
+      {
+        "issue_type": "fallback_technique",
+        "severity": "moyenne",
+        "location": "critique",
+        "explanation": "La passe critique structurée Ollama a échoué. Cette version de secours conserve une révision prudente mais moins fine qu'un audit complet.",
+        "suggested_fix": "Relancer ultérieurement la passe critique avec un modèle plus stable si une version éditoriale de haute qualité est nécessaire."
+      },
+      {
+        "issue_type": "contexte_temporaire",
+        "severity": "moyenne",
+        "location": "interpretation",
+        "explanation": "Un contexte externe temporaire peut enrichir la lecture humaine, mais il ne doit jamais devenir une preuve sur la scène, le lieu, le camp ou l'événement exact.",
+        "suggested_fix": "Garder des formulations hypothétiques et revenir explicitement aux ancrages visibles pour toute affirmation concrète."
+      }
+    ],
+    "keep_as_is": [
+      "core_reading",
+      "text_scene_interaction",
+      "prohibited_conclusions"
+    ],
+    "revision_priorities": [
+      "resserrer les formulations spéculatives",
+      "conserver uniquement les ancrages explicitement visibles",
+      "signaler les zones d'incertitude restantes"
+    ],
+    "revised_core_reading": "L'image présente une scène de suspension, une présence observée. Une photographie, fixée à un support, est le point focal, et une femme est assise sur un banc, directement en face de cette photographie. La composition suggère une distance, une observation passive. L'absence de texte et l'éclairage neutre renforcent cette impression de contemplation et d'absence d'action immédiate.",
+    "revised_social_dynamics": "Il est impossible d'établir des dynamiques sociales ou interpersonnelles à partir de cette image seule. La posture de la femme, assise, peut être interprétée comme une position d'attente ou de réflexion, mais sans contexte supplémentaire, il est impossible de déterminer si elle est seule, attend quelqu'un, ou est simplement en train de se reposer. La présence de la photographie introduit une dimension de représentation et d'observation, sans nécessairement impliquer une relation entre la femme et l'image.",
+    "revised_emotional_hypotheses": [
+      {
+        "emotion": "Contemplation",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "La posture assise et la présence de la photographie suggèrent une activité de réflexion ou d'observation, mais sans plus d'informations, il s'agit d'une hypothèse spéculative."
+      },
+      {
+        "emotion": "Neutralité",
+        "anchor_refs": [
+          "2"
+        ],
+        "confidence": "moyenne",
+        "reason": "La posture assise pourrait simplement indiquer un état de repos ou d'attente, sans expression émotionnelle particulière. Cependant, cette interprétation est limitée par l'absence d'informations contextuelles."
+      }
+    ],
+    "revised_text_scene_interaction": "La photographie est un objet, un support. Elle n'interagit pas avec la femme, ni elle n'est interagit avec elle. L'image est un simple reflet de la présence de la femme et du banc.",
+    "revised_alternative_readings": [
+      "La photographie pourrait être un objet d'étude, posé devant la femme pour une observation scientifique ou artistique.",
+      "La photographie pourrait être un souvenir, un objet de contemplation personnelle, sans lien direct avec la femme."
+    ],
+    "revised_prohibited_conclusions": [
+      "La femme est en détresse.",
+      "La femme est en train de prendre une décision importante.",
+      "La photographie est un symbole de la guerre en Ukraine (en raison du contexte fourni)."
+    ],
+    "revised_residual_uncertainty": "Pourquoi la photographie a-t-elle été prise ?; Quel est le contexte de la photographie ?; L'état émotionnel de la femme est-il connu ?"
+  },
+  "writing": {
+    "short_title": "Photographie : PXL_20260319_221746325.RAW-01.COVER",
+    "analytic_brief": "Une photographie est fixée à un support en verre noir. La photographie représente une femme assise sur un banc. Le cadre visible correspond à Un support en verre noir est fixé à une surface. La photographie est fixée au support.. La lecture retenue reste la suivante: L'image présente une scène de suspension, une présence observée. Une photographie, fixée à un support, est le point focal, et une femme est assise sur un banc, directement en face de cette photographie. La composition suggère une distance, une observation passive. L'absence de texte et l'éclairage neutre renforcent cette impression de contemplation et d'absence d'action immédiate.. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Les limites à conserver explicitement demeurent: Pourquoi la photographie a-t-elle été prise ?; Quel est le contexte de la photographie ?; L'état émotionnel de la femme est-il connu ?",
+    "human_commentary": "Une photographie est fixée à un support en verre noir. La photographie représente une femme assise sur un banc. Ce qui retient ici n'est pas seulement le fait montré, mais la manière dont il demeure en suspens: photographie, support en verre noir et banc composent une scène qui résiste à l'explication rapide. Il est impossible d'établir des dynamiques sociales ou interpersonnelles à partir de cette image seule. La posture de la femme, assise, peut être interprétée comme une position d'attente ou de réflexion, mais sans contexte supplémentaire, il est impossible de déterminer si elle est seule, attend quelqu'un, ou est simplement en train de se reposer. La présence de la photographie introduit une dimension de représentation et d'observation, sans nécessairement impliquer une relation entre la femme et l'image. Une tonalité de contemplation peut être ressentie, mais seulement comme une hypothèse appuyée sur 1, 2. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Le texte assume une lecture plus humaine et plus sensible, mais il se refuse à faire passer une impression pour une preuve.",
+    "photographic_commentary": "La lecture photographique s'appuie sur la composition visible, le cadrage et les rapports entre sujets et objets. Le regard est conduit par photographie, support en verre noir et banc, tandis que un support en verre noir est fixé à une surface. la photographie est fixée au support. installe un espace de retrait plus que d'action. La scène reste restituée sans extrapolation hors champ, avec une attention particulière au support photographie et à sa matérialité.",
+    "literary_commentary": "Le texte retient une voix plus proche du témoignage que du commentaire neutre. Il décrit une photographie est fixée à un support en verre noir. la photographie représente une femme assise sur un banc. sans fabriquer d'arrière-scène, et laisse ce qui affleure au bord du dicible plutôt que de le transformer en certitude. Le rôle du texte visible reste aucun texte lisible. L'ambiguïté qui demeure ne doit pas être comblée: Pourquoi la photographie a-t-elle été prise ?; Quel est le contexte de la photographie ?; L'état émotionnel de la femme est-il connu ?",
+    "keywords": [
+      "photographie",
+      "Un support en verre noir est fixé à une surface. La photographie est fixée au support.",
+      "photographie",
+      "support en verre noir",
+      "banc"
+    ]
+  },
+  "quality": {
+    "reviewed": false,
+    "review_notes": "",
+    "usable_for_training": false,
+    "auto_quality": {
+      "faithfulness_score": 72,
+      "overreach_risk_score": 46,
+      "evidence_coverage_score": 68,
+      "writing_readiness": "à réviser",
+      "severe_issue_count": 0,
+      "hallucination_risk": "moyen",
+      "recommended_usable_for_training": false
+    }
+  },
+  "pipeline_warnings": {
+    "critique_fallback_used": true,
+    "critique_fallback_reason": "disabled_by_default_for_resilience",
+    "write_fallback_used": true,
+    "write_fallback_reason": "disabled_by_default_for_resilience",
+    "stage_fallbacks": {
+      "read": "Échec de la passe 'read' pour PXL_20260319_221746325.RAW-01.COVER.jpg: Expecting ',' delimiter: line 106 column 6 (char 4126)"
+    }
+  }
+}

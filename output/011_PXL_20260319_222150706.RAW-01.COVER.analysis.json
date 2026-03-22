@@ -1,0 +1,293 @@
+{
+  "file_name": "PXL_20260319_222150706.RAW-01.COVER.jpg",
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "model": "gemma3:latest",
+    "llm_postprocess": false,
+    "temporary_context": "photos de la guerre en Ukraine",
+    "sync_timeout": 300,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 700,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 1100,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 1200,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 1300,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.24,
+        "maxTokens": 1300,
+        "topPSampling": 0.92,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.36,
+        "maxTokens": 1200,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "d111303b0c3078638308785776d0be30c9549cbaf155da9eaa4b41afa2f299e8",
+      "READ_SYSTEM": "3785d06d6d925b25e9210a2015b00827c08fdf87d86738596aff198b36a900c8",
+      "ANCHOR_SYSTEM": "adfb93f0e1adaee4c34796ff0a71782240742f11e1cd51998f6c98c827ee3774",
+      "INTERPRET_SYSTEM": "3f65c94b6a75f476af41a319f1bb9cb0f26fe23797aa704f09eabadbf0151364",
+      "CRITIQUE_SYSTEM": "b4e97ba9fdd5f80e10e7849ab53e2f7007a527150781b5845a29ee8f178677ec",
+      "WRITE_SYSTEM": "1d7cedd5e344afced67845de4ca92ea93e635d91fdd4136333f4cd8651545d94",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "7b5a270c3f3edb2cd3f06df7ccb7d77f6da0e5cd3d7732c0fa83cf9e6e26cbd2",
+      "READ_USER": "d11a93c47eccd80372733ed6347dd6c037b489a1f3bad992f10aa70b0ce87b62",
+      "ANCHOR_USER": "5c7a618556cd5596bb5e370b8ff42ad0e9f29e55c0b4d170a6cacaa5b8ea988b",
+      "INTERPRET_USER": "c67dc4e88d51152500e3686506ebf73d7033fe5e275d11419386a97e2ae41df0",
+      "CRITIQUE_USER": "b2189df0de615da9b29f86f90d393cbed3dbd631c493be89847066e3629048c5",
+      "WRITE_USER": "b509d21c11b25245fa6f8c62027e608e317f3f97fda962dde7229f664921c0b9"
+    }
+  },
+  "support": {
+    "support_kind": "Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune.",
+    "primary_focus": "La fenêtre et le contenu visible à travers celle-ci.",
+    "depicts_direct_scene": "oui",
+    "support_boundary": "Il est important de noter que le ruban adhésif jaune recouvre une partie de l'image, empêchant une observation complète de ce qui se trouve derrière. Cela suggère une intention de restriction de la vue.",
+    "reasoning_guardrails": [
+      "Il est impossible d'identifier l'identité de la personne représentée à travers la fenêtre sans informations supplémentaires.",
+      "L'interprétation de la scène intérieure est limitée par le ruban adhésif et ne peut pas être considérée comme une représentation fidèle de la pièce.",
+      "La présence de la ferrure à la fenêtre indique qu'il s'agit d'un élément architectural, mais ne fournit pas d'informations sur son origine ou son utilisation."
+    ]
+  },
+  "observe": {
+    "scene_summary": "Scène humaine visible, décrite de manière prudente faute de sortie d'observation totalement stable.",
+    "setting": "cadre non déterminé avec précision",
+    "subjects": [],
+    "salient_objects": [],
+    "visible_actions": [],
+    "spatial_relations": [],
+    "composition": "composition non stabilisée",
+    "lighting_and_color": "lumière et couleurs non stabilisées",
+    "uncertainties": [
+      "La description détaillée du visible a été remplacée par un fallback local.",
+      "Le support reste classé comme Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune.."
+    ]
+  },
+  "text": {
+    "has_text": "non",
+    "text_regions": [],
+    "combined_text": "",
+    "language_guesses": [],
+    "text_role": "aucun texte lisible",
+    "reading_limits": [
+      "La passe de lecture du texte a échoué et a été remplacée par un fallback local."
+    ]
+  },
+  "anchors": {
+    "dominant_axes": [
+      "La fenêtre et le cadre de la fenêtre",
+      "Les objets visibles à travers la fenêtre (meubles, silhouette)",
+      "La présence du ruban adhésif jaune et son impact sur la visualisation"
+    ],
+    "anchors": [
+      {
+        "anchor_id": "1",
+        "observation": "La fenêtre elle-même, avec son cadre métallique.",
+        "supports": [
+          "Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune."
+        ],
+        "certainty": "forte",
+        "anti_overreach": "Il ne faut pas affirmer que la fenêtre est en parfait état ou qu'elle est d'une conception particulière. Il ne faut pas supposer que la fenêtre est la seule source de lumière dans la pièce."
+      },
+      {
+        "anchor_id": "2",
+        "observation": "Les objets visibles à travers la fenêtre : un meuble (probablement une table ou un banc) et une silhouette humaine (possiblement une statue ou une figure).",
+        "supports": [
+          "Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune."
+        ],
+        "certainty": "moyenne",
+        "anti_overreach": "Il ne faut pas identifier l'identité de la personne représentée à travers la fenêtre sans informations supplémentaires. Il ne faut pas supposer que la silhouette est une personne réelle."
+      },
+      {
+        "anchor_id": "3",
+        "observation": "Le ruban adhésif jaune recouvrant une partie de l'image.",
+        "supports": [
+          "Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune."
+        ],
+        "certainty": "forte",
+        "anti_overreach": "Il ne faut pas interpréter le ruban adhésif comme un signe de danger ou de tentative de dissimulation d'un crime. Il ne faut pas supposer que la partie non recouverte de ruban adhésif représente une scène plus importante ou plus pertinente."
+      }
+    ],
+    "safe_inferences": [
+      "L'image représente une scène intérieure.",
+      "Il y a un élément architectural (fenêtre) dans la scène.",
+      "Le ruban adhésif a été appliqué à l'image."
+    ],
+    "open_questions": [
+      "Quelle est la nature exacte des objets visibles à travers la fenêtre?",
+      "Quel est le but de l'application du ruban adhésif?",
+      "Quel est le contexte de la scène (lieu, époque, etc.)?"
+    ],
+    "do_not_claim": [
+      "La scène est une représentation fidèle de la réalité.",
+      "La personne représentée à travers la fenêtre est identifiable.",
+      "Le ruban adhésif a une signification spécifique au-delà de la simple obstruction de la vue."
+    ]
+  },
+  "interpretation": {
+    "core_reading": "L'image présente une scène fragmentée, marquée par une restriction de la perception. La fenêtre, encadrée et partiellement obstruée, sert de point de contact entre un espace intérieur et un paysage urbain, suggérant une distance, une observation contrôlée. La présence du ruban adhésif introduit un élément de tension, de censure, sans indication précise de sa fonction.",
+    "social_dynamics": "La scène évoque potentiellement une situation où l'accès à une information ou à une vue est intentionnellement limité. La silhouette humaine à travers la fenêtre pourrait représenter une figure isolée, un témoin, ou une représentation symbolique. L'absence de contexte supplémentaire laisse ouverte la possibilité d'interprétations multiples concernant le statut de cette figure et la nature de la scène.",
+    "emotional_hypotheses": [
+      {
+        "emotion": "Curiosité",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "L'observation de la scène à travers la fenêtre, malgré la restriction, suggère un intérêt pour ce qui se trouve de l'autre côté."
+      },
+      {
+        "emotion": "Incertitude",
+        "anchor_refs": [
+          "3"
+        ],
+        "confidence": "moyenne",
+        "reason": "Le ruban adhésif introduit un sentiment d'ambiguïté et d'interdiction, suggérant potentiellement un danger ou une information cachée."
+      }
+    ],
+    "text_scene_interaction": "L'absence de texte permet une interprétation purement visuelle, renforçant l'idée d'une communication non verbale, potentiellement conflictuelle ou silencieuse.",
+    "alternative_readings": [
+      "La scène pourrait représenter une projection mentale, une rêverie, plutôt qu'une observation directe.",
+      "Le paysage urbain à travers la fenêtre pourrait être un symbole de la vie quotidienne, contrastant avec l'isolement de la figure humaine."
+    ],
+    "prohibited_conclusions": [
+      "Il est interdit de conclure que la scène représente une situation de conflit violent, compte tenu du contexte temporaire de la guerre en Ukraine.",
+      "Il est interdit de déterminer l'identité de la personne à travers la fenêtre, sans informations supplémentaires.",
+      "Il est interdit de supposer que le ruban adhésif est un signe de danger immédiat ou d'une tentative de dissimulation d'un crime.",
+      "Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact."
+    ],
+    "residual_uncertainty": "La nature exacte de la relation entre la figure humaine et le paysage urbain reste indéterminée, soulignant la nécessité d'une interprétation prudente et ouverte."
+  },
+  "critique": {
+    "faithfulness_score": 72,
+    "overreach_risk_score": 46,
+    "evidence_coverage_score": 68,
+    "writing_readiness": "à réviser",
+    "global_assessment": "Audit de secours généré localement après échec de la passe critique Ollama. Le contenu reste exploitable mais demande une relecture humaine.",
+    "issues": [
+      {
+        "issue_type": "fallback_technique",
+        "severity": "moyenne",
+        "location": "critique",
+        "explanation": "La passe critique structurée Ollama a échoué. Cette version de secours conserve une révision prudente mais moins fine qu'un audit complet.",
+        "suggested_fix": "Relancer ultérieurement la passe critique avec un modèle plus stable si une version éditoriale de haute qualité est nécessaire."
+      },
+      {
+        "issue_type": "contexte_temporaire",
+        "severity": "moyenne",
+        "location": "interpretation",
+        "explanation": "Un contexte externe temporaire peut enrichir la lecture humaine, mais il ne doit jamais devenir une preuve sur la scène, le lieu, le camp ou l'événement exact.",
+        "suggested_fix": "Garder des formulations hypothétiques et revenir explicitement aux ancrages visibles pour toute affirmation concrète."
+      }
+    ],
+    "keep_as_is": [
+      "core_reading",
+      "text_scene_interaction",
+      "prohibited_conclusions"
+    ],
+    "revision_priorities": [
+      "resserrer les formulations spéculatives",
+      "conserver uniquement les ancrages explicitement visibles",
+      "signaler les zones d'incertitude restantes"
+    ],
+    "revised_core_reading": "L'image présente une scène fragmentée, marquée par une restriction de la perception. La fenêtre, encadrée et partiellement obstruée, sert de point de contact entre un espace intérieur et un paysage urbain, suggérant une distance, une observation contrôlée. La présence du ruban adhésif introduit un élément de tension, de censure, sans indication précise de sa fonction.",
+    "revised_social_dynamics": "La scène évoque potentiellement une situation où l'accès à une information ou à une vue est intentionnellement limité. La silhouette humaine à travers la fenêtre pourrait représenter une figure isolée, un témoin, ou une représentation symbolique. L'absence de contexte supplémentaire laisse ouverte la possibilité d'interprétations multiples concernant le statut de cette figure et la nature de la scène.",
+    "revised_emotional_hypotheses": [
+      {
+        "emotion": "Curiosité",
+        "anchor_refs": [
+          "1",
+          "2"
+        ],
+        "confidence": "basse",
+        "reason": "L'observation de la scène à travers la fenêtre, malgré la restriction, suggère un intérêt pour ce qui se trouve de l'autre côté."
+      },
+      {
+        "emotion": "Incertitude",
+        "anchor_refs": [
+          "3"
+        ],
+        "confidence": "moyenne",
+        "reason": "Le ruban adhésif introduit un sentiment d'ambiguïté et d'interdiction, suggérant potentiellement un danger ou une information cachée."
+      }
+    ],
+    "revised_text_scene_interaction": "L'absence de texte permet une interprétation purement visuelle, renforçant l'idée d'une communication non verbale, potentiellement conflictuelle ou silencieuse.",
+    "revised_alternative_readings": [
+      "La scène pourrait représenter une projection mentale, une rêverie, plutôt qu'une observation directe.",
+      "Le paysage urbain à travers la fenêtre pourrait être un symbole de la vie quotidienne, contrastant avec l'isolement de la figure humaine."
+    ],
+    "revised_prohibited_conclusions": [
+      "Il est interdit de conclure que la scène représente une situation de conflit violent, compte tenu du contexte temporaire de la guerre en Ukraine.",
+      "Il est interdit de déterminer l'identité de la personne à travers la fenêtre, sans informations supplémentaires.",
+      "Il est interdit de supposer que le ruban adhésif est un signe de danger immédiat ou d'une tentative de dissimulation d'un crime."
+    ],
+    "revised_residual_uncertainty": "Quelle est la nature exacte des objets visibles à travers la fenêtre?; Quel est le but de l'application du ruban adhésif?; Quel est le contexte de la scène (lieu, époque, etc.)?"
+  },
+  "writing": {
+    "short_title": "Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune. : PX",
+    "analytic_brief": "Scène humaine visible, décrite de manière prudente faute de sortie d'observation totalement stable. Le cadre visible correspond à cadre non déterminé avec précision. La lecture retenue reste la suivante: L'image présente une scène fragmentée, marquée par une restriction de la perception. La fenêtre, encadrée et partiellement obstruée, sert de point de contact entre un espace intérieur et un paysage urbain, suggérant une distance, une observation contrôlée. La présence du ruban adhésif introduit un élément de tension, de censure, sans indication précise de sa fonction.. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Les limites à conserver explicitement demeurent: Quelle est la nature exacte des objets visibles à travers la fenêtre?; Quel est le but de l'application du ruban adhésif?; Quel est le contexte de la scène (lieu, époque, etc.)?",
+    "human_commentary": "Scène humaine visible, décrite de manière prudente faute de sortie d'observation totalement stable. Ce qui retient ici n'est pas seulement le fait montré, mais la manière dont il demeure en suspens: quelques détails concrets du cadre composent une scène qui résiste à l'explication rapide. La scène évoque potentiellement une situation où l'accès à une information ou à une vue est intentionnellement limité. La silhouette humaine à travers la fenêtre pourrait représenter une figure isolée, un témoin, ou une représentation symbolique. L'absence de contexte supplémentaire laisse ouverte la possibilité d'interprétations multiples concernant le statut de cette figure et la nature de la scène. Une tonalité de curiosité peut être ressentie, mais seulement comme une hypothèse appuyée sur 1, 2. Si ce contexte est bien celui de la série, l'image peut aussi se lire à travers cet horizon provisoire: photos de la guerre en Ukraine. Cette lecture n'apporte aucune preuve supplémentaire et ne doit jamais servir à inventer des faits absents du visible. Le texte assume une lecture plus humaine et plus sensible, mais il se refuse à faire passer une impression pour une preuve.",
+    "photographic_commentary": "La lecture photographique s'appuie sur la composition visible, le cadrage et les rapports entre sujets et objets. Le regard est conduit par quelques détails concrets du cadre, tandis que cadre non déterminé avec précision installe un espace de retrait plus que d'action. La scène reste restituée sans extrapolation hors champ, avec une attention particulière au support Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune. et à sa matérialité.",
+    "literary_commentary": "Le texte retient une voix plus proche du témoignage que du commentaire neutre. Il décrit scène humaine visible, décrite de manière prudente faute de sortie d'observation totalement stable. sans fabriquer d'arrière-scène, et laisse ce qui affleure au bord du dicible plutôt que de le transformer en certitude. Le rôle du texte visible reste aucun texte lisible. L'ambiguïté qui demeure ne doit pas être comblée: Quelle est la nature exacte des objets visibles à travers la fenêtre?; Quel est le but de l'application du ruban adhésif?; Quel est le contexte de la scène (lieu, époque, etc.)?",
+    "keywords": [
+      "Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune.",
+      "cadre non déterminé avec précision"
+    ]
+  },
+  "quality": {
+    "reviewed": false,
+    "review_notes": "",
+    "usable_for_training": false,
+    "auto_quality": {
+      "faithfulness_score": 72,
+      "overreach_risk_score": 46,
+      "evidence_coverage_score": 68,
+      "writing_readiness": "à réviser",
+      "severe_issue_count": 0,
+      "hallucination_risk": "moyen",
+      "recommended_usable_for_training": false
+    }
+  },
+  "pipeline_warnings": {
+    "critique_fallback_used": true,
+    "critique_fallback_reason": "disabled_by_default_for_resilience",
+    "write_fallback_used": true,
+    "write_fallback_reason": "disabled_by_default_for_resilience",
+    "stage_fallbacks": {
+      "observe": "Échec de la passe 'observe' pour PXL_20260319_222150706.RAW-01.COVER.jpg: Expecting ',' delimiter: line 75 column 4 (char 3502)",
+      "read": "Échec de la passe 'read' pour PXL_20260319_222150706.RAW-01.COVER.jpg: Expecting ',' delimiter: line 87 column 6 (char 4090)"
+    }
+  }
+}
