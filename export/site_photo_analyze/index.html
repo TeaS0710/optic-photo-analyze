@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photo Corpus Study Lab</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-grid">
+      <section class="hero-panel">
+        <div>
+          <p class="kicker">Automated photographic study</p>
+          <h1>Photo Corpus Study Lab</h1>
+          <p class="lede">A static, automatically generated web report designed for photographers, editors, curators and research-oriented visual teams. It combines optical metrics, compositional signals and the semantic outputs of the main pipeline into one coherent reading surface.</p>
+        </div>
+        <nav class="nav-strip">
+          <a href="#families">Families</a>
+          <a href="#figures">Figures</a>
+          <a href="#trends">Trends</a>
+          <a href="#gallery">Image atlas</a>
+          <a class="nav-strong" href="library.html">PDF library</a>
+        </nav>
+      </section>
+      <aside class="hero-aside">
+        <div class="stat-grid">
+          <div class="stat-card"><span class="eyebrow">Images</span><strong>12</strong></div>
+          <div class="stat-card"><span class="eyebrow">Human presence</span><strong>11</strong></div>
+          <div class="stat-card"><span class="eyebrow">Visible text</span><strong>6</strong></div>
+          <div class="stat-card"><span class="eyebrow">Mean colorfulness</span><strong>12.434</strong></div>
+        </div>
+        <div class="section-panel">
+          <p class="eyebrow">Usage note</p>
+          <p>This output is commercially usable as a decision-support and curation layer. For scientific-grade claims, it should be treated as a descriptive exploratory instrument unless separately benchmarked, calibrated and validated.</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="families">
+      <div class="shell section-panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Corpus segmentation</p>
+            <h2>Families</h2>
+          </div>
+          <p>The family labels align brightness, saturation, texture, human presence and text detection to create a practical first-pass clustering system across the corpus.</p>
+        </div>
+        <div class="family-grid">
+        <article class="family-card">
+          <p class="eyebrow">Family</p>
+          <h3>midtone-balanced-structured-human-text</h3>
+          <strong>1</strong>
+        </article>
+        
+        <article class="family-card">
+          <p class="eyebrow">Family</p>
+          <h3>midtone-balanced-structured-human-no-text</h3>
+          <strong>2</strong>
+        </article>
+        
+        <article class="family-card">
+          <p class="eyebrow">Family</p>
+          <h3>midtone-muted-structured-human-text</h3>
+          <strong>5</strong>
+        </article>
+        
+        <article class="family-card">
+          <p class="eyebrow">Family</p>
+          <h3>midtone-muted-structured-human-no-text</h3>
+          <strong>3</strong>
+        </article>
+        
+        <article class="family-card">
+          <p class="eyebrow">Family</p>
+          <h3>midtone-muted-structured-object-no-text</h3>
+          <strong>1</strong>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="figures">
+      <div class="shell section-panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Visual diagnostics</p>
+            <h2>Figures</h2>
+          </div>
+          <p>The figures below expose global tendencies of tone, color, structure and spatial organization across the image set.</p>
+        </div>
+        <div class="figure-grid">
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/brightness_histogram.svg" alt="Brightness distribution">
+      </div>
+      <h3>Brightness distribution</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/saturation_histogram.svg" alt="Saturation distribution">
+      </div>
+      <h3>Saturation distribution</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/colorfulness_histogram.svg" alt="Colorfulness distribution">
+      </div>
+      <h3>Colorfulness distribution</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/warm_balance_histogram.svg" alt="Warm balance distribution">
+      </div>
+      <h3>Warm balance distribution</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/sharpness_vs_dynamic_range.svg" alt="Sharpness vs dynamic range">
+      </div>
+      <h3>Sharpness vs dynamic range</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/saturation_vs_edge_density.svg" alt="Saturation vs edge density">
+      </div>
+      <h3>Saturation vs edge density</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/visual_center_map.svg" alt="Visual center map">
+      </div>
+      <h3>Visual center map</h3>
+    </article>
+    
+    <article class="figure-card">
+      <div class="figure-frame">
+        <img src="assets/figures/contact_sheet.png" alt="Corpus contact sheet">
+      </div>
+      <h3>Corpus contact sheet</h3>
+    </article>
+    </div>
+      </div>
+    </section>
+
+    <section class="section" id="trends">
+      <div class="shell section-panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Cross-image alignment</p>
+            <h2>Semantic and object trends</h2>
+          </div>
+          <p>These lists are derived from the main project outputs and aligned with the optical study. They are useful for iconographic grouping, edit logic and object recurrence tracking.</p>
+        </div>
+        <div class="trend-grid">
+          <article class="trend-block">
+            <p class="eyebrow">Recurring objects</p>
+            <ul><li>Un banc de pierre <strong>1</strong></li><li>Un sac à dos (avec l&#x27;impression &#x27;AIRMIX&#x27;) <strong>1</strong></li><li>Un briquet <strong>1</strong></li><li>Une table <strong>1</strong></li><li>Un cendrier <strong>1</strong></li><li>Un bol de papier <strong>1</strong></li><li>Un drap suspendu au-dessus de l&#x27;homme <strong>1</strong></li><li>quatre bancs <strong>1</strong></li><li>quatre manteaux (bleu foncé, noir, gris, bleu) <strong>1</strong></li><li>quatre chapeaux <strong>1</strong></li></ul>
+          </article>
+          <article class="trend-block">
+            <p class="eyebrow">Recurring keywords</p>
+            <ul><li>français <strong>7</strong></li><li>photographie <strong>5</strong></li><li>Un espace extérieur, probablement une ruelle. Un banc de pierre est présent. Un mur est visible en arrière-plan. <strong>1</strong></li><li>Un banc de pierre <strong>1</strong></li><li>Un sac à dos (avec l&#x27;impression &#x27;AIRMIX&#x27;) <strong>1</strong></li><li>Un briquet <strong>1</strong></li><li>image photographique <strong>1</strong></li><li>Un mur de couleur beige. Un cadre photo est visible. <strong>1</strong></li><li>Une table <strong>1</strong></li><li>Un cendrier <strong>1</strong></li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="shell section-panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Per-image review</p>
+            <h2>Image atlas</h2>
+          </div>
+          <p>Each card merges material reading, compositional metrics and semantic alignment to help professionals compare images without reopening raw intermediate files.</p>
+        </div>
+        <div class="gallery">
+    <article class="image-card" id="PXL_20260319_221606770.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221606770.RAW-01.COVER.jpg" alt="PXL_20260319_221606770.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-balanced-structured-human-text</p>
+        <h3>Photographie : PXL_20260319_221606770.RAW-01.COVER</h3>
+        <p class="scene-summary">Une photographie encadrée représentant deux hommes assis sur un banc de pierre dans un espace urbain.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La saturation demeure équilibrée, sans surcharge chromatique apparente. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-balanced-structured-human-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>21.5444</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>203.2436</strong></div><div class="metric-chip"><span>Sharpness</span><strong>111.9973</strong></div><div class="metric-chip"><span>Subjects</span><strong>2</strong></div><div class="metric-chip"><span>Text</span><strong>yes</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La saturation demeure équilibrée, sans surcharge chromatique apparente.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: photographie</li>
+              <li>Keywords: photographie, Un espace extérieur, probablement une ruelle. Un banc de pierre est présent. Un mur est visible en arrière-plan., Un banc de pierre, Un sac à dos (avec l&#x27;impression &#x27;AIRMIX&#x27;), Un briquet, français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Un banc de pierre</li><li>Un sac à dos (avec l&#x27;impression &#x27;AIRMIX&#x27;)</li><li>Un briquet</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221615854.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221615854.RAW-01.COVER.jpg" alt="PXL_20260319_221615854.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-balanced-structured-human-no-text</p>
+        <h3>Image photographique : PXL_20260319_221615854.RAW-01.COVER</h3>
+        <p class="scene-summary">Une scène photographique représentant deux individus assis à une table.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La saturation demeure équilibrée, sans surcharge chromatique apparente. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-balanced-structured-human-no-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>21.3959</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>209.9066</strong></div><div class="metric-chip"><span>Sharpness</span><strong>182.0965</strong></div><div class="metric-chip"><span>Subjects</span><strong>2</strong></div><div class="metric-chip"><span>Text</span><strong>no</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La saturation demeure équilibrée, sans surcharge chromatique apparente.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: image photographique</li>
+              <li>Keywords: image photographique, Un mur de couleur beige. Un cadre photo est visible., Une table, Un cendrier, Un bol de papier, Un drap suspendu au-dessus de l&#x27;homme, français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Une table</li><li>Un cendrier</li><li>Un bol de papier</li><li>Un drap suspendu au-dessus de l&#x27;homme</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221626535.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221626535.RAW-01.COVER.jpg" alt="PXL_20260319_221626535.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-text</p>
+        <h3>Image encadrée : PXL_20260319_221626535.RAW-01.COVER</h3>
+        <p class="scene-summary">Une image encadrée montrant quatre personnes assises sur des bancs.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>10.9089</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>185.8476</strong></div><div class="metric-chip"><span>Sharpness</span><strong>198.089</strong></div><div class="metric-chip"><span>Subjects</span><strong>4</strong></div><div class="metric-chip"><span>Text</span><strong>yes</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: image encadrée</li>
+              <li>Keywords: image encadrée, L&#x27;image est présentée dans un cadre. Les bancs sont situés dans un espace intérieur. L&#x27;arrière-plan est flou et de couleur chaude., quatre bancs, quatre manteaux (bleu foncé, noir, gris, bleu), quatre chapeaux, français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>quatre bancs</li><li>quatre manteaux (bleu foncé, noir, gris, bleu)</li><li>quatre chapeaux</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221643500.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221643500.RAW-01.COVER.jpg" alt="PXL_20260319_221643500.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-no-text</p>
+        <h3>Écriture manuscrite sur papier : PXL_20260319_221643500.RAW-01.COVER</h3>
+        <p class="scene-summary">Une main tient un stylo et écrit sur un papier.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale reste resserrée, avec un rendu plus compact et moins démonstratif. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-no-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>9.3916</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>119.7702</strong></div><div class="metric-chip"><span>Sharpness</span><strong>325.5823</strong></div><div class="metric-chip"><span>Subjects</span><strong>1</strong></div><div class="metric-chip"><span>Text</span><strong>no</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale reste resserrée, avec un rendu plus compact et moins démonstratif.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: Écriture manuscrite sur papier</li>
+              <li>Keywords: Écriture manuscrite sur papier, Un papier est posé devant une surface. Il n&#x27;y a pas d&#x27;arrière-plan visible., Un stylo, Un papier, Une main</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Un stylo</li><li>Un papier</li><li>Une main</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221656925.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221656925.RAW-01.COVER.jpg" alt="PXL_20260319_221656925.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-text</p>
+        <h3>Support composite : PXL_20260319_221656925.RAW-01.COVER</h3>
+        <p class="scene-summary">La composition est constituée d&#x27;une plaque de bois avec trois photographies encadrées et un bloc de texte manuscrit.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>7.8018</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>140.4264</strong></div><div class="metric-chip"><span>Sharpness</span><strong>151.5471</strong></div><div class="metric-chip"><span>Subjects</span><strong>1</strong></div><div class="metric-chip"><span>Text</span><strong>yes</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: support composite</li>
+              <li>Keywords: support composite, La plaque est posée sur une surface plane. L&#x27;arrière-plan est blanc., Trois photographies encadrées sont fixées à la plaque de bois., Un bloc de texte manuscrit est positionné à côté des photographies., français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Trois photographies encadrées sont fixées à la plaque de bois.</li><li>Un bloc de texte manuscrit est positionné à côté des photographies.</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221728309.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221728309.RAW-01.COVER.jpg" alt="PXL_20260319_221728309.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-no-text</p>
+        <h3>Ensemble de feuilles de papier : PXL_20260319_221728309.RAW-01.COVER</h3>
+        <p class="scene-summary">Un ensemble de feuilles de papier est fixé à une surface sombre. Les feuilles de papier contiennent des photographies.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-no-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>13.3473</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>172.039</strong></div><div class="metric-chip"><span>Sharpness</span><strong>416.7682</strong></div><div class="metric-chip"><span>Subjects</span><strong>3</strong></div><div class="metric-chip"><span>Text</span><strong>no</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: ensemble de feuilles de papier</li>
+              <li>Keywords: ensemble de feuilles de papier, Surface sombre. Feuilles de papier fixées., Photographies (plusieurs), Feuilles de papier (plusieurs), Surface sombre</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Photographies (plusieurs)</li><li>Feuilles de papier (plusieurs)</li><li>Surface sombre</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221746325.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221746325.RAW-01.COVER.jpg" alt="PXL_20260319_221746325.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-no-text</p>
+        <h3>Photographie : PXL_20260319_221746325.RAW-01.COVER</h3>
+        <p class="scene-summary">Une photographie est fixée à un support en verre noir. La photographie représente une femme assise sur un banc.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-no-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>15.1298</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>158.4722</strong></div><div class="metric-chip"><span>Sharpness</span><strong>426.3405</strong></div><div class="metric-chip"><span>Subjects</span><strong>2</strong></div><div class="metric-chip"><span>Text</span><strong>no</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: photographie</li>
+              <li>Keywords: photographie, Un support en verre noir est fixé à une surface. La photographie est fixée au support., photographie, support en verre noir, banc</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>photographie</li><li>support en verre noir</li><li>banc</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221801472.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221801472.RAW-01.COVER.jpg" alt="PXL_20260319_221801472.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-text</p>
+        <h3>Photographie : PXL_20260319_221801472.RAW-01.COVER</h3>
+        <p class="scene-summary">Un bâtiment en pierre, de couleur beige, partiellement détruit. Il est encadré.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>14.1181</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>193.047</strong></div><div class="metric-chip"><span>Sharpness</span><strong>282.9459</strong></div><div class="metric-chip"><span>Subjects</span><strong>1</strong></div><div class="metric-chip"><span>Text</span><strong>yes</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: photographie</li>
+              <li>Keywords: photographie, Un espace, probablement une galerie, où l&#x27;image est exposée dans un cadre., Toit en tuiles rouges, Fenêtres, Cheminée, Panneau publicitaire &quot;MIHI MAPKE&quot; (situé au sommet du bâtiment), Cadre, français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Toit en tuiles rouges</li><li>Fenêtres</li><li>Cheminée</li><li>Panneau publicitaire &quot;MIHI MAPKE&quot; (situé au sommet du bâtiment)</li><li>Cadre</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221820951.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221820951.RAW-01.COVER.jpg" alt="PXL_20260319_221820951.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-balanced-structured-human-no-text</p>
+        <h3>Support de type écriture sur surface : PXL_20260319_221820951.RAW-01.COVER</h3>
+        <p class="scene-summary">Une surface de couleur beige est recouverte d&#x27;écritures manuscrites.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale reste resserrée, avec un rendu plus compact et moins démonstratif. La saturation demeure équilibrée, sans surcharge chromatique apparente. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-balanced-structured-human-no-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>4.3276</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>71.059</strong></div><div class="metric-chip"><span>Sharpness</span><strong>271.8479</strong></div><div class="metric-chip"><span>Subjects</span><strong>2</strong></div><div class="metric-chip"><span>Text</span><strong>no</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale reste resserrée, avec un rendu plus compact et moins démonstratif.</li><li>La saturation demeure équilibrée, sans surcharge chromatique apparente.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: Support de type écriture sur surface</li>
+              <li>Keywords: Support de type écriture sur surface, Surface plane, couleur beige., Écriture manuscrite, Surface beige</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Écriture manuscrite</li><li>Surface beige</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_221928460.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_221928460.RAW-01.COVER.jpg" alt="PXL_20260319_221928460.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-text</p>
+        <h3>Mur en briques : PXL_20260319_221928460.RAW-01.COVER</h3>
+        <p class="scene-summary">Un mur en briques recouvert d&#x27;un texte écrit au stylo.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>3.1767</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>124.702</strong></div><div class="metric-chip"><span>Sharpness</span><strong>463.1677</strong></div><div class="metric-chip"><span>Subjects</span><strong>3</strong></div><div class="metric-chip"><span>Text</span><strong>yes</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt se tient près d&#x27;un point fort de tiers, ce qui stabilise la lecture compositionnelle.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: mur en briques</li>
+              <li>Keywords: mur en briques, Mur en briques. Surface texturée., Le texte manuscrit sur le mur., La surface en briques du mur., français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Le texte manuscrit sur le mur.</li><li>La surface en briques du mur.</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_222150706.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_222150706.RAW-01.COVER.jpg" alt="PXL_20260319_222150706.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-object-no-text</p>
+        <h3>Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune. : PX</h3>
+        <p class="scene-summary">Scène humaine visible, décrite de manière prudente faute de sortie d&#x27;observation totalement stable.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-object-no-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>17.5216</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>200.6258</strong></div><div class="metric-chip"><span>Sharpness</span><strong>355.2015</strong></div><div class="metric-chip"><span>Subjects</span><strong>0</strong></div><div class="metric-chip"><span>Text</span><strong>no</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt s&#x27;écarte des tiers classiques, avec une organisation plus flottante ou moins académique.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune.</li>
+              <li>Keywords: Image imprimée sur papier, partiellement recouverte de ruban adhésif jaune., cadre non déterminé avec précision</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>n/a</li></ul>
+        </div>
+      </div>
+    </article>
+    
+    <article class="image-card" id="PXL_20260319_222209556.RAW-01.COVER">
+      <div class="image-visual">
+        <img src="assets/thumbs/PXL_20260319_222209556.RAW-01.COVER.jpg" alt="PXL_20260319_222209556.RAW-01.COVER.jpg">
+      </div>
+      <div class="image-copy">
+        <p class="eyebrow">midtone-muted-structured-human-text</p>
+        <h3>Photographie : PXL_20260319_222209556.RAW-01.COVER</h3>
+        <p class="scene-summary">Une photographie encadrée est suspendue sur un mur blanc.</p>
+        <p class="curatorial">La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes. La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes. La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire. L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</p>
+        <div class="metrics-grid"><div class="metric-chip"><span>Family</span><strong>midtone-muted-structured-human-text</strong></div><div class="metric-chip"><span>Brightness</span><strong>midtone</strong></div><div class="metric-chip"><span>Texture</span><strong>structured</strong></div><div class="metric-chip"><span>Colorfulness</span><strong>10.5437</strong></div><div class="metric-chip"><span>Dynamic range</span><strong>183.9668</strong></div><div class="metric-chip"><span>Sharpness</span><strong>249.8563</strong></div><div class="metric-chip"><span>Subjects</span><strong>1</strong></div><div class="metric-chip"><span>Text</span><strong>yes</strong></div></div>
+        <div class="text-columns">
+          <div>
+            <h4>Professional reading</h4>
+            <ul>
+              <li>La tonalité générale reste intermédiaire, ce qui conserve des marges de modelé dans les valeurs moyennes.</li><li>La dynamique tonale est ample, ce qui suggère une scène visuellement tendue entre zones denses et zones plus ouvertes.</li><li>La couleur travaille surtout en retenue: la palette paraît atténuée, presque documentaire.</li><li>L&#x27;équilibre colorimétrique tire vers le chaud, ce qui peut épaissir la présence des peaux, des poussières ou des matières minérales.</li><li>Le centre d&#x27;intérêt se tient près d&#x27;un point fort de tiers, ce qui stabilise la lecture compositionnelle.</li><li>La répartition latérale est assez symétrique, ce qui renforce la frontalité ou la stabilité du cadre.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Semantic alignment</h4>
+            <ul>
+              <li>Faithfulness: 72/100</li>
+              <li>Overreach risk: 46/100</li>
+              <li>Support kind: photographie</li>
+              <li>Keywords: photographie, Un espace intérieur, un mur blanc. La photographie est fixée au mur à une hauteur moyenne., Un cadre en bois sombre encadrant la photographie., Une photographie représentant un homme dans un miroir., Un motif géométrique répétitif, ressemblant à des roses stylisées, qui recouvre l&#x27;arrière-plan de la photographie., français</li>
+            </ul>
+          </div>
+        </div>
+        <div class="objects-block">
+          <h4>Salient objects</h4>
+          <ul><li>Un cadre en bois sombre encadrant la photographie.</li><li>Une photographie représentant un homme dans un miroir.</li><li>Un motif géométrique répétitif, ressemblant à des roses stylisées, qui recouvre l&#x27;arrière-plan de la photographie.</li></ul>
+        </div>
+      </div>
+    </article>
+    </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      Generated automatically by <code>photo_corpus_study_lab</code> from the image corpus and the main pipeline outputs.
+    </div>
+  </footer>
+</body>
+</html>
