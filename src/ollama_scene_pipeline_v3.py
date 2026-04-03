@@ -3,16 +3,20 @@ from __future__ import annotations
 
 import argparse
 import base64
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass
+import io
 import json
 import os
 from pathlib import Path
 import socket
 import time
-from typing import Any
+from typing import Any, Callable
 import urllib.error
 import urllib.request
 
 from pydantic import ValidationError
+from PIL import Image, ImageOps
 try:
     from tqdm import tqdm
 except ImportError:  # pragma: no cover
@@ -41,16 +45,37 @@ from schemas import AnchorMap, CritiquePack, InterpretationPack, SceneScan, Supp
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tif", ".tiff"}
 
 PASS_CONFIGS: dict[str, dict[str, Any]] = {
-    "support": {"temperature": 0.10, "maxTokens": 700, "topPSampling": 0.90, "repeatPenalty": 1.05},
-    "observe": {"temperature": 0.12, "maxTokens": 1100, "topPSampling": 0.90, "repeatPenalty": 1.05},
-    "read": {"temperature": 0.08, "maxTokens": 1200, "topPSampling": 0.90, "repeatPenalty": 1.03},
-    "anchor": {"temperature": 0.16, "maxTokens": 1300, "topPSampling": 0.90, "repeatPenalty": 1.05},
-    "interpret": {"temperature": 0.24, "maxTokens": 1300, "topPSampling": 0.92, "repeatPenalty": 1.05},
-    "critique": {"temperature": 0.08, "maxTokens": 900, "topPSampling": 0.80, "repeatPenalty": 1.08},
-    "write": {"temperature": 0.36, "maxTokens": 1200, "topPSampling": 0.88, "repeatPenalty": 1.05},
+    "support": {"temperature": 0.10, "maxTokens": 520, "topPSampling": 0.90, "repeatPenalty": 1.05},
+    "observe": {"temperature": 0.12, "maxTokens": 820, "topPSampling": 0.90, "repeatPenalty": 1.05},
+    "read": {"temperature": 0.08, "maxTokens": 900, "topPSampling": 0.90, "repeatPenalty": 1.03},
+    "anchor": {"temperature": 0.16, "maxTokens": 980, "topPSampling": 0.90, "repeatPenalty": 1.05},
+    "interpret": {"temperature": 0.22, "maxTokens": 960, "topPSampling": 0.90, "repeatPenalty": 1.05},
+    "critique": {"temperature": 0.08, "maxTokens": 720, "topPSampling": 0.80, "repeatPenalty": 1.08},
+    "write": {"temperature": 0.32, "maxTokens": 860, "topPSampling": 0.88, "repeatPenalty": 1.05},
 }
 
 STAGES_WITH_IMAGE = {"support", "observe", "read", "anchor"}
+
+
+@dataclass(frozen=True)
+class StageSpec:
+    name: str
+    system_prompt: str
+    response_format: Any
+    config: dict[str, Any]
+    prompt_builder: Callable[[dict[str, Any], Path], str]
+    fallback_builder: Callable[[dict[str, Any], Path], dict[str, Any]]
+    sanitizer: Callable[[dict[str, Any], dict[str, Any]], dict[str, Any]] | None = None
+    llm_enabled: Callable[[dict[str, Any]], bool] = lambda _context: True
+    disabled_reason: str | None = None
+
+
+@dataclass(frozen=True)
+class StageRunMetrics:
+    elapsed_seconds: float
+    used_model: str | None
+    used_fallback: bool
+    response_metrics: dict[str, Any]
 
 
 def env_value(*names: str, default: str | None = None) -> str | None:
@@ -97,12 +122,38 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         type=str,
-        default=env_str("OLLAMA_MODEL", "gemma3:latest"),
-        help="Nom du modèle Ollama. Il doit accepter les images.",
+        default=env_str("OLLAMA_MODEL", "qwen3-vl:235b-cloud"),
+        help="Alias de compatibilité pour le modèle vision. Il doit accepter les images.",
+    )
+    parser.add_argument(
+        "--vision-model",
+        type=str,
+        default=env_str("OLLAMA_VISION_MODEL", ""),
+        help="Modèle utilisé pour les passes avec image: support, observe, read, anchor.",
+    )
+    parser.add_argument(
+        "--reasoning-model",
+        type=str,
+        default=env_str("OLLAMA_REASONING_MODEL", "qwen3.5:397b-cloud"),
+        help="Modèle utilisé séquentiellement pour les passes textuelles: interpret, critique, write.",
     )
     parser.add_argument("--limit", type=int, default=env_int("OLLAMA_LIMIT", 0), help="Nombre max d'images à traiter. 0 = sans limite.")
     parser.add_argument("--sync-timeout", type=int, default=env_int("OLLAMA_SYNC_TIMEOUT", 300), help="Timeout HTTP Ollama en secondes.")
     parser.add_argument("--api-host", type=str, default=env_str("OLLAMA_API_HOST", "http://127.0.0.1:11434"), help="Adresse de l'API Ollama.")
+    parser.add_argument("--api-token", type=str, default=env_optional_str("OLLAMA_API_TOKEN"), help="Token bearer optionnel pour un backend Ollama cloud ou distant.")
+    parser.add_argument("--workers", type=int, default=env_int("OLLAMA_WORKERS", 2), help="Nombre d'images analysées en parallèle.")
+    parser.add_argument(
+        "--image-max-dimension",
+        type=int,
+        default=env_int("OLLAMA_IMAGE_MAX_DIMENSION", 1600),
+        help="Dimension max des images envoyées au modèle pour réduire le temps et le volume transféré.",
+    )
+    parser.add_argument(
+        "--image-jpeg-quality",
+        type=int,
+        default=env_int("OLLAMA_IMAGE_JPEG_QUALITY", 88),
+        help="Qualité JPEG des images redimensionnées avant envoi au modèle.",
+    )
     parser.add_argument(
         "--prompt-overrides",
         type=Path,
@@ -112,8 +163,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--llm-postprocess",
         action="store_true",
-        default=env_bool("OLLAMA_LLM_POSTPROCESS", False),
-        help="Utiliser Ollama aussi pour les passes critique et write. Désactivé par défaut pour privilégier la robustesse.",
+        dest="llm_postprocess",
+        default=env_bool("OLLAMA_LLM_POSTPROCESS", True),
+        help="Utiliser Ollama aussi pour les passes critique et write. Activé par défaut pour maximiser la qualité.",
+    )
+    parser.add_argument(
+        "--no-llm-postprocess",
+        action="store_false",
+        dest="llm_postprocess",
+        help="Désactiver les passes critique et write via LLM et revenir aux fallbacks locaux.",
     )
     parser.add_argument(
         "--temporary-context",
@@ -121,7 +179,10 @@ def parse_args() -> argparse.Namespace:
         default=env_optional_str("OLLAMA_TEMPORARY_CONTEXT"),
         help="Contexte temporaire de lecture, à utiliser comme hypothèse sensible mais jamais comme preuve factuelle.",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if not args.vision_model:
+        args.vision_model = args.model
+    return args
 
 
 
@@ -161,6 +222,21 @@ def read_image_base64(image_path: Path) -> str:
     return base64.b64encode(image_path.read_bytes()).decode("ascii")
 
 
+def encode_analysis_image(image_path: Path, max_dimension: int, jpeg_quality: int) -> str:
+    if max_dimension <= 0:
+        return read_image_base64(image_path)
+
+    with Image.open(image_path) as source:
+        image = ImageOps.exif_transpose(source).convert("RGB")
+        needs_resize = max(image.size) > max_dimension
+        if needs_resize:
+            image.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
+
+        buffer = io.BytesIO()
+        image.save(buffer, format="JPEG", quality=max(40, min(jpeg_quality, 95)), optimize=True)
+        return base64.b64encode(buffer.getvalue()).decode("ascii")
+
+
 def ollama_options(config: dict[str, Any]) -> dict[str, Any]:
     return {
         "temperature": config["temperature"],
@@ -172,14 +248,18 @@ def ollama_options(config: dict[str, Any]) -> dict[str, Any]:
 
 def call_ollama(
     api_host: str,
+    api_token: str | None,
     timeout_seconds: int,
     payload: dict[str, Any],
     request_label: str,
 ) -> dict[str, Any]:
+    headers = {"Content-Type": "application/json"}
+    if api_token:
+        headers["Authorization"] = f"Bearer {api_token}"
     request = urllib.request.Request(
         f"{api_host.rstrip('/')}/api/generate",
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headers=headers,
     )
     started_at = time.perf_counter()
     try:
@@ -206,6 +286,7 @@ def call_structured(
     stage_name: str,
     primary_model: str,
     api_host: str,
+    api_token: str | None,
     timeout_seconds: int,
     image_path: Path,
     image_base64: str,
@@ -213,7 +294,7 @@ def call_structured(
     user_prompt: str,
     response_format: Any,
     config: dict[str, Any],
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], dict[str, Any]]:
     payload = {
         "model": primary_model,
         "system": system_prompt,
@@ -228,12 +309,25 @@ def call_structured(
     try:
         response = call_ollama(
             api_host=api_host,
+            api_token=api_token,
             timeout_seconds=timeout_seconds,
             request_label=f"stage={stage_name}, model={primary_model}, file={image_path.name}",
             payload=payload,
         )
         decoded = parse_json_string(response.get("response", ""))
-        return response_format.model_validate(decoded).model_dump()
+        response_metrics = {
+            key: response.get(key)
+            for key in (
+                "total_duration",
+                "load_duration",
+                "prompt_eval_count",
+                "prompt_eval_duration",
+                "eval_count",
+                "eval_duration",
+            )
+            if response.get(key) is not None
+        }
+        return response_format.model_validate(decoded).model_dump(), response_metrics
     except (TypeError, json.JSONDecodeError, ValidationError, RuntimeError) as exc:
         raise RuntimeError(
             f"Échec de la passe '{stage_name}' pour {image_path.name}: {exc}"
@@ -279,6 +373,25 @@ def _truncate_items(items: list[str], limit: int = 3) -> list[str]:
     return cleaned[:limit]
 
 
+def dedupe_preserve_order(items: list[str]) -> list[str]:
+    seen: set[str] = set()
+    deduped: list[str] = []
+    for item in items:
+        normalized = normalize_sentence(item)
+        if not normalized:
+            continue
+        key = normalized.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(normalized)
+    return deduped
+
+
+def truncate_unique_items(items: list[str], limit: int) -> list[str]:
+    return dedupe_preserve_order([str(item) for item in items])[:limit]
+
+
 def normalize_sentence(value: str) -> str:
     return " ".join(str(value).split()).strip()
 
@@ -302,6 +415,27 @@ def sentence_case(value: str) -> str:
 
 def join_fragments(parts: list[str]) -> str:
     return " ".join(part.strip() for part in parts if normalize_sentence(part)).strip()
+
+
+def sanitize_subjects(subjects: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    sanitized_subjects: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for subject in subjects or []:
+        role = normalize_sentence(subject.get("role", "")) or "sujet"
+        description = normalize_sentence(subject.get("description", "")) or "présence non détaillée"
+        key = (role.casefold(), description.casefold())
+        if key in seen:
+            continue
+        seen.add(key)
+        sanitized_subjects.append(
+            {
+                "role": role,
+                "description": description,
+                "posture_or_state": normalize_sentence(subject.get("posture_or_state", "")) or "état non stabilisé",
+                "salience": normalize_sentence(subject.get("salience", "")) or "participe à la lecture visuelle de l'image",
+            }
+        )
+    return sanitized_subjects[:6]
 
 
 def filter_text_regions(text_payload: dict[str, Any]) -> list[dict[str, Any]]:
@@ -339,6 +473,8 @@ def sanitize_text_payload(text_payload: dict[str, Any]) -> dict[str, Any]:
         sanitized["has_text"] = "non"
         sanitized["combined_text"] = ""
         sanitized["text_role"] = "aucun texte lisible"
+    sanitized["language_guesses"] = truncate_unique_items(sanitized.get("language_guesses", []), limit=4)
+    sanitized["reading_limits"] = truncate_unique_items(sanitized.get("reading_limits", []), limit=5)
     return sanitized
 
 
@@ -358,7 +494,7 @@ def sanitize_support_payload(support_payload: dict[str, Any]) -> dict[str, Any]:
     if "élément ajouté" in boundary.lower():
         boundary = "La scène est montrée directement dans le cadre, sans autre support représenté identifiable."
     sanitized["support_boundary"] = boundary or "frontière du support non déterminée"
-    sanitized["reasoning_guardrails"] = _truncate_items(sanitized.get("reasoning_guardrails", []), limit=4)
+    sanitized["reasoning_guardrails"] = truncate_unique_items(sanitized.get("reasoning_guardrails", []), limit=5)
     if not sanitized["reasoning_guardrails"]:
         sanitized["reasoning_guardrails"] = [
             "Ne pas attribuer d'identité ou de biographie sans preuve visible.",
@@ -372,24 +508,51 @@ def sanitize_observe_payload(observe_payload: dict[str, Any]) -> dict[str, Any]:
     sanitized = dict(observe_payload)
     sanitized["scene_summary"] = normalize_sentence(sanitized.get("scene_summary", "")) or "Scène non résumée."
     sanitized["setting"] = normalize_sentence(sanitized.get("setting", "")) or "cadre non déterminé"
-    sanitized["salient_objects"] = _truncate_items(sanitized.get("salient_objects", []), limit=5)
-    sanitized["visible_actions"] = _truncate_items(sanitized.get("visible_actions", []), limit=5)
-    sanitized["spatial_relations"] = _truncate_items(sanitized.get("spatial_relations", []), limit=5)
-    sanitized["uncertainties"] = _truncate_items(sanitized.get("uncertainties", []), limit=4)
+    sanitized["subjects"] = sanitize_subjects(sanitized.get("subjects", []))
+    sanitized["salient_objects"] = truncate_unique_items(sanitized.get("salient_objects", []), limit=6)
+    sanitized["visible_actions"] = truncate_unique_items(sanitized.get("visible_actions", []), limit=6)
+    sanitized["spatial_relations"] = truncate_unique_items(sanitized.get("spatial_relations", []), limit=6)
+    sanitized["uncertainties"] = truncate_unique_items(sanitized.get("uncertainties", []), limit=5)
+    sanitized["composition"] = normalize_sentence(sanitized.get("composition", "")) or "composition non stabilisée"
+    sanitized["lighting_and_color"] = normalize_sentence(sanitized.get("lighting_and_color", "")) or "lumière et couleurs non stabilisées"
     return sanitized
 
 
 def sanitize_interpretation_payload(interpretation_payload: dict[str, Any], temporary_context: str | None) -> dict[str, Any]:
     sanitized = dict(interpretation_payload)
-    prohibited = _truncate_items(sanitized.get("prohibited_conclusions", []), limit=4)
+    prohibited = truncate_unique_items(sanitized.get("prohibited_conclusions", []), limit=5)
     if normalize_sentence(temporary_context or ""):
         prohibited.append("Le contexte temporaire fourni ne suffit jamais à prouver le lieu, la date, le camp ou l'événement exact.")
-    sanitized["prohibited_conclusions"] = _truncate_items(prohibited, limit=5)
-    sanitized["alternative_readings"] = _truncate_items(sanitized.get("alternative_readings", []), limit=3)
+    sanitized["prohibited_conclusions"] = truncate_unique_items(prohibited, limit=6)
+    sanitized["alternative_readings"] = truncate_unique_items(sanitized.get("alternative_readings", []), limit=4)
     residual = normalize_sentence(sanitized.get("residual_uncertainty", ""))
     if not residual:
         residual = "Le sens général de la scène reste partiellement ouvert."
     sanitized["residual_uncertainty"] = residual
+    sanitized["core_reading"] = normalize_sentence(sanitized.get("core_reading", "")) or "Lecture prudente non stabilisée."
+    sanitized["social_dynamics"] = normalize_sentence(sanitized.get("social_dynamics", "")) or "Les dynamiques humaines restent indéterminées."
+    sanitized["text_scene_interaction"] = normalize_sentence(sanitized.get("text_scene_interaction", "")) or "Le rôle du texte reste secondaire ou indéterminé."
+    emotions: list[dict[str, Any]] = []
+    seen_emotions: set[tuple[str, tuple[str, ...]]] = set()
+    for emotion in sanitized.get("emotional_hypotheses", []) or []:
+        label = normalize_sentence(emotion.get("emotion", ""))
+        refs = [normalize_sentence(ref) for ref in emotion.get("anchor_refs", []) if normalize_sentence(ref)]
+        reason = normalize_sentence(emotion.get("reason", ""))
+        if not label or not refs or not reason:
+            continue
+        key = (label.casefold(), tuple(refs))
+        if key in seen_emotions:
+            continue
+        seen_emotions.add(key)
+        emotions.append(
+            {
+                "emotion": label,
+                "anchor_refs": refs[:3],
+                "confidence": emotion.get("confidence", "basse"),
+                "reason": reason,
+            }
+        )
+    sanitized["emotional_hypotheses"] = emotions[:4]
     return sanitized
 
 
@@ -404,6 +567,78 @@ def detail_phrase(observe: dict[str, Any], text: dict[str, Any]) -> str:
     if len(details) == 1:
         return details[0]
     return ", ".join(details[:-1]) + f" et {details[-1]}"
+
+
+def sanitize_anchor_payload(anchor_payload: dict[str, Any]) -> dict[str, Any]:
+    sanitized = dict(anchor_payload)
+    sanitized["dominant_axes"] = truncate_unique_items(sanitized.get("dominant_axes", []), limit=5)
+    cleaned_anchors: list[dict[str, Any]] = []
+    for index, anchor in enumerate(sanitized.get("anchors", []) or [], start=1):
+        cleaned_anchors.append(
+            {
+                "anchor_id": normalize_sentence(anchor.get("anchor_id", "")) or f"A{index}",
+                "observation": normalize_sentence(anchor.get("observation", "")) or "Observation visible non stabilisée.",
+                "supports": truncate_unique_items(anchor.get("supports", []), limit=4) or ["présence visible dans la scène"],
+                "certainty": anchor.get("certainty", "faible"),
+                "anti_overreach": normalize_sentence(anchor.get("anti_overreach", "")) or "Cet ancrage ne suffit pas à établir un récit complet.",
+            }
+        )
+    sanitized["anchors"] = cleaned_anchors[:6]
+    sanitized["safe_inferences"] = truncate_unique_items(sanitized.get("safe_inferences", []), limit=5)
+    sanitized["open_questions"] = truncate_unique_items(sanitized.get("open_questions", []), limit=5)
+    sanitized["do_not_claim"] = truncate_unique_items(sanitized.get("do_not_claim", []), limit=6)
+    return sanitized
+
+
+def sanitize_critique_payload(critique_payload: dict[str, Any], interpretation: dict[str, Any]) -> dict[str, Any]:
+    sanitized = dict(critique_payload)
+    sanitized["global_assessment"] = normalize_sentence(sanitized.get("global_assessment", "")) or "Audit non stabilisé."
+    sanitized["keep_as_is"] = truncate_unique_items(sanitized.get("keep_as_is", []), limit=5)
+    sanitized["revision_priorities"] = truncate_unique_items(sanitized.get("revision_priorities", []), limit=5)
+    sanitized["revised_core_reading"] = normalize_sentence(
+        sanitized.get("revised_core_reading", "") or interpretation.get("core_reading", "")
+    ) or "Lecture centrale révisée non stabilisée."
+    sanitized["revised_social_dynamics"] = normalize_sentence(
+        sanitized.get("revised_social_dynamics", "") or interpretation.get("social_dynamics", "")
+    ) or "Les dynamiques humaines restent prudentes et ouvertes."
+    sanitized["revised_text_scene_interaction"] = normalize_sentence(
+        sanitized.get("revised_text_scene_interaction", "") or interpretation.get("text_scene_interaction", "")
+    ) or "Le rôle du texte reste prudent et secondaire."
+    sanitized["revised_alternative_readings"] = truncate_unique_items(sanitized.get("revised_alternative_readings", []), limit=4)
+    sanitized["revised_prohibited_conclusions"] = truncate_unique_items(sanitized.get("revised_prohibited_conclusions", []), limit=6)
+    sanitized["revised_residual_uncertainty"] = normalize_sentence(sanitized.get("revised_residual_uncertainty", "")) or "Une part d'incertitude demeure."
+    sanitized["revised_emotional_hypotheses"] = sanitize_interpretation_payload(
+        {"emotional_hypotheses": sanitized.get("revised_emotional_hypotheses", [])},
+        None,
+    )["emotional_hypotheses"]
+    cleaned_issues: list[dict[str, Any]] = []
+    for issue in sanitized.get("issues", []) or []:
+        issue_type = normalize_sentence(issue.get("issue_type", "problème"))
+        location = normalize_sentence(issue.get("location", "interprétation"))
+        explanation = normalize_sentence(issue.get("explanation", ""))
+        suggested_fix = normalize_sentence(issue.get("suggested_fix", ""))
+        if not explanation or not suggested_fix:
+            continue
+        cleaned_issues.append(
+            {
+                "issue_type": issue_type,
+                "severity": issue.get("severity", "moyenne"),
+                "location": location,
+                "explanation": explanation,
+                "suggested_fix": suggested_fix,
+            }
+        )
+    sanitized["issues"] = cleaned_issues[:8]
+    return sanitized
+
+
+def sanitize_writing_payload(writing_payload: dict[str, Any]) -> dict[str, Any]:
+    sanitized = dict(writing_payload)
+    sanitized["short_title"] = normalize_sentence(sanitized.get("short_title", "")) or "Analyse visuelle"
+    for field in ("analytic_brief", "human_commentary", "photographic_commentary", "literary_commentary"):
+        sanitized[field] = normalize_sentence(sanitized.get(field, ""))
+    sanitized["keywords"] = truncate_unique_items(sanitized.get("keywords", []), limit=10)
+    return sanitized
 
 
 def emotion_phrase(critique: dict[str, Any]) -> str:
@@ -657,206 +892,232 @@ def build_fallback_writing(
     return WritePack.model_validate(writing).model_dump()
 
 
+def build_stage_specs() -> tuple[StageSpec, ...]:
+    return (
+        StageSpec(
+            name="support",
+            system_prompt=SUPPORT_SYSTEM,
+            response_format=SupportProfile,
+            config=PASS_CONFIGS["support"],
+            prompt_builder=lambda _ctx, image_path: render_support_user(image_path),
+            fallback_builder=lambda _ctx, image_path: build_fallback_support(image_path),
+            sanitizer=lambda value, _ctx: sanitize_support_payload(value),
+        ),
+        StageSpec(
+            name="observe",
+            system_prompt=OBSERVE_SYSTEM,
+            response_format=SceneScan,
+            config=PASS_CONFIGS["observe"],
+            prompt_builder=lambda ctx, _image_path: render_observe_user(ctx["support"]),
+            fallback_builder=lambda ctx, _image_path: build_fallback_observe(ctx["support"]),
+            sanitizer=lambda value, _ctx: sanitize_observe_payload(value),
+        ),
+        StageSpec(
+            name="read",
+            system_prompt=READ_SYSTEM,
+            response_format=TextScan,
+            config=PASS_CONFIGS["read"],
+            prompt_builder=lambda ctx, _image_path: render_read_user(ctx["support"], ctx["observe"]),
+            fallback_builder=lambda ctx, _image_path: build_fallback_text(ctx["observe"]),
+            sanitizer=lambda value, _ctx: sanitize_text_payload(value),
+        ),
+        StageSpec(
+            name="anchor",
+            system_prompt=ANCHOR_SYSTEM,
+            response_format=AnchorMap,
+            config=PASS_CONFIGS["anchor"],
+            prompt_builder=lambda ctx, _image_path: render_anchor_user(ctx["support"], ctx["observe"], ctx["text"]),
+            fallback_builder=lambda ctx, _image_path: build_fallback_anchor(ctx["observe"], ctx["text"]),
+            sanitizer=lambda value, _ctx: sanitize_anchor_payload(value),
+        ),
+        StageSpec(
+            name="interpret",
+            system_prompt=INTERPRET_SYSTEM,
+            response_format=InterpretationPack,
+            config=PASS_CONFIGS["interpret"],
+            prompt_builder=lambda ctx, _image_path: render_interpret_user(
+                ctx["support"], ctx["observe"], ctx["text"], ctx["anchors"], ctx.get("temporary_context")
+            ),
+            fallback_builder=lambda ctx, _image_path: build_fallback_interpretation(
+                ctx["observe"], ctx["text"], ctx["anchors"], ctx.get("temporary_context")
+            ),
+            sanitizer=lambda value, ctx: sanitize_interpretation_payload(value, ctx.get("temporary_context")),
+        ),
+        StageSpec(
+            name="critique",
+            system_prompt=CRITIQUE_SYSTEM,
+            response_format=CritiquePack,
+            config=PASS_CONFIGS["critique"],
+            prompt_builder=lambda ctx, _image_path: render_critique_user(
+                ctx["support"], ctx["observe"], ctx["text"], ctx["anchors"], ctx["interpretation"], ctx.get("temporary_context")
+            ),
+            fallback_builder=lambda ctx, _image_path: build_fallback_critique(
+                ctx["interpretation"], ctx["anchors"], ctx["text"], ctx.get("temporary_context")
+            ),
+            sanitizer=lambda value, ctx: sanitize_critique_payload(value, ctx["interpretation"]),
+            llm_enabled=lambda ctx: bool(ctx.get("llm_postprocess")),
+            disabled_reason="llm_postprocess_disabled",
+        ),
+        StageSpec(
+            name="write",
+            system_prompt=WRITE_SYSTEM,
+            response_format=WritePack,
+            config=PASS_CONFIGS["write"],
+            prompt_builder=lambda ctx, _image_path: render_write_user(
+                ctx["support"], ctx["observe"], ctx["text"], ctx["anchors"], ctx["critique"], ctx.get("temporary_context")
+            ),
+            fallback_builder=lambda ctx, image_path: build_fallback_writing(
+                image_path.name, ctx["support"], ctx["observe"], ctx["text"], ctx["critique"], ctx.get("temporary_context")
+            ),
+            sanitizer=lambda value, _ctx: sanitize_writing_payload(value),
+            llm_enabled=lambda ctx: bool(ctx.get("llm_postprocess")),
+            disabled_reason="llm_postprocess_disabled",
+        ),
+    )
+
+
+def stage_model_for(stage_name: str, vision_model: str, reasoning_model: str) -> str:
+    return vision_model if stage_name in STAGES_WITH_IMAGE else reasoning_model
+
+
+def run_stage(
+    spec: StageSpec,
+    context: dict[str, Any],
+    vision_model: str,
+    reasoning_model: str,
+    api_host: str,
+    api_token: str | None,
+    timeout_seconds: int,
+    image_path: Path,
+    image_base64: str,
+    progress_hook: Any = None,
+) -> tuple[dict[str, Any], str | None, StageRunMetrics]:
+    if progress_hook:
+        progress_hook(spec.name, "start")
+
+    started_at = time.perf_counter()
+    fallback_reason: str | None = None
+    response_metrics: dict[str, Any] = {}
+    selected_model = stage_model_for(spec.name, vision_model, reasoning_model)
+    if spec.llm_enabled(context):
+        try:
+            value, response_metrics = call_structured(
+                stage_name=spec.name,
+                primary_model=selected_model,
+                api_host=api_host,
+                api_token=api_token,
+                timeout_seconds=timeout_seconds,
+                image_path=image_path,
+                image_base64=image_base64,
+                system_prompt=spec.system_prompt,
+                user_prompt=spec.prompt_builder(context, image_path),
+                response_format=spec.response_format,
+                config=spec.config,
+            )
+            if progress_hook:
+                progress_hook(spec.name, "done")
+        except Exception as exc:
+            value = spec.fallback_builder(context, image_path)
+            fallback_reason = str(exc)
+            if progress_hook:
+                progress_hook(spec.name, "fallback")
+    else:
+        value = spec.fallback_builder(context, image_path)
+        fallback_reason = spec.disabled_reason or "llm_stage_disabled"
+        if progress_hook:
+            progress_hook(spec.name, "fallback")
+
+    if spec.sanitizer is not None:
+        value = spec.sanitizer(value, context)
+    elapsed_seconds = time.perf_counter() - started_at
+    metrics = StageRunMetrics(
+        elapsed_seconds=elapsed_seconds,
+        used_model=selected_model if spec.llm_enabled(context) else None,
+        used_fallback=fallback_reason is not None,
+        response_metrics=response_metrics,
+    )
+    return value, fallback_reason, metrics
+
+
+def stage_output_key(stage_name: str) -> str:
+    return {
+        "anchor": "anchors",
+        "interpret": "interpretation",
+        "read": "text",
+        "write": "write",
+    }.get(stage_name, stage_name)
+
+
 
 def analyze_one(
-    model: str,
+    vision_model: str,
+    reasoning_model: str,
     llm_postprocess: bool,
     temporary_context: str | None,
     api_host: str,
+    api_token: str | None,
     timeout_seconds: int,
     image_path: Path,
     run_metadata: dict[str, Any],
+    image_max_dimension: int,
+    image_jpeg_quality: int,
     progress_hook: Any = None,
 ) -> dict[str, Any]:
-    image_base64 = read_image_base64(image_path)
+    analysis_started_at = time.perf_counter()
+    image_base64 = encode_analysis_image(image_path, image_max_dimension, image_jpeg_quality)
     stage_fallbacks: dict[str, str] = {}
+    stage_metrics: dict[str, Any] = {}
+    context: dict[str, Any] = {
+        "temporary_context": temporary_context,
+        "llm_postprocess": llm_postprocess,
+    }
 
-    try:
-        if progress_hook:
-            progress_hook("support", "start")
-        support = call_structured(
-            stage_name="support",
-            primary_model=model,
+    for spec in build_stage_specs():
+        value, fallback_reason, metrics = run_stage(
+            spec=spec,
+            context=context,
+            vision_model=vision_model,
+            reasoning_model=reasoning_model,
             api_host=api_host,
+            api_token=api_token,
             timeout_seconds=timeout_seconds,
             image_path=image_path,
             image_base64=image_base64,
-            system_prompt=SUPPORT_SYSTEM,
-            user_prompt=render_support_user(image_path),
-            response_format=SupportProfile,
-            config=PASS_CONFIGS["support"],
+            progress_hook=progress_hook,
         )
-        if progress_hook:
-            progress_hook("support", "done")
-    except Exception as exc:
-        support = build_fallback_support(image_path)
-        stage_fallbacks["support"] = str(exc)
-        if progress_hook:
-            progress_hook("support", "fallback")
+        context[stage_output_key(spec.name)] = value
+        stage_metrics[spec.name] = {
+            "elapsed_seconds": round(metrics.elapsed_seconds, 3),
+            "model": metrics.used_model,
+            "used_fallback": metrics.used_fallback,
+            "response_metrics": metrics.response_metrics,
+        }
+        if fallback_reason:
+            stage_fallbacks[spec.name] = fallback_reason
 
-    try:
-        if progress_hook:
-            progress_hook("observe", "start")
-        observe = call_structured(
-            stage_name="observe",
-            primary_model=model,
-            api_host=api_host,
-            timeout_seconds=timeout_seconds,
-            image_path=image_path,
-            image_base64=image_base64,
-            system_prompt=OBSERVE_SYSTEM,
-            user_prompt=render_observe_user(support),
-            response_format=SceneScan,
-            config=PASS_CONFIGS["observe"],
-        )
-        if progress_hook:
-            progress_hook("observe", "done")
-    except Exception as exc:
-        observe = build_fallback_observe(support)
-        stage_fallbacks["observe"] = str(exc)
-        if progress_hook:
-            progress_hook("observe", "fallback")
-
-    try:
-        if progress_hook:
-            progress_hook("read", "start")
-        text = call_structured(
-            stage_name="read",
-            primary_model=model,
-            api_host=api_host,
-            timeout_seconds=timeout_seconds,
-            image_path=image_path,
-            image_base64=image_base64,
-            system_prompt=READ_SYSTEM,
-            user_prompt=render_read_user(support, observe),
-            response_format=TextScan,
-            config=PASS_CONFIGS["read"],
-        )
-        if progress_hook:
-            progress_hook("read", "done")
-    except Exception as exc:
-        text = build_fallback_text(observe)
-        stage_fallbacks["read"] = str(exc)
-        if progress_hook:
-            progress_hook("read", "fallback")
-
-    try:
-        if progress_hook:
-            progress_hook("anchor", "start")
-        anchors = call_structured(
-            stage_name="anchor",
-            primary_model=model,
-            api_host=api_host,
-            timeout_seconds=timeout_seconds,
-            image_path=image_path,
-            image_base64=image_base64,
-            system_prompt=ANCHOR_SYSTEM,
-            user_prompt=render_anchor_user(support, observe, text),
-            response_format=AnchorMap,
-            config=PASS_CONFIGS["anchor"],
-        )
-        if progress_hook:
-            progress_hook("anchor", "done")
-    except Exception as exc:
-        anchors = build_fallback_anchor(observe, text)
-        stage_fallbacks["anchor"] = str(exc)
-        if progress_hook:
-            progress_hook("anchor", "fallback")
-
-    try:
-        if progress_hook:
-            progress_hook("interpret", "start")
-        interpretation = call_structured(
-            stage_name="interpret",
-            primary_model=model,
-            api_host=api_host,
-            timeout_seconds=timeout_seconds,
-            image_path=image_path,
-            image_base64=image_base64,
-            system_prompt=INTERPRET_SYSTEM,
-            user_prompt=render_interpret_user(support, observe, text, anchors, temporary_context),
-            response_format=InterpretationPack,
-            config=PASS_CONFIGS["interpret"],
-        )
-        if progress_hook:
-            progress_hook("interpret", "done")
-    except Exception as exc:
-        interpretation = build_fallback_interpretation(observe, text, anchors, temporary_context)
-        stage_fallbacks["interpret"] = str(exc)
-        if progress_hook:
-            progress_hook("interpret", "fallback")
-    support = sanitize_support_payload(support)
-    observe = sanitize_observe_payload(observe)
-    text = sanitize_text_payload(text)
-    interpretation = sanitize_interpretation_payload(interpretation, temporary_context)
-
-    critique_fallback_used = not llm_postprocess
-    critique_fallback_reason = "disabled_by_default_for_resilience" if not llm_postprocess else None
-    if llm_postprocess:
-        try:
-            if progress_hook:
-                progress_hook("critique", "start")
-            critique = call_structured(
-                stage_name="critique",
-                primary_model=model,
-                api_host=api_host,
-                timeout_seconds=timeout_seconds,
-                image_path=image_path,
-                image_base64=image_base64,
-                system_prompt=CRITIQUE_SYSTEM,
-                user_prompt=render_critique_user(support, observe, text, anchors, interpretation),
-                response_format=CritiquePack,
-                config=PASS_CONFIGS["critique"],
-            )
-            if progress_hook:
-                progress_hook("critique", "done")
-        except Exception as exc:
-            critique = build_fallback_critique(interpretation, anchors, text, temporary_context)
-            critique_fallback_used = True
-            critique_fallback_reason = str(exc)
-            if progress_hook:
-                progress_hook("critique", "fallback")
-    else:
-        if progress_hook:
-            progress_hook("critique", "fallback")
-        critique = build_fallback_critique(interpretation, anchors, text, temporary_context)
-
-    write_fallback_used = not llm_postprocess
-    write_fallback_reason = "disabled_by_default_for_resilience" if not llm_postprocess else None
-    if llm_postprocess:
-        try:
-            if progress_hook:
-                progress_hook("write", "start")
-            writing = call_structured(
-                stage_name="write",
-                primary_model=model,
-                api_host=api_host,
-                timeout_seconds=timeout_seconds,
-                image_path=image_path,
-                image_base64=image_base64,
-                system_prompt=WRITE_SYSTEM,
-                user_prompt=render_write_user(support, observe, text, anchors, critique, temporary_context),
-                response_format=WritePack,
-                config=PASS_CONFIGS["write"],
-            )
-            if progress_hook:
-                progress_hook("write", "done")
-        except Exception as exc:
-            writing = build_fallback_writing(image_path.name, support, observe, text, critique, temporary_context)
-            write_fallback_used = True
-            write_fallback_reason = str(exc)
-            if progress_hook:
-                progress_hook("write", "fallback")
-    else:
-        if progress_hook:
-            progress_hook("write", "fallback")
-        writing = build_fallback_writing(image_path.name, support, observe, text, critique, temporary_context)
+    support = context["support"]
+    observe = context["observe"]
+    text = context["text"]
+    anchors = context["anchors"]
+    interpretation = context["interpretation"]
+    critique = context["critique"]
+    writing = context["write"]
+    critique_fallback_reason = stage_fallbacks.get("critique")
+    write_fallback_reason = stage_fallbacks.get("write")
+    critique_fallback_used = critique_fallback_reason is not None
+    write_fallback_used = write_fallback_reason is not None
 
     auto_quality = derive_auto_quality(critique)
+    performance = {
+        "total_elapsed_seconds": round(time.perf_counter() - analysis_started_at, 3),
+        "image_bytes_base64_length": len(image_base64),
+        "stage_metrics": stage_metrics,
+    }
 
     payload = {
         "file_name": image_path.name,
         "run_metadata": run_metadata,
+        "performance": performance,
         "support": support,
         "observe": observe,
         "text": text,
@@ -910,7 +1171,7 @@ def build_error_payload(image_path: Path, error: Exception, run_metadata: dict[s
 
 
 
-def report_markdown(payload: dict[str, Any], model_name: str) -> str:
+def report_markdown(payload: dict[str, Any], vision_model: str, reasoning_model: str) -> str:
     support = payload["support"]
     observe = payload["observe"]
     text = payload["text"]
@@ -920,10 +1181,16 @@ def report_markdown(payload: dict[str, Any], model_name: str) -> str:
     writing = payload["writing"]
     quality = payload["quality"]
     auto_quality = quality.get("auto_quality", {})
+    performance = payload.get("performance", {})
 
     lines: list[str] = []
     lines += [f"# {writing['short_title']}", ""]
-    lines += [f"**Fichier** : `{payload['file_name']}`  ", f"**Modèle** : `{model_name}`", ""]
+    lines += [
+        f"**Fichier** : `{payload['file_name']}`  ",
+        f"**Modèle vision** : `{vision_model}`  ",
+        f"**Modèle raisonnement** : `{reasoning_model}`",
+        "",
+    ]
 
     lines += ["## 1. Profil de support", ""]
     lines += [f"**Nature du support** : {support['support_kind']}", ""]
@@ -1066,7 +1333,107 @@ def report_markdown(payload: dict[str, Any], model_name: str) -> str:
     if quality.get("review_notes"):
         lines += [f"**Notes de revue** : {quality['review_notes']}", ""]
 
+    if performance:
+        lines += ["## 10. Performance", ""]
+        lines += [f"**Temps total** : {performance.get('total_elapsed_seconds', 'inconnu')} s  ", f"**Taille image encodée** : {performance.get('image_bytes_base64_length', 'inconnue')} caractères base64", ""]
+        for stage_name, metrics in performance.get("stage_metrics", {}).items():
+            lines.append(
+                f"- **{stage_name}** : {metrics.get('elapsed_seconds', 'inconnu')} s | modèle : {metrics.get('model') or 'fallback local'} | fallback : {metrics.get('used_fallback', False)}"
+            )
+
     return "\n".join(lines)
+
+
+def process_single_image(
+    index: int,
+    total: int,
+    image_path: Path,
+    args: argparse.Namespace,
+    run_metadata: dict[str, Any],
+    stage_names: tuple[str, ...],
+) -> tuple[int, dict[str, Any]]:
+    stem = f"{index:03d}_{image_path.stem}"
+    json_path = args.output_dir / f"{stem}.analysis.json"
+    md_path = args.output_dir / f"{stem}.report.md"
+    stage_bar = None
+    completed_stages: set[str] = set()
+
+    if tqdm is not None and args.workers == 1:
+        stage_bar = tqdm(
+            total=len(stage_names),
+            desc=f"{index}/{total} {image_path.name[:32]}",
+            unit="stage",
+            leave=False,
+        )
+
+    def progress_hook(stage_name: str, status: str) -> None:
+        if stage_bar is None:
+            return
+        label = stage_name if status == "done" else f"{stage_name} ({status})"
+        stage_bar.set_postfix_str(label)
+        if status in {"done", "fallback"} and stage_name not in completed_stages:
+            completed_stages.add(stage_name)
+            stage_bar.update(1)
+
+    try:
+        payload = analyze_one(
+            args.vision_model,
+            args.reasoning_model,
+            args.llm_postprocess,
+            args.temporary_context,
+            args.api_host,
+            args.api_token,
+            args.sync_timeout,
+            image_path,
+            run_metadata,
+            args.image_max_dimension,
+            args.image_jpeg_quality,
+            progress_hook=progress_hook,
+        )
+    except Exception as exc:
+        payload = build_error_payload(image_path, exc, run_metadata)
+        json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        entry = {
+            "file_name": image_path.name,
+            "json": json_path.name,
+            "markdown": None,
+            "title": None,
+            "reviewed": False,
+            "hallucination_risk": payload["quality"]["auto_quality"]["hallucination_risk"],
+            "writing_readiness": payload["quality"]["auto_quality"]["writing_readiness"],
+            "vision_model": args.vision_model,
+            "reasoning_model": args.reasoning_model,
+            "total_elapsed_seconds": payload.get("performance", {}).get("total_elapsed_seconds"),
+            "prompt_overrides": str(args.prompt_overrides) if args.prompt_overrides else None,
+            "status": "error",
+            "error_type": type(exc).__name__,
+            "error_message": str(exc),
+        }
+        return index, entry
+    finally:
+        if stage_bar is not None:
+            stage_bar.set_postfix_str("done")
+            stage_bar.close()
+
+    json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    md_path.write_text(report_markdown(payload, args.vision_model, args.reasoning_model), encoding="utf-8")
+    entry = {
+        "file_name": image_path.name,
+        "json": json_path.name,
+        "markdown": md_path.name,
+        "title": payload["writing"]["short_title"],
+        "reviewed": payload["quality"]["reviewed"],
+        "hallucination_risk": payload["quality"]["auto_quality"]["hallucination_risk"],
+        "writing_readiness": payload["quality"]["auto_quality"]["writing_readiness"],
+        "vision_model": args.vision_model,
+        "reasoning_model": args.reasoning_model,
+        "total_elapsed_seconds": payload.get("performance", {}).get("total_elapsed_seconds"),
+        "prompt_overrides": str(args.prompt_overrides) if args.prompt_overrides else None,
+        "status": "ok",
+        "error_type": None,
+        "error_message": None,
+    }
+    return index, entry
 
 
 
@@ -1083,114 +1450,63 @@ def main() -> int:
         raise SystemExit(f"Aucune image trouvée dans {args.input_dir}")
 
     manifest: list[dict[str, Any]] = []
-    stage_names = ("support", "observe", "read", "anchor", "interpret", "critique", "write")
+    stage_names = tuple(spec.name for spec in build_stage_specs())
     run_metadata = {
         "backend": "ollama",
         "api_host": args.api_host,
+        "api_token_configured": bool(args.api_token),
         "model": args.model,
+        "vision_model": args.vision_model,
+        "reasoning_model": args.reasoning_model,
         "llm_postprocess": args.llm_postprocess,
         "temporary_context": args.temporary_context,
         "sync_timeout": args.sync_timeout,
+        "workers": args.workers,
+        "image_max_dimension": args.image_max_dimension,
+        "image_jpeg_quality": args.image_jpeg_quality,
         "pass_configs": PASS_CONFIGS,
         "prompt_overrides": str(args.prompt_overrides) if args.prompt_overrides else None,
         "prompt_fingerprints": prompt_fingerprints(),
     }
+    indexed_images = list(enumerate(images, start=1))
+    results: dict[int, dict[str, Any]] = {}
 
-    for index, image_path in enumerate(images, start=1):
-        stem = f"{index:03d}_{image_path.stem}"
-        print(f"[{index}/{len(images)}] {image_path.name}")
-        json_path = args.output_dir / f"{stem}.analysis.json"
-        md_path = args.output_dir / f"{stem}.report.md"
-        stage_bar = None
-        completed_stages: set[str] = set()
-
-        if tqdm is not None:
-            stage_bar = tqdm(
-                total=len(stage_names),
-                desc=f"{index}/{len(images)} {image_path.name[:32]}",
-                unit="stage",
-                leave=False,
-            )
-
-        def progress_hook(stage_name: str, status: str) -> None:
-            if stage_bar is None:
-                return
-            label = stage_name if status == "done" else f"{stage_name} ({status})"
-            stage_bar.set_postfix_str(label)
-            if status in {"done", "fallback"} and stage_name not in completed_stages:
-                completed_stages.add(stage_name)
-                stage_bar.update(1)
-
-        try:
-            payload = analyze_one(
-                args.model,
-                args.llm_postprocess,
-                args.temporary_context,
-                args.api_host,
-                args.sync_timeout,
-                image_path,
-                run_metadata,
-                progress_hook=progress_hook,
-            )
-        except KeyboardInterrupt:
-            if stage_bar is not None:
-                stage_bar.close()
-            print("\nInterruption utilisateur. Arrêt du traitement.")
-            break
-        except Exception as exc:
-            if stage_bar is not None:
-                stage_bar.close()
-            payload = build_error_payload(image_path, exc, run_metadata)
-            json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-            manifest.append(
-                {
-                    "file_name": image_path.name,
-                    "json": json_path.name,
-                    "markdown": None,
-                    "title": None,
-                    "reviewed": False,
-                    "hallucination_risk": payload["quality"]["auto_quality"]["hallucination_risk"],
-                    "writing_readiness": payload["quality"]["auto_quality"]["writing_readiness"],
-                    "model": args.model,
-                    "prompt_overrides": str(args.prompt_overrides) if args.prompt_overrides else None,
-                    "status": "error",
-                    "error_type": type(exc).__name__,
-                    "error_message": str(exc),
+    try:
+        if args.workers <= 1:
+            for index, image_path in indexed_images:
+                print(f"[{index}/{len(images)}] {image_path.name}")
+                result_index, entry = process_single_image(index, len(images), image_path, args, run_metadata, stage_names)
+                results[result_index] = entry
+                if entry["status"] == "error":
+                    print(f"  ERREUR: {entry['error_message']}")
+        else:
+            print(f"Traitement parallèle activé: {args.workers} workers")
+            with ThreadPoolExecutor(max_workers=args.workers) as executor:
+                future_map = {
+                    executor.submit(process_single_image, index, len(images), image_path, args, run_metadata, stage_names): (index, image_path)
+                    for index, image_path in indexed_images
                 }
-            )
-            print(f"  ERREUR: {exc}")
-            continue
-        finally:
-            if stage_bar is not None:
-                stage_bar.set_postfix_str("done")
-                stage_bar.close()
+                for future in as_completed(future_map):
+                    index, image_path = future_map[future]
+                    print(f"[{index}/{len(images)}] {image_path.name}")
+                    result_index, entry = future.result()
+                    results[result_index] = entry
+                    if entry["status"] == "error":
+                        print(f"  ERREUR: {entry['error_message']}")
+    except KeyboardInterrupt:
+        print("\nInterruption utilisateur. Arrêt du traitement.")
 
-        json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-        md_path.write_text(report_markdown(payload, args.model), encoding="utf-8")
-
-        manifest.append(
-            {
-                "file_name": image_path.name,
-                "json": json_path.name,
-                "markdown": md_path.name,
-                "title": payload["writing"]["short_title"],
-                "reviewed": payload["quality"]["reviewed"],
-                "hallucination_risk": payload["quality"]["auto_quality"]["hallucination_risk"],
-                "writing_readiness": payload["quality"]["auto_quality"]["writing_readiness"],
-                "model": args.model,
-                "prompt_overrides": str(args.prompt_overrides) if args.prompt_overrides else None,
-                "status": "ok",
-                "error_type": None,
-                "error_message": None,
-            }
-        )
+    for index, _image_path in indexed_images:
+        entry = results.get(index)
+        if entry is not None:
+            manifest.append(entry)
 
     (args.output_dir / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 
-    print(f"Terminé. {len(images)} image(s) traitée(s). Sorties dans {args.output_dir}")
+    print(f"Terminé. {len(manifest)} image(s) traitée(s). Sorties dans {args.output_dir}")
     return 0
 
 

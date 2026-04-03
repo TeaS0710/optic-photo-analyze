@@ -1,0 +1,138 @@
+{
+  "file_name": "PXL_20260319_221928460.RAW-01.COVER.jpg",
+  "image_path": "data/input/PXL_20260319_221928460.RAW-01.COVER.jpg",
+  "family": "midtone-muted-structured-object-no-text",
+  "metrics": {
+    "width_px": 6144,
+    "height_px": 8160,
+    "study_width_px": 1205,
+    "study_height_px": 1600,
+    "aspect_ratio": 0.7529,
+    "orientation": "portrait",
+    "luminance_mean": 128.4731,
+    "luminance_std": 37.2849,
+    "dynamic_range": 124.702,
+    "saturation_mean": 0.1188,
+    "saturation_std": 0.0336,
+    "warm_balance": 0.0606,
+    "colorfulness": 3.1767,
+    "shadow_clip_ratio": 0.003058,
+    "highlight_clip_ratio": 3e-06,
+    "entropy": 7.1988,
+    "edge_density": 0.149996,
+    "sharpness": 463.1677,
+    "visual_center_x": 0.5528,
+    "visual_center_y": 0.5487,
+    "thirds_distance": 0.164,
+    "line_balance": 0.001,
+    "diagonal_energy": 6.8572,
+    "symmetry_score": 0.8965,
+    "vignette_score": 0.1604,
+    "negative_space_ratio": 0.2992,
+    "dominant_colors": [
+      "#78706a",
+      "#908780",
+      "#5b544f",
+      "#aaa097",
+      "#c4bab1"
+    ],
+    "brightness_family": "midtone",
+    "saturation_family": "muted",
+    "texture_family": "structured",
+    "chroma_family": "warm"
+  },
+  "semantic": {
+    "analysis_status": "ok",
+    "subject_count": 0,
+    "object_count": 0,
+    "text_present": false,
+    "keywords": [
+      "photographie",
+      "cadre non déterminé avec précision"
+    ],
+    "support_kind": "photographie",
+    "salient_objects": [],
+    "subject_roles": [],
+    "dominant_axes": [],
+    "scene_summary": "Scène humaine visible, décrite de manière prudente faute de sortie d'observation totalement stable.",
+    "core_reading": "Scène humaine visible, décrite de manière prudente faute de sortie d'observation totalement stable.",
+    "short_title": "Photographie : PXL_20260319_221928460.RAW-01.COVER",
+    "faithfulness_score": 72,
+    "overreach_risk_score": 38
+  },
+  "run_metadata": {
+    "backend": "ollama",
+    "api_host": "http://127.0.0.1:11434",
+    "api_token_configured": false,
+    "model": "qwen3-vl:235b-cloud",
+    "vision_model": "qwen3-vl:235b-cloud",
+    "reasoning_model": "qwen3.5:397b-cloud",
+    "llm_postprocess": true,
+    "temporary_context": null,
+    "sync_timeout": 300,
+    "workers": 1,
+    "image_max_dimension": 1600,
+    "image_jpeg_quality": 88,
+    "pass_configs": {
+      "support": {
+        "temperature": 0.1,
+        "maxTokens": 520,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "observe": {
+        "temperature": 0.12,
+        "maxTokens": 820,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "read": {
+        "temperature": 0.08,
+        "maxTokens": 900,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.03
+      },
+      "anchor": {
+        "temperature": 0.16,
+        "maxTokens": 980,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "interpret": {
+        "temperature": 0.22,
+        "maxTokens": 960,
+        "topPSampling": 0.9,
+        "repeatPenalty": 1.05
+      },
+      "critique": {
+        "temperature": 0.08,
+        "maxTokens": 720,
+        "topPSampling": 0.8,
+        "repeatPenalty": 1.08
+      },
+      "write": {
+        "temperature": 0.32,
+        "maxTokens": 860,
+        "topPSampling": 0.88,
+        "repeatPenalty": 1.05
+      }
+    },
+    "prompt_overrides": null,
+    "prompt_fingerprints": {
+      "SUPPORT_SYSTEM": "2f1a5668b8773472b54086c913282321580cab2777843be318764b4fcfb08350",
+      "OBSERVE_SYSTEM": "abe18b93dd54804f4aa41228f9b0fcae1a8a7af8152b0e28f02d2b07057987db",
+      "READ_SYSTEM": "6d79b1d42002392b7116c5258a99695be65f8dba39b9079bf0df6dcc348bfafb",
+      "ANCHOR_SYSTEM": "49fde53a5decbe5bfebd4086fc2f9ba5203b62275a12a87fa3dfdc53700f78ef",
+      "INTERPRET_SYSTEM": "aaee84cb040d304819e42a765784adf73dffdce86ae4fe8d79b7ca0abf755bd0",
+      "CRITIQUE_SYSTEM": "f67eb00f8445ffe80a0291058fbd87fe3f4420d5098a31dc4face90d3c5b3994",
+      "WRITE_SYSTEM": "994f8a861b5679a475bbd2ad2a404cb6828b2b95e9c8b8a4601c6609e9c4ea6c",
+      "SUPPORT_USER": "4acab8b340379ee0329843c31cc92ad7cb090629c67942beb99710c2682f579b",
+      "OBSERVE_USER": "92f11baffa11cc703cdd733dc935cf08e96a8b3bf48b730b359843c07cb0b269",
+      "READ_USER": "8fd52285195e19e356d47291496fe722c8b242a7e808e6cba9af9d6f27e628f7",
+      "ANCHOR_USER": "b6da54a6952d39fecc6613b5ad76824998c6472ac12a7d5df7716f03b23b8886",
+      "INTERPRET_USER": "fab389c671ccfc8f40fb96f0b0d6b34dace6b6a81cd783d6dcf576bef767e2c5",
+      "CRITIQUE_USER": "7f8a4234742fa5e6ab7e998fbd2f3a232bd5888668b919f15a82673c5c03b216",
+      "WRITE_USER": "c89ffac0390fe8ca61b51239fa9b7bb1dc06eeb5ac7016d6acdaf0226d8ae6a6"
+    }
+  }
+}

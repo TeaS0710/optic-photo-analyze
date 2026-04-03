@@ -1,0 +1,82 @@
+{
+  "summary": {
+    "image_count": 12,
+    "families": {
+      "midtone-balanced-structured-object-no-text": 3,
+      "midtone-muted-structured-object-no-text": 9
+    },
+    "brightness_mean": 139.9204,
+    "saturation_mean": 0.177,
+    "sharpness_mean": 286.2867,
+    "mean_colorfulness": 12.434,
+    "human_image_count": 0,
+    "text_image_count": 0,
+    "top_objects": [],
+    "top_keywords": [
+      [
+        "photographie",
+        12
+      ],
+      [
+        "cadre non déterminé avec précision",
+        12
+      ]
+    ],
+    "support_kinds": [
+      [
+        "photographie",
+        12
+      ]
+    ]
+  },
+  "records": [
+    {
+      "file_name": "PXL_20260319_221606770.RAW-01.COVER.jpg",
+      "family": "midtone-balanced-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221615854.RAW-01.COVER.jpg",
+      "family": "midtone-balanced-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221626535.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221643500.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221656925.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221728309.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221746325.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221801472.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221820951.RAW-01.COVER.jpg",
+      "family": "midtone-balanced-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_221928460.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_222150706.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    },
+    {
+      "file_name": "PXL_20260319_222209556.RAW-01.COVER.jpg",
+      "family": "midtone-muted-structured-object-no-text"
+    }
+  ]
+}

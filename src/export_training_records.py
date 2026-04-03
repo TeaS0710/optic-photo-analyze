@@ -100,18 +100,20 @@ def build_record(task: str, payload: dict[str, Any]) -> dict[str, Any]:
     interpretation = payload["interpretation"]
     critique = payload["critique"]
     writing = payload["writing"]
+    run_metadata = payload.get("run_metadata", {})
+    temporary_context = run_metadata.get("temporary_context")
 
     if task == "interpret":
         system_prompt = INTERPRET_SYSTEM
-        user_prompt = render_interpret_user(support, observe, text, anchors)
+        user_prompt = render_interpret_user(support, observe, text, anchors, temporary_context)
         assistant = json.dumps(interpretation, ensure_ascii=False, indent=2)
     elif task == "critique":
         system_prompt = CRITIQUE_SYSTEM
-        user_prompt = render_critique_user(support, observe, text, anchors, interpretation)
+        user_prompt = render_critique_user(support, observe, text, anchors, interpretation, temporary_context)
         assistant = json.dumps(critique, ensure_ascii=False, indent=2)
     else:
         system_prompt = WRITE_SYSTEM
-        user_prompt = render_write_user(support, observe, text, anchors, critique)
+        user_prompt = render_write_user(support, observe, text, anchors, critique, temporary_context)
         assistant = json.dumps(writing, ensure_ascii=False, indent=2)
 
     quality = payload.get("quality", {})
@@ -121,7 +123,7 @@ def build_record(task: str, payload: dict[str, Any]) -> dict[str, Any]:
         "system_prompt": system_prompt,
         "user_prompt": user_prompt,
         "assistant": assistant,
-        "source_run_metadata": payload.get("run_metadata", {}),
+        "source_run_metadata": run_metadata,
         "reviewed": bool(quality.get("reviewed", False)),
         "usable_for_training": bool(quality.get("usable_for_training", False)),
         "review_notes": quality.get("review_notes", ""),

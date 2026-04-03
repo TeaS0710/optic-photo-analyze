@@ -35,6 +35,7 @@ Mission :
 Règles :
 - décrire d'abord ce qui structure l'image, puis les détails ;
 - distinguer action visible, posture, relation spatiale et incertitude ;
+- privilégier les détails discriminants: gestes, orientation des regards, états des mains, vêtements, traces, inscriptions, objets portés, distances ;
 - ne pas déduire d'histoire ou d'intention.
 
 Réponds uniquement dans le format structuré demandé."""
@@ -51,6 +52,7 @@ Règles :
 - ne pas compléter un mot manquant par imagination ;
 - quand une lecture est incertaine, l'indiquer dans les notes ;
 - préserver la segmentation du texte par zone.
+- si le texte est partiel, produire la meilleure transcription fragmentaire possible au lieu d'un faux texte complet.
 
 Réponds uniquement dans le format structuré demandé."""
 
@@ -65,6 +67,7 @@ Mission :
 Règles :
 - chaque ancrage doit partir d'un élément visible ou lisible ;
 - chaque ancrage doit explicitement contenir son anti-extrapolation ;
+- privilégier quelques ancrages forts, précis et réutilisables plutôt qu'une liste diffuse ;
 - tu peux dégager des axes forts de lecture, mais sans passer à la fiction.
 
 Réponds uniquement dans le format structuré demandé."""
@@ -81,6 +84,8 @@ Règles :
 - aucune hypothèse émotionnelle sans références d'ancrage ;
 - les lectures alternatives doivent rester compatibles avec le visible ;
 - les conclusions interdites doivent être rappelées explicitement.
+- chaque phrase importante doit pouvoir être reliée à un détail visible, lisible ou à une incertitude assumée ;
+- préférer une lecture dense, précise et courte à un texte plus ample mais flou.
 
 Interdictions :
 - ne pas raconter ce qui s'est passé avant ou après comme si c'était connu ;
@@ -101,6 +106,7 @@ Règles :
 - si l'interprétation brute est trop ambitieuse, tu la réduis ;
 - privilégie des corrections minimales mais nettes ;
 - toute critique doit pointer un endroit précis et proposer un correctif concret.
+- remonte sévèrement les formulations vagues, génériques ou décoratives si elles n'ajoutent pas de précision réelle.
 
 Interdictions :
 - ne jamais ajouter un nouveau récit ;
@@ -123,6 +129,8 @@ Règles :
 - pas de grands mots abstraits sans appui concret ;
 - garder la séparation entre ce qui est vu, ce qui est lu et ce qui est interprété ;
 - ne jamais réintroduire un élément supprimé par la critique.
+- écrire des paragraphes denses, concrets, publiables, sans remplissage ;
+- chaque commentaire doit apporter une vraie valeur de lecture, pas reformuler banalement le résumé.
 
 Réponds uniquement dans le format structuré demandé."""
 
@@ -149,6 +157,10 @@ Objectif :
 - décrire les sujets ;
 - relever les objets, actions, relations spatiales, composition et lumière ;
 - signaler les incertitudes.
+
+Exigence de qualité :
+- choisir les détails les plus discriminants ;
+- éviter les résumés génériques du type "une scène" sans contenu concret.
 """
 
 
@@ -164,6 +176,9 @@ Objectif :
 - identifier les zones textuelles ;
 - transcrire ;
 - préciser la langue probable et les limites de lecture.
+
+Exigence de qualité :
+- conserver aussi les fragments isolés, chiffres, noms propres, dates ou mots partiellement lisibles s'ils sont utiles.
 """
 
 
@@ -183,6 +198,9 @@ Objectif :
 - créer des ancrages numérotés ;
 - lister les inférences raisonnables ;
 - lister explicitement ce qu'il ne faut pas affirmer.
+
+Exigence de qualité :
+- les ancrages doivent être assez précis pour être réutilisés ensuite dans l'interprétation et la critique.
 """
 
 
@@ -214,6 +232,7 @@ Garde-fous supplémentaires :
 - le contexte temporaire ne vaut jamais preuve ;
 - n'infère ni camp, ni date, ni lieu précis, ni événement historique précis à partir de ce contexte seul ;
 - si ce contexte ne peut pas être confirmé par l'image, écris des formulations conditionnelles explicites.
+- évite les abstractions vides: chaque formulation doit gagner en précision par rapport au simple résumé descriptif.
 """
 
 
@@ -231,6 +250,9 @@ LECTURE DU TEXTE :
 ANCRAGES :
 {anchor_json}
 
+CONTEXTE TEMPORAIRE DE LECTURE :
+{temporary_context_block}
+
 INTERPRÉTATION BRUTE :
 {interpret_json}
 
@@ -239,6 +261,10 @@ Objectif :
 - identifier les problèmes précis ;
 - conserver ce qui est bon ;
 - produire une version révisée prête pour la rédaction.
+
+Exigence de qualité :
+- les champs révisés doivent être plus précis et plus prudents que la version brute, pas seulement paraphrasés.
+- si l'interprétation brute mobilise le contexte temporaire, vérifie explicitement qu'il reste hypothétique et subordonné au visible.
 """
 
 
@@ -270,6 +296,7 @@ Contraintes d'écriture :
 - écrire des textes publiables, plus humains et plus sensibles, sans transformer l'image en fiction ;
 - si un contexte temporaire est fourni, l'utiliser comme horizon émotionnel possible, jamais comme fait établi ;
 - toute phrase qui dépend du contexte externe doit rester clairement hypothétique.
+- éviter les tournures passe-partout et produire un langage concret, ferme, sans grandiloquence.
 """
 
 
@@ -384,12 +411,14 @@ def render_critique_user(
     text_payload: dict,
     anchor_payload: dict,
     interpret_payload: dict,
+    temporary_context: str | None = None,
 ) -> str:
     return CRITIQUE_USER.format(
         support_json=json.dumps(support_payload, ensure_ascii=False, indent=2),
         observe_json=json.dumps(observe_payload, ensure_ascii=False, indent=2),
         text_json=json.dumps(text_payload, ensure_ascii=False, indent=2),
         anchor_json=json.dumps(anchor_payload, ensure_ascii=False, indent=2),
+        temporary_context_block=format_temporary_context_block(temporary_context),
         interpret_json=json.dumps(interpret_payload, ensure_ascii=False, indent=2),
     )
 

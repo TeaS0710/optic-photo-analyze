@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460">
+<rect width="100%" height="100%" fill="white"/>
+<text x="70" y="28" font-size="22" font-family="Helvetica">Visual Center Map</text>
+<line x1="70" y1="400" x2="860" y2="400" stroke="black"/>
+<line x1="70" y1="50" x2="70" y2="400" stroke="black"/>
+<circle cx="214.6" cy="397.7" r="5" fill="#a63b6e"/><text x="221.6" y="390.7" font-size="10">PXL_20260319_22160</text><circle cx="293.0" cy="400.0" r="5" fill="#a63b6e"/><text x="300.0" y="393.0" font-size="10">PXL_20260319_22161</text><circle cx="256.2" cy="301.4" r="5" fill="#a63b6e"/><text x="263.2" y="294.4" font-size="10">PXL_20260319_22162</text><circle cx="70.0" cy="262.7" r="5" fill="#a63b6e"/><text x="77.0" y="255.7" font-size="10">PXL_20260319_22164</text><circle cx="192.9" cy="254.5" r="5" fill="#a63b6e"/><text x="199.9" y="247.5" font-size="10">PXL_20260319_22165</text><circle cx="200.8" cy="140.9" r="5" fill="#a63b6e"/><text x="207.8" y="133.9" font-size="10">PXL_20260319_22172</text><circle cx="126.6" cy="123.9" r="5" fill="#a63b6e"/><text x="133.6" y="116.9" font-size="10">PXL_20260319_22174</text><circle cx="267.0" cy="50.0" r="5" fill="#a63b6e"/><text x="274.0" y="43.0" font-size="10">PXL_20260319_22180</text><circle cx="360.5" cy="348.7" r="5" fill="#a63b6e"/><text x="367.5" y="341.7" font-size="10">PXL_20260319_22182</text><circle cx="571.4" cy="88.9" r="5" fill="#a63b6e"/><text x="578.4" y="81.9" font-size="10">PXL_20260319_22192</text><circle cx="328.5" cy="151.2" r="5" fill="#a63b6e"/><text x="335.5" y="144.2" font-size="10">PXL_20260319_22215</text><circle cx="860.0" cy="313.7" r="5" fill="#a63b6e"/><text x="867.0" y="306.7" font-size="10">PXL_20260319_22220</text>
+<text x="370.0" y="452" font-size="12">visual_center_x</text>
+<text x="8" y="230.0" font-size="12" transform="rotate(-90 8,230.0)">visual_center_y</text>
+</svg>

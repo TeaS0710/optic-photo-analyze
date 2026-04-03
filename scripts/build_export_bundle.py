@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import re
@@ -15,9 +16,15 @@ from reportlab.platypus import ListFlowable, ListItem, Paragraph, Preformatted, 
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPORT_DIR = ROOT / "export"
-MAIN_OUTPUT = ROOT / "output"
-STUDY_ARTIFACTS = ROOT / "photo_corpus_study_lab" / "artifacts"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build a publishable static export bundle.")
+    parser.add_argument("--main-output", type=Path, default=ROOT / "output")
+    parser.add_argument("--study-output", type=Path, default=ROOT / "artifacts" / "photo_corpus_study")
+    parser.add_argument("--export-dir", type=Path, default=ROOT / "artifacts" / "site_photo_analyze")
+    parser.add_argument("--publish-dir", type=Path, default=ROOT / "public")
+    return parser.parse_args()
 
 
 def ensure_dir(path: Path) -> None:
@@ -364,7 +371,7 @@ def build_pdf_library_page(export_dir: Path) -> None:
   </main>
   <footer class="footer">
     <div class="shell">
-      Generated automatically inside the export bundle.
+      Generated automatically by the unified root pipeline.
     </div>
   </footer>
 </body>
@@ -394,38 +401,42 @@ def build_manifest(export_dir: Path) -> None:
 
 
 def main() -> int:
-    clean_dir(EXPORT_DIR)
+    args = parse_args()
+    export_dir = args.export_dir
+    clean_dir(export_dir)
 
     copied_main = copy_files(
         [
-            (MAIN_OUTPUT, "*.report.md"),
-            (MAIN_OUTPUT, "*.analysis.json"),
-            (MAIN_OUTPUT, "manifest.json"),
+            (args.main_output, "*.report.md"),
+            (args.main_output, "*.analysis.json"),
+            (args.main_output, "manifest.json"),
         ],
-        EXPORT_DIR / "main_pipeline",
+        export_dir / "main_pipeline",
     )
     copied_study_reports = copy_files(
         [
-            (STUDY_ARTIFACTS, "corpus_report.md"),
-            (STUDY_ARTIFACTS, "*.json"),
-            (STUDY_ARTIFACTS / "reports", "*.md"),
-            (STUDY_ARTIFACTS / "metrics", "*.json"),
+            (args.study_output, "corpus_report.md"),
+            (args.study_output, "*.json"),
+            (args.study_output / "reports", "*.md"),
+            (args.study_output / "metrics", "*.json"),
         ],
-        EXPORT_DIR / "corpus_study_lab",
+        export_dir / "corpus_study_lab",
     )
-    copy_tree(STUDY_ARTIFACTS / "site", EXPORT_DIR / "corpus_study_lab" / "site")
-    copy_tree(STUDY_ARTIFACTS / "figures", EXPORT_DIR / "corpus_study_lab" / "figures")
+    copy_tree(args.study_output / "site", export_dir / "corpus_study_lab" / "site")
+    copy_tree(args.study_output / "figures", export_dir / "corpus_study_lab" / "figures")
 
-    generated_pdfs = convert_markdowns_to_pdfs(EXPORT_DIR)
-    build_pdf_library_page(EXPORT_DIR)
-    build_manifest(EXPORT_DIR)
+    generated_pdfs = convert_markdowns_to_pdfs(export_dir)
+    build_pdf_library_page(export_dir)
+    build_manifest(export_dir)
+    copy_tree(export_dir / "corpus_study_lab" / "site", args.publish_dir)
 
     summary = {
         "main_copied": len(copied_main),
         "study_copied": len(copied_study_reports),
         "pdf_generated": len(generated_pdfs),
+        "publish_dir": str(args.publish_dir),
     }
-    (EXPORT_DIR / "export_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    (export_dir / "export_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False))
     return 0
 

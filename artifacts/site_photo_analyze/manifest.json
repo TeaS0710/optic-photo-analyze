@@ -1,0 +1,434 @@
+[
+  {
+    "path": "corpus_study_lab/PXL_20260319_221606770.RAW-01.COVER.json",
+    "size_bytes": 4709
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221606770.RAW-01.COVER.md",
+    "size_bytes": 2606
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221606770.RAW-01.COVER.pdf",
+    "size_bytes": 5084
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221615854.RAW-01.COVER.json",
+    "size_bytes": 4709
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221615854.RAW-01.COVER.md",
+    "size_bytes": 2497
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221615854.RAW-01.COVER.pdf",
+    "size_bytes": 5004
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221626535.RAW-01.COVER.json",
+    "size_bytes": 4704
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221626535.RAW-01.COVER.md",
+    "size_bytes": 2642
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221626535.RAW-01.COVER.pdf",
+    "size_bytes": 5101
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221643500.RAW-01.COVER.json",
+    "size_bytes": 4707
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221643500.RAW-01.COVER.md",
+    "size_bytes": 2580
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221643500.RAW-01.COVER.pdf",
+    "size_bytes": 5080
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221656925.RAW-01.COVER.json",
+    "size_bytes": 4707
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221656925.RAW-01.COVER.md",
+    "size_bytes": 2644
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221656925.RAW-01.COVER.pdf",
+    "size_bytes": 5102
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221728309.RAW-01.COVER.json",
+    "size_bytes": 4702
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221728309.RAW-01.COVER.md",
+    "size_bytes": 2745
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221728309.RAW-01.COVER.pdf",
+    "size_bytes": 5190
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221746325.RAW-01.COVER.json",
+    "size_bytes": 4703
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221746325.RAW-01.COVER.md",
+    "size_bytes": 2745
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221746325.RAW-01.COVER.pdf",
+    "size_bytes": 5180
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221801472.RAW-01.COVER.json",
+    "size_bytes": 4707
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221801472.RAW-01.COVER.md",
+    "size_bytes": 2752
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221801472.RAW-01.COVER.pdf",
+    "size_bytes": 5198
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221820951.RAW-01.COVER.json",
+    "size_bytes": 4708
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221820951.RAW-01.COVER.md",
+    "size_bytes": 2648
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221820951.RAW-01.COVER.pdf",
+    "size_bytes": 5112
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221928460.RAW-01.COVER.json",
+    "size_bytes": 4706
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221928460.RAW-01.COVER.md",
+    "size_bytes": 2744
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_221928460.RAW-01.COVER.pdf",
+    "size_bytes": 5184
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_222150706.RAW-01.COVER.json",
+    "size_bytes": 4708
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_222150706.RAW-01.COVER.md",
+    "size_bytes": 2645
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_222150706.RAW-01.COVER.pdf",
+    "size_bytes": 5103
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_222209556.RAW-01.COVER.json",
+    "size_bytes": 4709
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_222209556.RAW-01.COVER.md",
+    "size_bytes": 2642
+  },
+  {
+    "path": "corpus_study_lab/PXL_20260319_222209556.RAW-01.COVER.pdf",
+    "size_bytes": 5097
+  },
+  {
+    "path": "corpus_study_lab/corpus_report.md",
+    "size_bytes": 1439
+  },
+  {
+    "path": "corpus_study_lab/corpus_report.pdf",
+    "size_bytes": 3873
+  },
+  {
+    "path": "corpus_study_lab/families.json",
+    "size_bytes": 2243
+  },
+  {
+    "path": "corpus_study_lab/figures/brightness_histogram.svg",
+    "size_bytes": 1827
+  },
+  {
+    "path": "corpus_study_lab/figures/colorfulness_histogram.svg",
+    "size_bytes": 1807
+  },
+  {
+    "path": "corpus_study_lab/figures/contact_sheet.png",
+    "size_bytes": 549699
+  },
+  {
+    "path": "corpus_study_lab/figures/saturation_histogram.svg",
+    "size_bytes": 1799
+  },
+  {
+    "path": "corpus_study_lab/figures/saturation_vs_edge_density.svg",
+    "size_bytes": 1877
+  },
+  {
+    "path": "corpus_study_lab/figures/sharpness_vs_dynamic_range.svg",
+    "size_bytes": 1880
+  },
+  {
+    "path": "corpus_study_lab/figures/visual_center_map.svg",
+    "size_bytes": 1883
+  },
+  {
+    "path": "corpus_study_lab/figures/warm_balance_histogram.svg",
+    "size_bytes": 1798
+  },
+  {
+    "path": "corpus_study_lab/semantic_trends.json",
+    "size_bytes": 280
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/brightness_histogram.svg",
+    "size_bytes": 1827
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/colorfulness_histogram.svg",
+    "size_bytes": 1807
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/contact_sheet.png",
+    "size_bytes": 549699
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/saturation_histogram.svg",
+    "size_bytes": 1799
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/saturation_vs_edge_density.svg",
+    "size_bytes": 1877
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/sharpness_vs_dynamic_range.svg",
+    "size_bytes": 1880
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/visual_center_map.svg",
+    "size_bytes": 1883
+  },
+  {
+    "path": "corpus_study_lab/site/assets/figures/warm_balance_histogram.svg",
+    "size_bytes": 1798
+  },
+  {
+    "path": "corpus_study_lab/site/assets/style.css",
+    "size_bytes": 5872
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221606770.RAW-01.COVER.jpg",
+    "size_bytes": 85957
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221615854.RAW-01.COVER.jpg",
+    "size_bytes": 90080
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221626535.RAW-01.COVER.jpg",
+    "size_bytes": 75406
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221643500.RAW-01.COVER.jpg",
+    "size_bytes": 68897
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221656925.RAW-01.COVER.jpg",
+    "size_bytes": 61610
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221728309.RAW-01.COVER.jpg",
+    "size_bytes": 68086
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221746325.RAW-01.COVER.jpg",
+    "size_bytes": 71800
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221801472.RAW-01.COVER.jpg",
+    "size_bytes": 65388
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221820951.RAW-01.COVER.jpg",
+    "size_bytes": 36131
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_221928460.RAW-01.COVER.jpg",
+    "size_bytes": 59566
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_222150706.RAW-01.COVER.jpg",
+    "size_bytes": 67276
+  },
+  {
+    "path": "corpus_study_lab/site/assets/thumbs/PXL_20260319_222209556.RAW-01.COVER.jpg",
+    "size_bytes": 51799
+  },
+  {
+    "path": "corpus_study_lab/site/index.html",
+    "size_bytes": 44114
+  },
+  {
+    "path": "corpus_study_lab/site/library.html",
+    "size_bytes": 9209
+  },
+  {
+    "path": "main_pipeline/001_PXL_20260319_221606770.RAW-01.COVER.analysis.json",
+    "size_bytes": 13901
+  },
+  {
+    "path": "main_pipeline/001_PXL_20260319_221606770.RAW-01.COVER.report.md",
+    "size_bytes": 8267
+  },
+  {
+    "path": "main_pipeline/001_PXL_20260319_221606770.RAW-01.COVER.report.pdf",
+    "size_bytes": 12081
+  },
+  {
+    "path": "main_pipeline/002_PXL_20260319_221615854.RAW-01.COVER.analysis.json",
+    "size_bytes": 13902
+  },
+  {
+    "path": "main_pipeline/002_PXL_20260319_221615854.RAW-01.COVER.report.md",
+    "size_bytes": 8268
+  },
+  {
+    "path": "main_pipeline/002_PXL_20260319_221615854.RAW-01.COVER.report.pdf",
+    "size_bytes": 12072
+  },
+  {
+    "path": "main_pipeline/003_PXL_20260319_221626535.RAW-01.COVER.analysis.json",
+    "size_bytes": 13902
+  },
+  {
+    "path": "main_pipeline/003_PXL_20260319_221626535.RAW-01.COVER.report.md",
+    "size_bytes": 8268
+  },
+  {
+    "path": "main_pipeline/003_PXL_20260319_221626535.RAW-01.COVER.report.pdf",
+    "size_bytes": 12074
+  },
+  {
+    "path": "main_pipeline/004_PXL_20260319_221643500.RAW-01.COVER.analysis.json",
+    "size_bytes": 13901
+  },
+  {
+    "path": "main_pipeline/004_PXL_20260319_221643500.RAW-01.COVER.report.md",
+    "size_bytes": 8267
+  },
+  {
+    "path": "main_pipeline/004_PXL_20260319_221643500.RAW-01.COVER.report.pdf",
+    "size_bytes": 12077
+  },
+  {
+    "path": "main_pipeline/005_PXL_20260319_221656925.RAW-01.COVER.analysis.json",
+    "size_bytes": 13902
+  },
+  {
+    "path": "main_pipeline/005_PXL_20260319_221656925.RAW-01.COVER.report.md",
+    "size_bytes": 8268
+  },
+  {
+    "path": "main_pipeline/005_PXL_20260319_221656925.RAW-01.COVER.report.pdf",
+    "size_bytes": 12075
+  },
+  {
+    "path": "main_pipeline/006_PXL_20260319_221728309.RAW-01.COVER.analysis.json",
+    "size_bytes": 13902
+  },
+  {
+    "path": "main_pipeline/006_PXL_20260319_221728309.RAW-01.COVER.report.md",
+    "size_bytes": 8268
+  },
+  {
+    "path": "main_pipeline/006_PXL_20260319_221728309.RAW-01.COVER.report.pdf",
+    "size_bytes": 12076
+  },
+  {
+    "path": "main_pipeline/007_PXL_20260319_221746325.RAW-01.COVER.analysis.json",
+    "size_bytes": 13900
+  },
+  {
+    "path": "main_pipeline/007_PXL_20260319_221746325.RAW-01.COVER.report.md",
+    "size_bytes": 8266
+  },
+  {
+    "path": "main_pipeline/007_PXL_20260319_221746325.RAW-01.COVER.report.pdf",
+    "size_bytes": 12067
+  },
+  {
+    "path": "main_pipeline/008_PXL_20260319_221801472.RAW-01.COVER.analysis.json",
+    "size_bytes": 13901
+  },
+  {
+    "path": "main_pipeline/008_PXL_20260319_221801472.RAW-01.COVER.report.md",
+    "size_bytes": 8267
+  },
+  {
+    "path": "main_pipeline/008_PXL_20260319_221801472.RAW-01.COVER.report.pdf",
+    "size_bytes": 12075
+  },
+  {
+    "path": "main_pipeline/009_PXL_20260319_221820951.RAW-01.COVER.analysis.json",
+    "size_bytes": 13900
+  },
+  {
+    "path": "main_pipeline/009_PXL_20260319_221820951.RAW-01.COVER.report.md",
+    "size_bytes": 8266
+  },
+  {
+    "path": "main_pipeline/009_PXL_20260319_221820951.RAW-01.COVER.report.pdf",
+    "size_bytes": 12070
+  },
+  {
+    "path": "main_pipeline/010_PXL_20260319_221928460.RAW-01.COVER.analysis.json",
+    "size_bytes": 13902
+  },
+  {
+    "path": "main_pipeline/010_PXL_20260319_221928460.RAW-01.COVER.report.md",
+    "size_bytes": 8268
+  },
+  {
+    "path": "main_pipeline/010_PXL_20260319_221928460.RAW-01.COVER.report.pdf",
+    "size_bytes": 12073
+  },
+  {
+    "path": "main_pipeline/011_PXL_20260319_222150706.RAW-01.COVER.analysis.json",
+    "size_bytes": 13903
+  },
+  {
+    "path": "main_pipeline/011_PXL_20260319_222150706.RAW-01.COVER.report.md",
+    "size_bytes": 8269
+  },
+  {
+    "path": "main_pipeline/011_PXL_20260319_222150706.RAW-01.COVER.report.pdf",
+    "size_bytes": 12073
+  },
+  {
+    "path": "main_pipeline/012_PXL_20260319_222209556.RAW-01.COVER.analysis.json",
+    "size_bytes": 13903
+  },
+  {
+    "path": "main_pipeline/012_PXL_20260319_222209556.RAW-01.COVER.report.md",
+    "size_bytes": 8269
+  },
+  {
+    "path": "main_pipeline/012_PXL_20260319_222209556.RAW-01.COVER.report.pdf",
+    "size_bytes": 12073
+  },
+  {
+    "path": "main_pipeline/manifest.json",
+    "size_bytes": 7177
+  }
+]
